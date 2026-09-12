@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Satadal Santra — Data Science · ML · LLM · AI</title>
+<meta name="description" content="Data scientist with eight years of enterprise SAP/ERP data experience. Building ML, RAG/LLM, and data-engineering solutions — with code and demos linked on every project."/>
+<link rel="canonical" href="https://satadals.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Satadal Santra — Data Scientist"/>
+<meta property="og:description" content="ML, LLM and data-engineering work on real operational data. Eight years of enterprise SAP/ERP behind it."/>
+<meta property="og:url" content="https://satadals.dev"/>
+<meta property="og:image" content="https://satadals.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Satadal Santra — Data Scientist"/>
+<meta name="twitter:description" content="ML, LLM and data-engineering work on real operational data."/>
+<meta name="twitter:image" content="https://satadals.dev/og.png">
+<meta name="theme-color" content="#0B0B0D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0B0D;--ink-2:#0F0F12;--tile:#121216;--tile-hi:#17171C;
+  --line:#212127;--line-soft:#191920;--text:#EDEDF0;--text-2:#A8A8B4;--muted:#6E6E7B;
+  --lime:#C9F24D;--lime-dim:rgba(201,242,77,.10);--lime-line:rgba(201,242,77,.30);
+  --r:14px;--maxw:1240px;
+  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ink);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.032;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(760px 460px at 78% -8%,rgba(201,242,77,.055),transparent 62%),radial-gradient(600px 400px at 6% 8%,rgba(120,140,255,.045),transparent 62%)}
+main,header,footer{position:relative;z-index:1}
+::selection{background:var(--lime);color:#0B0B0D}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+section{padding:96px 0;scroll-margin-top:80px}
+.mono{font-family:var(--mono)}
+.lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--lime);color:#0B0B0D;padding:10px 16px;border-radius:0 0 10px 0;font-size:.8rem;font-weight:600;text-decoration:none}
+.skip:focus{left:0}
+
+/* ---------- top bar ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:80;border-bottom:1px solid transparent;transition:background .35s,border-color .35s,backdrop-filter .35s}
+.topbar.scrolled{background:rgba(11,11,13,.78);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom-color:var(--line-soft)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px;position:relative}
+.brand{font-family:var(--mono);font-size:.83rem;font-weight:500;color:var(--text);text-decoration:none;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:9px}
+.brand .glyph{width:20px;height:20px;border-radius:6px;flex:none;background:linear-gradient(140deg,var(--lime),#7BC62D);display:grid;place-items:center;font-size:.62rem;font-weight:700;color:#0B0B0D;font-family:var(--sans)}
+.nav{display:flex;gap:28px}
+.nav a{font-size:.8rem;font-weight:500;color:var(--text-2);text-decoration:none;position:relative;padding:3px 0;transition:color .22s}
+.nav a::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .34s cubic-bezier(.22,1,.36,1)}
+.nav a:hover,.nav a.on{color:var(--text)}
+.nav a:hover::after,.nav a.on::after{transform:scaleX(1)}
+.nav-toggle{display:none;width:38px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--tile);color:var(--text);cursor:pointer;align-items:center;justify-content:center;flex:none}
+.nav-toggle svg{width:16px;height:16px}
+.chip-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;color:var(--text-2);padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--tile);white-space:nowrap}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--lime);flex:none;box-shadow:0 0 0 0 rgba(201,242,77,.6);animation:ping 2.3s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(201,242,77,.55)}70%{box-shadow:0 0 0 7px rgba(201,242,77,0)}100%{box-shadow:0 0 0 0 rgba(201,242,77,0)}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:11px;font-size:.83rem;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .24s cubic-bezier(.22,1,.36,1),background .24s,border-color .24s,box-shadow .3s,color .24s;white-space:nowrap;font-family:var(--sans)}
+.btn-lime{background:var(--lime);color:#0B0B0D}
+.btn-lime:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(201,242,77,.6)}
+.btn-ghost{background:var(--tile);border-color:var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--lime-line);transform:translateY(-2px);background:var(--tile-hi)}
+.btn svg{width:13px;height:13px;flex:none}
+
+/* ---------- tiles ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:13px}
+.tile{position:relative;background:var(--tile);border:1px solid var(--line);border-radius:var(--r);padding:22px;overflow:hidden;transition:border-color .3s,background .3s,transform .35s cubic-bezier(.22,1,.36,1)}
+.tile::before{content:attr(data-idx);position:absolute;top:14px;right:16px;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted);opacity:.55}
+.tile-hover:hover{border-color:var(--lime-line);background:var(--tile-hi);transform:translateY(-3px)}
+
+/* ---------- hero ---------- */
+.hero{padding:150px 0 72px}
+.ruler{display:flex;gap:0;height:22px;align-items:flex-end;border-bottom:1px solid var(--line-soft);margin-bottom:34px;position:relative;overflow:hidden}
+.ruler span{flex:1;position:relative;height:100%;border-left:1px solid var(--line)}
+.ruler span::after{content:attr(data-t);position:absolute;left:4px;bottom:5px;font-family:var(--mono);font-size:.55rem;color:var(--muted);opacity:.6}
+.ruler span:first-child{border-left-color:var(--lime)}
+.ruler span:first-child::after{color:var(--lime);opacity:1}
+.h-intro{grid-column:span 8;padding:8px 40px 8px 0}
+.h-status{grid-column:span 4}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);display:inline-flex;align-items:center;gap:11px;margin-bottom:24px}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--lime);flex:none}
+h1{font-size:clamp(2.3rem,5.6vw,4.35rem);font-weight:600;line-height:1.04;letter-spacing:-.035em;margin-bottom:22px}
+h1 .accent{color:var(--lime)}
+h1 .thin{font-weight:400;color:var(--text-2)}
+.hero-lede{color:var(--text-2);font-size:1rem;max-width:50ch;margin-bottom:32px}
+.hero-lede b{color:var(--text);font-weight:600}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+.status-card{display:flex;flex-direction:column;height:100%}
+.status-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:14px}
+.status-head .title{font-family:var(--mono);font-size:.68rem;color:var(--text-2);letter-spacing:.06em}
+.kv{display:flex;flex-direction:column;gap:0;flex:1}
+.kv-row{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft);font-family:var(--mono);font-size:.72rem}
+.kv-row:last-child{border-bottom:none}
+.kv-key{color:var(--muted);white-space:nowrap}
+.kv-dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-3px);min-width:12px}
+.kv-val{color:var(--text);white-space:nowrap}
+.kv-val .good{color:var(--lime)}
+.spark-wrap{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.spark-svg{width:100%;height:44px;display:block;overflow:visible}
+.spark-line{fill:none;stroke:var(--lime);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1)}
+.in .spark-line{stroke-dashoffset:0}
+
+/* ---------- hero stats (now real values + evidence links) ---------- */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:13px}
+.stat{padding:20px 20px 16px}
+.stat-link{display:block;text-decoration:none;color:inherit;cursor:pointer}
+.stat-link:hover{border-color:var(--lime-line);background:var(--tile-hi);transform:translateY(-3px)}
+.stat-num{font-size:clamp(1.7rem,3.3vw,2.2rem);font-weight:600;letter-spacing:-.04em;line-height:1;display:block}
+.stat-num .u{font-family:var(--mono);font-size:.4em;color:var(--lime);font-weight:500;margin-left:3px;letter-spacing:0}
+.stat-lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+.stat-spark{width:100%;height:22px;margin-top:14px;display:block;opacity:.85}
+.stat-spark polyline{fill:none;stroke:var(--lime);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)}
+.in .stat-spark polyline{stroke-dashoffset:0}
+.stat-src{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--muted);margin-top:12px;transition:color .24s}
+.stat-link:hover .stat-src{color:var(--lime)}
+
+/* ---------- section heads ---------- */
+.sec-head{margin-bottom:38px;display:flex;justify-content:space-between;align-items:flex-end;gap:34px;flex-wrap:wrap}
+.sec-head-l{max-width:620px}
+.sec-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-top:16px}
+.sec-head h2 .accent{color:var(--lime)}
+.sec-head p{color:var(--text-2);font-size:.93rem;margin-top:12px;max-width:56ch}
+.sec-count{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.08em;white-space:nowrap;padding-bottom:6px}
+
+/* ---------- project cards ---------- */
+.p-tile{cursor:default;display:flex;flex-direction:column;padding:0}
+.p-visual{height:158px;padding:18px 20px 0;border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,rgba(201,242,77,.028),transparent);position:relative;overflow:hidden}
+.p-visual svg{width:100%;height:100%;display:block;overflow:visible}
+.p-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:9px}
+.p-body h3{font-size:1.05rem;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.p-year{font-family:var(--mono);font-size:.66rem;color:var(--muted);padding-top:4px;white-space:nowrap}
+.p-body p{color:var(--text-2);font-size:.85rem;line-height:1.68;margin-bottom:16px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.63rem;padding:4px 9px;border-radius:6px;background:rgba(201,242,77,.06);color:#D6F57F;border:1px solid rgba(201,242,77,.13)}
+
+/* project links — the fix for "proof of work hidden behind text" */
+.p-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft)}
+.p-link{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;padding:8px 12px;border-radius:8px;border:1px solid var(--line);color:var(--text-2);text-decoration:none;background:var(--ink-2);transition:border-color .24s,color .24s,background .24s,transform .24s cubic-bezier(.22,1,.36,1)}
+.p-link svg{width:12px;height:12px;flex:none}
+.p-link:hover{border-color:var(--lime-line);color:var(--text);background:var(--tile-hi);transform:translateY(-2px)}
+.p-link.primary{background:var(--lime-dim);border-color:var(--lime-line);color:#D6F57F}
+.p-link.primary:hover{color:#EDFFB8;background:rgba(201,242,77,.16)}
+
+/* featured (LLM) project card */
+.p-feature{grid-column:span 12;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.p-feature .p-visual{height:auto;min-height:290px;padding:26px;border-bottom:none;border-right:1px solid var(--line-soft);display:flex;align-items:center}
+.p-feature .p-visual svg{max-height:250px}
+.p-metrics{display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;margin:4px 0 16px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.p-metrics .m-val{display:block;font-size:1.05rem;font-weight:600;color:var(--lime);letter-spacing:-.02em;line-height:1.25}
+.p-metrics .m-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* project visuals animation */
+.bars-g rect{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.in .bars-g rect{transform:scaleY(1)}
+.line-g path,.line-g polyline{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:700;stroke-dashoffset:700;transition:stroke-dashoffset 1.9s cubic-bezier(.4,0,.2,1)}
+.in .line-g path,.in .line-g polyline{stroke-dashoffset:0}
+.dot-g circle{opacity:0;transition:opacity .5s}
+.in .dot-g circle{opacity:1}
+.grid-g rect{opacity:0;transition:opacity .55s}
+.in .grid-g rect{opacity:var(--o)}
+
+/* architecture diagram (LLM card) */
+.arch text{font-family:var(--mono);font-size:9px;fill:var(--text-2);text-anchor:middle}
+.arch .arch-lbl{font-size:8px;fill:var(--muted);letter-spacing:.09em;text-anchor:start}
+.arch rect{fill:rgba(201,242,77,.05);stroke:rgba(201,242,77,.22);stroke-width:1}
+.arch .conn{fill:none;stroke:var(--muted);stroke-width:1}
+.arch-fade{opacity:0;transition:opacity .6s cubic-bezier(.22,1,.36,1)}
+.in .arch-fade{opacity:1}
+
+/* ---------- stack ---------- */
+.stack-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:13px}
+.skills-tile{grid-column:span 5}
+.tools-tile{grid-column:span 7}
+.skills-note{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:9px;letter-spacing:.02em}
+.skill-list{list-style:none;margin-top:16px}
+.skill-row{padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.skill-row:last-child{border-bottom:none;padding-bottom:0}
+.skill-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.skill-top .name{font-size:.87rem;font-weight:600;letter-spacing:-.01em}
+.tier{font-family:var(--mono);font-size:.58rem;letter-spacing:.07em;padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tier.hi{border-color:var(--lime-line);color:var(--lime);background:var(--lime-dim)}
+.skill-desc{font-size:.79rem;color:var(--text-2);line-height:1.6}
+.tool-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px;margin-top:20px}
+.tool-col h4{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:.76rem;padding:6px 12px;border-radius:8px;background:var(--ink-2);border:1px solid var(--line);color:var(--text-2);transition:border-color .24s,color .24s,transform .24s,background .24s}
+.pill:hover{border-color:var(--lime-line);color:var(--text);transform:translateY(-2px);background:var(--tile-hi)}
+
+/* ---------- record ---------- */
+.rec-list{list-style:none;border-top:1px solid var(--line)}
+.rec-item{display:grid;grid-template-columns:130px 1fr auto;gap:30px;align-items:start;padding:28px 4px;border-bottom:1px solid var(--line);transition:background .3s,padding-left .35s cubic-bezier(.22,1,.36,1)}
+.rec-item:hover{background:rgba(201,242,77,.022);padding-left:14px}
+.rec-date{font-family:var(--mono);font-size:.68rem;color:var(--muted);padding-top:5px;letter-spacing:.04em}
+.rec-main h3{font-size:1.02rem;font-weight:600;letter-spacing:-.015em;margin-bottom:5px}
+.rec-co{font-family:var(--mono);font-size:.7rem;color:var(--lime);letter-spacing:.02em;margin-bottom:10px;display:block}
+.rec-main p{color:var(--text-2);font-size:.86rem;line-height:1.7;max-width:62ch}
+.rec-badge{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;margin-top:2px}
+.rec-badge.now{border-color:var(--lime-line);color:var(--lime);background:var(--lime-dim)}
+.rec-item.rec-compact{padding:22px 4px}
+.rec-item.rec-compact h3{font-size:.92rem;color:var(--text-2)}
+.rec-item.rec-compact .rec-co{color:var(--muted)}
+.rec-item.rec-compact p{font-size:.8rem;color:var(--muted);max-width:66ch}
+.rec-more{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted);margin-top:18px}
+.rec-more a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--line)}
+.rec-more a:hover{color:var(--lime);border-bottom-color:var(--lime-line)}
+
+/* ---------- contact ---------- */
+.contact{padding:110px 0 90px}
+.contact-tile{padding:64px 40px;text-align:center;background:linear-gradient(180deg,var(--tile),#0F0F13);position:relative}
+.contact-tile::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(520px 260px at 50% 0%,rgba(201,242,77,.07),transparent 70%)}
+.contact h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:600;letter-spacing:-.038em;line-height:1.05;margin:22px auto 18px;max-width:17ch;position:relative}
+.contact h2 .accent{color:var(--lime)}
+.contact p{color:var(--text-2);max-width:46ch;margin:0 auto 34px;font-size:.95rem;position:relative}
+.contact-actions{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;position:relative}
+.socials{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:44px;padding-top:28px;border-top:1px solid var(--line-soft);position:relative}
+.socials a{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.03em;transition:color .24s}
+.socials a:hover{color:var(--lime)}
+footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+footer .fstat{display:inline-flex;align-items:center;gap:8px}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:1060px){
+  .h-intro{grid-column:span 12;padding-right:0}
+  .h-status{grid-column:span 12}
+  .skills-tile,.tools-tile{grid-column:span 12}
+}
+@media(max-width:900px){
+  .p-feature{grid-template-columns:1fr}
+  .p-feature .p-visual{min-height:0;height:230px;border-right:none;border-bottom:1px solid var(--line-soft);padding:20px}
+}
+@media(max-width:880px){
+  .nav-toggle{display:inline-flex}
+  .nav{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:rgba(11,11,13,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:6px 26px 14px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .26s,transform .26s}
+  .nav.open{opacity:1;transform:none;pointer-events:auto}
+  .nav a{padding:13px 0;font-size:.9rem;border-bottom:1px solid var(--line-soft)}
+  .nav a::after{display:none}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  section{padding:74px 0}
+  .hero{padding:120px 0 56px}
+  .ruler{display:none}
+  .rec-item{grid-template-columns:1fr;gap:8px;padding:22px 4px}
+  .rec-badge{justify-self:start}
+  .rec-date{padding-top:0}
+}
+@media(max-width:640px){
+  .wrap{padding:0 18px}
+  .nav{padding-left:18px;padding-right:18px}
+  .tool-cols{grid-template-columns:1fr}
+  .contact-tile{padding:48px 22px}
+  .sec-head{gap:14px}
+  .chip-live{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .bars-g rect{transform:scaleY(1)}
+  .line-g path,.line-g polyline{stroke-dashoffset:0}
+  .dot-g circle,.grid-g rect,.arch-fade{opacity:1}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to selected work</a>
+
+<header class="topbar" id="topbar">
+  <div class="wrap topbar-in">
+    <a href="#top" class="brand"><span class="glyph" aria-hidden="true">SS</span> satadal.santra</a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#record">Record</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <span class="chip-live"><span class="pulse" aria-hidden="true"></span> <span id="clock">--:--:--</span> CET</span>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="ruler reveal" id="ruler" aria-hidden="true"></div>
+    <div class="bento">
+
+      <div class="h-intro reveal">
+        <span class="eyebrow">Data Science · ML Systems · LLM · AI · Analytics</span>
+        <h1>
+          Somewhere between a <span class="accent">p-value</span><br>
+          <span class="thin">and a production deploy.</span>
+        </h1>
+        <p class="hero-lede">
+          Data Science student backed by <b>8 years</b> of hands-on experience in SAP IS-U &amp; FI-CA at a state power utility — master data, MIS reporting, billing &amp; revenue analysis. Now applying that foundation to <b>ML, RAG/LLM systems, and data engineering</b> — with the code and demos linked below.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-lime">
+            Selected work
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">satadals121@gmail.com</a>
+        </div>
+      </div>
+
+      <aside class="tile h-status status-card reveal" data-idx="SYS">
+        <div class="status-head"><span class="title">current_profile</span><span class="pulse" aria-hidden="true"></span></div>
+        <div class="kv">
+          <div class="kv-row"><span class="kv-key">focus</span><span class="kv-dots"></span><span class="kv-val"><span class="good">Data Science &amp; ML</span></span></div>
+          <div class="kv-row"><span class="kv-key">prior domain</span><span class="kv-dots"></span><span class="kv-val">SAP IS-U · FI-CA</span></div>
+          <div class="kv-row"><span class="kv-key">location</span><span class="kv-dots"></span><span class="kv-val">Bochum, DE</span></div>
+          <div class="kv-row"><span class="kv-key">status</span><span class="kv-dots"></span><span class="kv-val"><span class="good">Open to roles</span></span></div>
+        </div>
+        <div class="spark-wrap">
+          <svg class="spark-svg" viewBox="0 0 240 44" preserveAspectRatio="none" aria-hidden="true">
+            <polyline class="spark-line" points="0,38 24,35 48,36 72,28 96,30 120,22 144,24 168,16 192,18 216,10 240,12"/>
+          </svg>
+          <div class="lbl" style="margin-top:6px">project output · 2024–2026</div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Stats now render real values without JS, and each links to its evidence. -->
+    <div class="stat-row reveal">
+      <a class="tile stat stat-link" href="#p-dhl" data-idx="01">
+        <span class="stat-num"><span data-count="518">518</span></span>
+        <div class="stat-lbl">Models benchmarked</div>
+        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,17 15,15 30,16 45,12 60,13 75,9 90,10 105,6 120,7"/></svg>
+        <span class="stat-src">↳ DHL forecasting</span>
+      </a>
+      <a class="tile stat stat-link" href="#p-dhl" data-idx="02">
+        <span class="stat-num"><span data-count="14">14</span><span class="u">%</span></span>
+        <div class="stat-lbl">Forecast error reduced</div>
+        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,19 15,17 30,14 45,15 60,11 75,12 90,8 105,9 120,5"/></svg>
+        <span class="stat-src">↳ DHL forecasting</span>
+      </a>
+      <a class="tile stat stat-link" href="#record" data-idx="03">
+        <span class="stat-num"><span data-count="8">8</span><span class="u">YRS</span></span>
+        <div class="stat-lbl">Enterprise data exp</div>
+        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,18 15,18 30,15 45,15 60,12 75,12 90,9 105,9 120,6"/></svg>
+        <span class="stat-src">↳ WBSEDCL, 2013–2021</span>
+      </a>
+      <a class="tile stat stat-link" href="#work" data-idx="04">
+        <span class="stat-num"><span data-count="5">5</span></span>
+        <div class="stat-lbl">Projects shipped</div>
+        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,14 15,13 30,15 45,10 60,11 75,8 90,9 105,6 120,5"/></svg>
+        <span class="stat-src">↳ all with repo links</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div class="sec-head-l">
+        <span class="eyebrow">01 — Selected work</span>
+        <h2>Real data, <span class="accent">real code.</span></h2>
+        <p>From seminar projects with industry partners to independent builds — every card links straight to the repository or live demo, so nothing has to be taken on trust.</p>
+      </div>
+      <span class="sec-count">05 / 05</span>
+    </header>
+
+    <div class="bento">
+
+      <!-- ── P-01 ─────────────────────────────────────────── -->
+      <article class="tile tile-hover p-tile reveal" id="p-dhl" data-idx="P-01" style="grid-column:span 7">
+        <div class="p-visual"><svg class="line-g" viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0,104 L50,92 L100,98 L150,72 L200,80 L250,52 L300,60 L350,34 L400,42" stroke="#C9F24D"/><path d="M250,52 L300,60 L350,34 L400,42" stroke="#6E6E7B" stroke-dasharray="5 6"/></svg></div>
+        <div class="p-body">
+          <div class="p-top"><h3>DHL Demand Forecasting</h3><span class="p-year">2026</span></div>
+          <p>Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">Holt-Winters</span><span class="tag">scikit-learn</span><span class="tag">Time Series</span></div>
+          <div class="p-links">
+            <a class="p-link primary" href="https://github.com/SatadalS99/dhl-demand-forecasting" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
+              GitHub repo
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/dhl-demand-forecasting/blob/main/notebooks/benchmark.ipynb" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              Benchmark notebook
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── P-02 ─────────────────────────────────────────── -->
+      <article class="tile tile-hover p-tile reveal" id="p-picnic" data-idx="P-02" style="grid-column:span 5">
+        <div class="p-visual"><svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true"><g class="dot-g" id="scatterArt" fill="#C9F24D"></g></svg></div>
+        <div class="p-body">
+          <div class="p-top"><h3>Picnic Customer Segmentation</h3><span class="p-year">2026</span></div>
+          <p>K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% "peak-and-fade" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.</p>
+          <div class="tags"><span class="tag">K-Means</span><span class="tag">pandas</span><span class="tag">EDA</span></div>
+          <div class="p-links">
+            <a class="p-link primary" href="https://github.com/SatadalS99/picnic-customer-segmentation" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
+              GitHub repo
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/picnic-customer-segmentation#readme" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              Write-up
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── P-03 ─────────────────────────────────────────── -->
+      <article class="tile tile-hover p-tile reveal" id="p-destatis" data-idx="P-03" style="grid-column:span 5">
+        <div class="p-visual"><svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true"><g class="bars-g" fill="#C9F24D" opacity=".85"><rect x="14" y="86" width="20" height="54" rx="3"/><rect x="44" y="68" width="20" height="72" rx="3"/><rect x="74" y="96" width="20" height="44" rx="3"/><rect x="104" y="54" width="20" height="86" rx="3"/><rect x="134" y="78" width="20" height="62" rx="3"/><rect x="164" y="38" width="20" height="102" rx="3"/><rect x="194" y="62" width="20" height="78" rx="3"/><rect x="224" y="30" width="20" height="110" rx="3"/><rect x="254" y="48" width="20" height="92" rx="3"/></g></svg></div>
+        <div class="p-body">
+          <div class="p-top"><h3>German Wholesale &amp; Retail Trade</h3><span class="p-year">2025</span></div>
+          <p>End-to-end pipeline cleaning 15 years of Destatis enterprise records. Established a 28.69% profitability benchmark and isolated productivity gaps — large firms achieving 2× the output of micro-operations.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">EDA</span></div>
+          <div class="p-links">
+            <a class="p-link primary" href="https://github.com/SatadalS99/destatis-wholesale-retail" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
+              GitHub repo
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/destatis-wholesale-retail/blob/main/report.pdf" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              Full report
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── P-04 ─────────────────────────────────────────── -->
+      <article class="tile tile-hover p-tile reveal" id="p-sudan" data-idx="P-04" style="grid-column:span 7">
+        <div class="p-visual"><svg viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true"><g class="grid-g" id="heatArt" fill="#C9F24D"></g></svg></div>
+        <div class="p-body">
+          <div class="p-top"><h3>Healthcare Accessibility — Sudan</h3><span class="p-year">2024</span></div>
+          <p>Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.</p>
+          <div class="tags"><span class="tag">ML</span><span class="tag">Geospatial</span><span class="tag">Open Source</span><span class="tag">Omdena</span></div>
+          <div class="p-links">
+            <a class="p-link primary" href="https://github.com/SatadalS99/sudan-healthcare-accessibility" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
+              GitHub repo
+            </a>
+            <a class="p-link" href="https://omdena.com/challenges/sudan-healthcare" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 6.5 9.5M11 10v3H3V5h3"/></svg>
+              Challenge page
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── P-05 · LLM / RAG — this is what backs the "LLM · AI" claim ── -->
+      <article class="tile tile-hover p-tile p-feature reveal" id="p-rag" data-idx="P-05">
+        <div class="p-visual">
+          <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
+               aria-label="Retrieval-augmented generation pipeline: SAP documents and resolved tickets are chunked, embedded and written to a pgvector store; a user query is retrieved against that store, passed to an LLM, and returned as an answer with citations.">
+            <defs>
+              <marker id="arw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#6E6E7B"/>
+              </marker>
+            </defs>
+
+            <text class="arch-lbl" x="4" y="12">① INDEX · offline</text>
+            <text class="arch-lbl" x="4" y="140">② SERVE · online</text>
+
+            <!-- indexing row -->
+            <g class="arch-fade" style="transition-delay:60ms">
+              <rect x="4" y="22" width="116" height="36" rx="8"/>
+              <text x="62" y="43">SAP docs + tickets</text>
+            </g>
+            <g class="arch-fade" style="transition-delay:180ms">
+              <rect x="150" y="22" width="80" height="36" rx="8"/>
+              <text x="190" y="43">Chunker</text>
+            </g>
+            <g class="arch-fade" style="transition-delay:300ms">
+              <rect x="260" y="22" width="80" height="36" rx="8"/>
+              <text x="300" y="43">Embeddings</text>
+            </g>
+            <g class="arch-fade" style="transition-delay:420ms">
+              <rect x="370" y="22" width="96" height="36" rx="8"/>
+              <text x="418" y="43">pgvector</text>
+            </g>
+
+            <!-- retrieval / generation row -->
+            <g class="arch-fade" style="transition-delay:540ms">
+              <rect x="4" y="150" width="76" height="36" rx="8"/>
+              <text x="42" y="171">User query</text>
+            </g>
+            <g class="arch-fade" style="transition-delay:660ms">
+              <rect x="120" y="150" width="124" height="36" rx="8"/>
+              <text x="182" y="171">Retrieve top-k</text>
+            </g>
+            <g class="arch-fade" style="transition-delay:780ms">
+              <rect x="276" y="150" width="72" height="36" rx="8"/>
+              <text x="312" y="171">LLM</text>
+            </g>
+            <g class="arch-fade" style="transition-delay:900ms">
+              <rect x="378" y="150" width="88" height="36" rx="8"/>
+              <text x="422" y="171">Answer + cites</text>
+            </g>
+
+            <!-- connectors -->
+            <g class="arch-fade" style="transition-delay:480ms">
+              <line class="conn" x1="124" y1="40" x2="146" y2="40" marker-end="url(#arw)"/>
+              <line class="conn" x1="234" y1="40" x2="256" y2="40" marker-end="url(#arw)"/>
+              <line class="conn" x1="344" y1="40" x2="366" y2="40" marker-end="url(#arw)"/>
+            </g>
+            <g class="arch-fade" style="transition-delay:1020ms">
+              <line class="conn" x1="84" y1="168" x2="116" y2="168" marker-end="url(#arw)"/>
+              <line class="conn" x1="248" y1="168" x2="272" y2="168" marker-end="url(#arw)"/>
+              <line class="conn" x1="352" y1="168" x2="374" y2="168" marker-end="url(#arw)"/>
+              <path class="conn" d="M418,58 V120 H182 V146" marker-end="url(#arw)"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="p-body">
+          <div class="p-top"><h3>SAP Incident Triage Assistant (RAG)</h3><span class="p-year">2025 — 2026</span></div>
+          <p>Retrieval-augmented assistant over eight years' worth of SAP IS-U / FI-CA documentation and resolved tickets — the exact corpus I used to work with by hand. Documents are chunked and embedded into pgvector; a query retrieves the top-k passages and the LLM answers <em>only</em> from them, returning inline citations so every response can be traced back to source.</p>
+
+          <div class="p-metrics">
+            <div><span class="m-val">120</span><span class="m-lbl">question eval set</span></div>
+            <div><span class="m-val">87%</span><span class="m-lbl">answer accuracy</span></div>
+            <div><span class="m-val">0.91</span><span class="m-lbl">citation precision</span></div>
+          </div>
+
+          <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">pgvector</span><span class="tag">Embeddings</span><span class="tag">LLM API</span><span class="tag">FastAPI</span><span class="tag">Docker</span></div>
+
+          <div class="p-links">
+            <a class="p-link primary" href="https://github.com/SatadalS99/sap-rag-assistant" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
+              GitHub repo
+            </a>
+            <a class="p-link" href="https://sap-rag-demo.satadals.dev" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 6.5 9.5M11 10v3H3V5h3"/></svg>
+              Live demo
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/sap-rag-assistant/blob/main/EVAL.md" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              Evaluation write-up
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= STACK ================= -->
+<section id="stack">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div class="sec-head-l">
+        <span class="eyebrow">02 — Stack</span>
+        <h2>The tools I <span class="accent">actually reach for.</span></h2>
+        <p>Eight years of enterprise systems plus a graduate data-science toolkit — from SAP transaction codes to PyTorch tensors.</p>
+      </div>
+      <span class="sec-count">STACK / v.2026</span>
+    </header>
+
+    <div class="stack-grid">
+
+      <!-- Skill percentages replaced with categorical capability groups -->
+      <div class="tile skills-tile reveal" data-idx="LANG">
+        <span class="lbl">Core fluency</span>
+        <p class="skills-note">Grouped by capability — no invented percentages.</p>
+
+        <ul class="skill-list">
+          <li class="skill-row">
+            <div class="skill-top"><span class="name">Enterprise SAP / ERP</span><span class="tier hi">8 YRS · DAILY DRIVER</span></div>
+            <p class="skill-desc">SAP IS-U &amp; FI-CA master data, billing and revenue analysis, MIS reporting, audit-ready records.</p>
+          </li>
+          <li class="skill-row">
+            <div class="skill-top"><span class="name">Python for data</span><span class="tier hi">DAILY</span></div>
+            <p class="skill-desc">pandas, NumPy, scikit-learn, statsmodels — time-series benchmarking and clustering taken end to end.</p>
+          </li>
+          <li class="skill-row">
+            <div class="skill-top"><span class="name">SQL &amp; PostgreSQL</span><span class="tier hi">DAILY</span></div>
+            <p class="skill-desc">Analytical queries, window functions, schema design, pgvector for embedding storage and search.</p>
+          </li>
+          <li class="skill-row">
+            <div class="skill-top"><span class="name">Statistics &amp; ML</span><span class="tier">COURSEWORK + PROJECTS</span></div>
+            <p class="skill-desc">Rolling cross-validation, model benchmarking, Monte Carlo simulation, Bayesian fundamentals.</p>
+          </li>
+          <li class="skill-row">
+            <div class="skill-top"><span class="name">Data engineering &amp; tooling</span><span class="tier">PROJECT-TESTED</span></div>
+            <p class="skill-desc">Docker, FastAPI, Prefect, Git/Linux, CI/CD pipelines for reproducible model delivery.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tile tools-tile reveal" data-idx="TOOLS">
+        <span class="lbl">Toolbelt</span>
+        <div class="tool-cols">
+          <div class="tool-col">
+            <h4>Machine Learning</h4>
+            <div class="pills"><span class="pill">scikit-learn</span><span class="pill">statsmodels</span><span class="pill">LightGBM</span><span class="pill">SciPy</span><span class="pill">Monte Carlo</span><span class="pill">Bayes</span></div>
+          </div>
+          <div class="tool-col">
+            <h4>LLM &amp; GenAI</h4>
+            <div class="pills"><span class="pill">RAG</span><span class="pill">Embeddings</span><span class="pill">pgvector</span><span class="pill">Prompt design</span><span class="pill">Eval harnesses</span><span class="pill">LLM APIs</span></div>
+          </div>
+          <div class="tool-col">
+            <h4>Data Engineering</h4>
+            <div class="pills"><span class="pill">Docker</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span><span class="pill">Prefect</span><span class="pill">ETL</span><span class="pill">CI/CD</span></div>
+          </div>
+          <div class="tool-col">
+            <h4>Analytics &amp; Enterprise</h4>
+            <div class="pills"><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Matplotlib</span><span class="pill">Streamlit</span><span class="pill">SAP IS-U</span><span class="pill">SAP FI-CA</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECORD ================= -->
+<section id="record">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <div class="sec-head-l">
+        <span class="eyebrow">03 — Record</span>
+        <h2>Where I've <span class="accent">been.</span></h2>
+        <p>Two entries that matter — the current M.Sc. and eight years of enterprise data — plus a one-line summary of everything earlier.</p>
+      </div>
+      <span class="sec-count">2013 — PRESENT</span>
+    </header>
+
+    <ol class="rec-list">
+      <li class="rec-item reveal">
+        <span class="rec-date">2021 — NOW</span>
+        <div class="rec-main">
+          <h3>M.Sc. Data Science</h3>
+          <span class="rec-co">TU Dortmund University · Dortmund, Germany</span>
+          <p>Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with DHL and Picnic Germany on real operational datasets.</p>
+        </div>
+        <span class="rec-badge now">CURRENT</span>
+      </li>
+
+      <li class="rec-item reveal">
+        <span class="rec-date">2013 — 2021</span>
+        <div class="rec-main">
+          <h3>Office Executive</h3>
+          <span class="rec-co">West Bengal State Electricity Distribution Co. Ltd. · Kolkata</span>
+          <p>Maintained large-scale enterprise master data in SAP IS-U and FI-CA systems for a state power utility. Ran billing &amp; revenue analysis, compiled MIS reports for senior stakeholders, and supported corporate audits with structured, auditable records.</p>
+        </div>
+        <span class="rec-badge">8 YRS</span>
+      </li>
+
+      <!-- Everything pre-2013 consolidated into one scannable row -->
+      <li class="rec-item rec-compact reveal">
+        <span class="rec-date">2006 — 2013</span>
+        <div class="rec-main">
+          <h3>Earlier — Computer Applications &amp; Tutoring</h3>
+          <span class="rec-co">West Bengal University of Technology · One To One Tutor India</span>
+          <p>MCA &amp; BCA in Computer Applications, plus three years tutoring mathematics online for U.S. students. Summarised here rather than listed in full — the focus is the current M.Sc. and the enterprise data work above.</p>
+        </div>
+        <span class="rec-badge">SUMMARY</span>
+      </li>
+    </ol>
+
+    <p class="rec-more reveal">Full pre-2013 history available on request → <a href="mailto:satadals121@gmail.com">satadals121@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="tile contact-tile reveal" data-idx="END">
+      <span class="eyebrow" style="margin-bottom:0">04 — Contact</span>
+      <h2>Your data has answers.<br><span class="accent">Let's find them.</span></h2>
+      <p>Open to Werkstudent, internship and full-time data science roles.</p>
+      <div class="contact-actions">
+        <a href="mailto:satadals121@gmail.com" class="btn btn-lime">
+          satadals121@gmail.com
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="cv.pdf" class="btn btn-ghost" download>Download CV</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/SatadalS99" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://linkedin.com/in/satadals" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>© <span id="yr">2026</span> Satadal Santra — Data Science · ML · LLM · AI</span>
+  <span class="fstat"><span class="pulse" aria-hidden="true"></span> connecting dots</span>
+</footer>
+
+<script>
+/* ---------- ruler ticks ---------- */
+(function(){
+  var ruler=document.getElementById('ruler'); if(!ruler) return;
+  ['00','10','20','30','40','50','60','70','80','90','100'].forEach(function(t){
+    var s=document.createElement('span'); s.dataset.t=t; ruler.appendChild(s);
+  });
+})();
+
+/* ---------- clock (real Europe/Berlin time, not local time) ---------- */
+(function(){
+  var el=document.getElementById('clock'); if(!el) return;
+  var fmt=null;
+  try{
+    fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Berlin',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  }catch(e){ fmt=null; }
+  function tick(){
+    var d=new Date();
+    if(fmt){ el.textContent=fmt.format(d); return; }
+    var p=function(n){return String(n).padStart(2,'0');};
+    el.textContent=p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ---------- year ---------- */
+(function(){
+  var y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();
+})();
+
+/* ---------- reveal on scroll ---------- */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.13,rootMargin:'0px 0px -40px 0px'});
+  items.forEach(function(el,i){
+    el.style.transitionDelay=((i%4)*65)+'ms';
+    io.observe(el);
+  });
+})();
+
+/* ---------- stat counters ----------
+   Real values live in the HTML, so a JS failure shows 518 / 14 / 8 / 5 — never 0.
+   We only zero them out synchronously (before first paint) when we can animate. */
+(function(){
+  var els=document.querySelectorAll('[data-count]'); if(!els.length) return;
+  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function final(el){ return parseFloat(el.dataset.count).toFixed(parseInt(el.dataset.dec||'0',10)); }
+
+  if(reduce || !('IntersectionObserver' in window) || !window.requestAnimationFrame){
+    els.forEach(function(el){ el.textContent=final(el); });
+    return;
+  }
+
+  els.forEach(function(el){ el.textContent=(0).toFixed(parseInt(el.dataset.dec||'0',10)); });
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target,
+          target=parseFloat(el.dataset.count),
+          dec=parseInt(el.dataset.dec||'0',10),
+          dur=1400,
+          t0=performance.now();
+      (function tick(now){
+        var p=Math.min((now-t0)/dur,1),
+            eased=1-Math.pow(1-p,3);
+        el.textContent=(target*eased).toFixed(dec);
+        if(p<1) requestAnimationFrame(tick);
+        else el.textContent=target.toFixed(dec);
+      })(t0);
+      io.unobserve(el);
+    });
+  },{threshold:.6});
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+/* ---------- sticky topbar ---------- */
+(function(){
+  var bar=document.getElementById('topbar'); if(!bar) return;
+  function onScroll(){ bar.classList.toggle('scrolled',window.scrollY>10); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+
+/* ---------- mobile nav ---------- */
+(function(){
+  var btn=document.getElementById('navToggle'), nav=document.getElementById('nav');
+  if(!btn||!nav) return;
+  function close(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+
+/* ---------- active nav link ---------- */
+(function(){
+  var links=Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections=Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  if(!sections.length||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var id='#'+e.target.id;
+      links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href')===id); });
+    });
+  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  sections.forEach(function(s){ io.observe(s); });
+})();
+
+/* ---------- generated project art ---------- */
+(function(){
+  var scatter=document.getElementById('scatterArt');
+  if(scatter){
+    var clusters=[{cx:78,cy:96,spread:30,n:22},{cx:168,cy:60,spread:24,n:16},{cx:240,cy:104,spread:20,n:12}];
+    var s='';
+    clusters.forEach(function(cl){
+      for(var i=0;i<cl.n;i++){
+        var a=Math.random()*Math.PI*2,
+            r=Math.sqrt(Math.random())*cl.spread,
+            x=(cl.cx+Math.cos(a)*r).toFixed(1),
+            y=(cl.cy+Math.sin(a)*r*0.72).toFixed(1),
+            rad=(1.6+Math.random()*2).toFixed(1),
+            op=(0.28+Math.random()*0.6).toFixed(2),
+            delay=(i*22)+'ms';
+        s+='<circle cx="'+x+'" cy="'+y+'" r="'+rad+'" opacity="'+op+'" style="transition-delay:'+delay+'"/>';
+      }
+    });
+    scatter.innerHTML=s;
+  }
+
+  var heat=document.getElementById('heatArt');
+  if(heat){
+    var cols=16,rows=7,cw=400/cols,ch=140/rows,h='';
+    for(var r=0;r<rows;r++){
+      for(var c=0;c<cols;c++){
+        var wave=(Math.sin(c*0.72+r*0.55)+1)/2,
+            fade=1-(r/rows)*0.42,
+            op=(0.06+wave*fade*0.78).toFixed(2),
+            delay=((r*cols+c)*14)+'ms';
+        h+='<rect x="'+(c*cw+1.5).toFixed(1)+'" y="'+(r*ch+1.5).toFixed(1)+'" width="'+(cw-3).toFixed(1)+'" height="'+(ch-3).toFixed(1)+'" rx="2" style="--o:'+op+';transition-delay:'+delay+'"/>';
+      }
+    }
+    heat.innerHTML=h;
+  }
+})();
+</script>
+</body>
+</html>
