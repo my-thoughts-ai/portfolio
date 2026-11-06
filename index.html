@@ -607,7 +607,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         </div>
       </article>
 
-      <!-- P-03 · Destatis (updated) -->
+      <!-- P-03 · Destatis -->
       <article class="tile tile-hover p-tile reveal" id="p-destatis" data-idx="P-03" data-detail="destatis" style="grid-column:span 5">
         <div class="p-visual">
           <svg viewBox="0 0 300 140" preserveAspectRatio="none" role="img" aria-label="Labour productivity rising with firm size">
@@ -636,36 +636,42 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         </div>
       </article>
 
-      <!-- P-04 -->
-      <article class="tile tile-hover p-tile reveal" id="p-sudan" data-idx="P-04" style="grid-column:span 7">
+      <!-- P-04 · Manaslu (replaced Sudan) -->
+      <article class="tile tile-hover p-tile reveal" id="p-manaslu" data-idx="P-04" data-detail="manaslu" style="grid-column:span 7">
         <div class="p-visual">
-          <svg viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true">
+          <svg viewBox="0 0 400 140" preserveAspectRatio="none" role="img" aria-label="ETL pipeline: API to transform to store to alert">
             <rect x="20" y="20" width="360" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
-            <path d="M40,80 Q100,40 150,70 T250,50 T360,80" fill="none" stroke="var(--accent)" stroke-width="2"/>
-            <circle cx="40" cy="80" r="4" fill="var(--accent)"/>
-            <circle cx="150" cy="70" r="4" fill="var(--accent)"/>
-            <circle cx="250" cy="50" r="4" fill="var(--accent)"/>
-            <circle cx="360" cy="80" r="4" fill="var(--accent)"/>
+            <rect x="34"  y="55" width="66" height="32" rx="7" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+            <rect x="124" y="55" width="92" height="32" rx="7" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+            <rect x="240" y="55" width="62" height="32" rx="7" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+            <rect x="326" y="55" width="54" height="32" rx="7" fill="var(--accent)" stroke="var(--accent)"/>
+            <line x1="102" y1="71" x2="122" y2="71" stroke="var(--muted)" stroke-width="1.4"/>
+            <line x1="218" y1="71" x2="238" y2="71" stroke="var(--muted)" stroke-width="1.4"/>
+            <line x1="304" y1="71" x2="324" y2="71" stroke="var(--muted)" stroke-width="1.4"/>
+            <text x="67"  y="75" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="11" text-anchor="middle">API</text>
+            <text x="170" y="75" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="11" text-anchor="middle">Transform</text>
+            <text x="271" y="75" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="11" text-anchor="middle">Store</text>
+            <text x="353" y="75" fill="var(--bg)" font-family="'IBM Plex Mono',monospace" font-size="11" text-anchor="middle">Alert</text>
           </svg>
         </div>
         <div class="p-body">
-          <div class="p-top"><h3>Healthcare Accessibility — Sudan</h3><span class="p-year">2024</span></div>
-          <p data-i18n="p4_desc">Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.</p>
-          <div class="tags"><span class="tag">ML</span><span class="tag">Geospatial</span><span class="tag">Omdena</span></div>
+          <div class="p-top"><h3>Manaslu High-Altitude Forecast Alerter</h3><span class="p-year">2026</span></div>
+          <p data-i18n="p4_desc">Automated forecast pipeline for Mt Manaslu (8,163 m): pulls Open-Meteo API data, vertically interpolates it onto six climbing bands via geopotential height, checks safety thresholds, and ships twice-daily digests + real-time danger alerts over email / Telegram / SMS. GitHub Actions-scheduled, SQLite-deduplicated, 99 offline tests.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">ETL</span><span class="tag">API</span><span class="tag">CI/CD</span></div>
           <div class="p-links">
-            <a class="p-link primary" href="https://github.com/SatadalS99/sudan-healthcare-accessibility" target="_blank" rel="noopener noreferrer">
+            <a class="p-link primary" data-open-detail="manaslu" href="#">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+              <span>Case study</span>
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/weather-anomaly-tracker" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
               <span data-i18n="link_readme">View Readme</span>
-            </a>
-            <a class="p-link" href="https://omdena.com/challenges/sudan-healthcare" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 6.5 9.5M11 10v3H3V5h3"/></svg>
-              <span data-i18n="link_challenge">Challenge Page</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- P-05 · Phi-3 (renumbered from P-06) -->
+      <!-- P-05 · Phi-3 -->
       <article class="tile tile-hover p-tile p-feature reveal" id="p-phi3" data-idx="P-05" data-detail="phi3">
         <div class="p-visual">
           <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
@@ -1003,6 +1009,75 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>matplotlib</span><span>seaborn</span><span>openpyxl</span><span>Jupyter</span><span>Destatis (WZ2008)</span></div>
 </template>
 
+<!-- ===== Manaslu case-study template ===== -->
+<template id="detail-manaslu">
+  <div class="pm-eyebrow">Data Engineering · Automation</div>
+  <h1 class="pm-title">Manaslu High-Altitude Forecast Alerter</h1>
+  <p class="pm-lede">An end-to-end, self-running data pipeline that turns a free public weather API into actionable high-altitude safety alerts for Mt Manaslu (8,163 m) — extract, transform, store, decide and deliver, fully automated and fully tested.</p>
+  <p class="pm-meta">2026 · Solo project · Data: Open-Meteo (ECMWF IFS + GFS, no API key) · Code: <a href="https://github.com/SatadalS99/weather-anomaly-tracker" target="_blank" rel="noopener noreferrer">github.com/SatadalS99/weather-anomaly-tracker</a></p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>8,163 m</b><span>summit</span></div>
+    <div class="pm-stat"><b>6</b><span>altitude bands</span></div>
+    <div class="pm-stat"><b>99</b><span>offline tests</span></div>
+    <div class="pm-stat"><b>4</b><span>CI workflows</span></div>
+    <div class="pm-stat"><b>7-day</b><span>hourly horizon</span></div>
+  </div>
+  <h2 class="pm-h2">The problem</h2>
+  <p>On an 8,000 m peak, weather is the difference between a summit and a rescue — but the vertical forecasts climbers rely on are expensive and manually interpreted. The engineering question was infrastructural: can a <em>free</em> public API be turned into a reliable, correctly-interpolated, self-scheduling alerting service that runs a whole season with no server to babysit and no silent failures? This is a monitoring tool, not a go/no-go decision tool — a disclaimer to that effect ships in every message.</p>
+  <h2 class="pm-h2">The pipeline</h2>
+  <p>Six independent, individually-tested stages wired into one orchestrator (<code>main.py --mode digest|danger|test|status</code>). Everything that can change — altitude bands, thresholds, schedule, channels — lives in <code>config.yaml</code>, never in code.</p>
+  <figure class="pm-fig">
+    <svg class="arch" viewBox="0 0 720 215" preserveAspectRatio="xMidYMid meet" role="img" aria-label="ETL pipeline: extract from Open-Meteo, interpolate to altitude bands, evaluate thresholds, store and de-duplicate in SQLite, format, deliver over channels; scheduled by GitHub Actions.">
+      <defs><marker id="arwE" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker></defs>
+      <text class="arch-lbl" x="8" y="12">① EXTRACT · TRANSFORM</text>
+      <text class="arch-lbl" x="8" y="140">② LOAD · DELIVER</text>
+      <rect x="8"   y="22" width="150" height="38" rx="8"/><text x="83"  y="46">Open-Meteo API</text>
+      <rect x="182" y="22" width="96"  height="38" rx="8"/><text x="230" y="46">Fetch</text>
+      <rect x="302" y="22" width="170" height="38" rx="8"/><text x="387" y="46">Interpolate → bands</text>
+      <rect x="496" y="22" width="216" height="38" rx="8"/><text x="604" y="46">Thresholds + windows</text>
+      <rect x="8"   y="150" width="210" height="38" rx="8"/><text x="113" y="174">SQLite · de-dup</text>
+      <rect x="242" y="150" width="110" height="38" rx="8"/><text x="297" y="174">Format</text>
+      <rect x="376" y="150" width="250" height="38" rx="8"/><text x="501" y="174">Email · Telegram · SMS</text>
+      <g>
+        <line class="conn" x1="158" y1="41" x2="180" y2="41" marker-end="url(#arwE)"/>
+        <line class="conn" x1="278" y1="41" x2="300" y2="41" marker-end="url(#arwE)"/>
+        <line class="conn" x1="472" y1="41" x2="494" y2="41" marker-end="url(#arwE)"/>
+      </g>
+      <g>
+        <line class="conn" x1="218" y1="169" x2="240" y2="169" marker-end="url(#arwE)"/>
+        <line class="conn" x1="352" y1="169" x2="374" y2="169" marker-end="url(#arwE)"/>
+        <path class="conn" d="M604,60 V116 H113 V146" marker-end="url(#arwE)"/>
+      </g>
+      <text class="arch-lbl" x="360" y="208" style="text-anchor:middle">scheduled by GitHub Actions · cron — digest 2×/day, danger check hourly</text>
+    </svg>
+    <figcaption>End-to-end ETL flow — API in, de-duplicated multi-channel alerts out, orchestrated on a schedule.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Engineering decisions that matter</h2>
+  <div class="pm-phase"><h3><em>1 · Correct vertical interpolation.</em></h3>
+    <p>GFS's ~25 km grid puts Base Camp and the summit in the <em>same</em> cell, so changing lat/lon does nothing — the altitude signal comes from pressure levels (600–300 hPa) interpolated onto each band using <em>that forecast hour's returned geopotential height</em>, not a static table. On build day 350 hPa sat at 8,635 m, not the textbook ~8,100 m; a lookup table would have read the summit's weather 500 m too high.</p></div>
+  <div class="pm-phase"><h3><em>2 · Wind interpolated as vectors.</em></h3>
+    <p>Wind directions are converted to u/v components before interpolation and recombined after. Averaging degrees directly would turn a steady northerly (359° and 1°) into a southerly — a silent 180° error.</p></div>
+  <div class="pm-phase"><h3><em>3 · Idempotent, de-duplicated alerting.</em></h3>
+    <p>The hourly danger check fingerprints the active hazard set in SQLite: a new or worsening hazard breaks through immediately, an unchanged one repeats only every 12 h, and a single all-clear is sent when red lifts. The fingerprint ignores sub-km/h model wobble, so hourly re-runs never look like fresh hazards.</p></div>
+  <div class="pm-phase"><h3><em>4 · Summit-window detection.</em></h3>
+    <p>Rather than dumping conditions, the service scans the 7-day forecast for runs of 6+ consecutive hours where <em>every</em> climbing band is simultaneously green with no precipitation, and reports each window with its worst wind and coldest wind chill.</p></div>
+  <h2 class="pm-h2">Decision thresholds</h2>
+  <p>Every band is graded green / amber / red against configurable limits (wind chill uses the NWS formula, applied only in its valid range — T ≤ 10 °C, V ≥ 4.8 km/h — rather than fabricated outside it):</p>
+  <table class="pm-table">
+    <tr><th>Parameter</th><th>Green</th><th>Amber</th><th>Red</th></tr>
+    <tr><td>Wind speed (climbing band)</td><td>&lt; 30</td><td>30–50</td><td>&gt; 50 km/h</td></tr>
+    <tr><td>Wind gusts (surface)</td><td>&lt; 40</td><td>40–60</td><td>&gt; 60 km/h</td></tr>
+    <tr><td>Wind chill</td><td>&gt; −40</td><td>−40 to −50</td><td>&lt; −50 °C</td></tr>
+    <tr><td>Snowfall (24 h)</td><td>&lt; 20</td><td>20–50</td><td>&gt; 50 mm</td></tr>
+    <tr><td>Pressure fall (6 h)</td><td>&lt; 3</td><td>3–6</td><td>&gt; 6 hPa</td></tr>
+    <tr><td>CAPE</td><td>&lt; 100</td><td>100–500</td><td>&gt; 500 J/kg</td></tr>
+  </table>
+  <h2 class="pm-h2">Automation &amp; reliability</h2>
+  <p>The service runs entirely on <strong>GitHub Actions</strong> — four scheduled workflows (twice-daily digest at 01:00 / 13:00 UTC, hourly danger check, a keepalive, and the test suite), with systemd units as a self-hosted alternative. <strong>99 fully-offline tests</strong> run in CI against a captured Open-Meteo response, covering wind-vector round-trips and the 359°/1° wrap, geopotential bracketing, wind chill against NWS reference values, threshold boundaries, summit-window splitting, alert de-duplication and the SMS segment budget. A preflight script scans the tree and git history for leaked secrets before the repo goes public; recipients resolve from environment variables and are masked in all logs. Channels ship disabled with <code>console</code> as default, so it runs end-to-end with zero credentials.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>httpx</span><span>pandas</span><span>PyYAML</span><span>Jinja2</span><span>SQLite</span><span>Twilio</span><span>pytest</span><span>GitHub Actions</span><span>systemd</span></div>
+</template>
+
 <script>
 /* ==========================================
    SAFE STORAGE WRAPPER
@@ -1034,7 +1109,7 @@ const i18n = {
     p1_desc: "Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.",
     p2_desc: "K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% \"peak-and-fade\" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.",
     p3_desc: "Multi-dimensional analysis of 8,064 Destatis records (2005–2020, WZ2008) across industry, firm size and time. Found a stable 28.69% mean gross yield and clear economies of scale — firms with 20+ staff reach ~2.3× the labour productivity of micro-operations.",
-    p4_desc: "Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.",
+    p4_desc: "Automated forecast pipeline for Mt Manaslu (8,163 m): pulls Open-Meteo API data, vertically interpolates it onto six climbing bands via geopotential height, checks safety thresholds, and ships twice-daily digests + real-time danger alerts over email / Telegram / SMS. GitHub Actions-scheduled, SQLite-deduplicated, 99 offline tests.",
     p6_desc: "Fine-tuned Microsoft's Phi-3 Mini (3.8B) on a purpose-built 400-pair personal-finance Q&A set using QLoRA (4-bit, LoRA rank-16). Merged the adapter into a standalone 7.6 GB model, containerised it with Docker + FastAPI, and deployed it on GCP Vertex AI behind a multi-turn Gradio chat UI — taken end-to-end from dataset to a live cloud endpoint over 11 deployment iterations.",
     m4: "Q&A training set", m5: "params · Phi-3 Mini", m6: "merged model",
     stack_eyebrow: "02 — Stack", stack_title: "The tools I <span class='accent'>actually reach for.</span>",
@@ -1072,7 +1147,7 @@ const i18n = {
     p1_desc: "Prognose wöchentlicher Paketvolumina über 37 Kunden-Produkt-Linien. 14 Modelle pro Linie gebenchmarkt — insgesamt 518 Läufe — unter rollierender Kreuzvalidierung. Die Auswahl pro Linie senkte den durchschnittlichen Prognosefehler um ~14%.",
     p2_desc: "K-Means-Clustering auf einer 5.722 × 23 Wochen-Trajektorien-Matrix. Eine 11% \"Peak-and-Fade\"-Kohorte identifiziert, die 6,5× mehr pro Kunde wert ist als das Segment, das den Großteil des Retention-Budgets absorbiert.",
     p3_desc: "Mehrdimensionale Analyse von 8.064 Destatis-Datensätzen (2005–2020, WZ2008) über Branche, Unternehmensgröße und Zeit. Stabile durchschnittliche Bruttorendite von 28,69% und klare Skaleneffekte — Betriebe mit 20+ Beschäftigten erreichen ~2,3× die Arbeitsproduktivität von Kleinstbetrieben.",
-    p4_desc: "Open-Source-Omdena-Challenge mit einem verteilten internationalen Team. Erstellung einer ML-Pipeline zur Krankheitsausbruchsprognose und Kartierung der Zugänglichkeit von Gesundheitseinrichtungen unter Verwendung historischer und geospatialer Daten.",
+    p4_desc: "Automatisierte Prognose-Pipeline für den Manaslu (8.163 m): ruft Open-Meteo-API-Daten ab, interpoliert sie vertikal über die geopotenzielle Höhe auf sechs Höhenbänder, prüft Sicherheitsschwellen und versendet zweimal täglich Digests + Echtzeit-Gefahrenwarnungen per E-Mail / Telegram / SMS. Per GitHub Actions geplant, SQLite-dedupliziert, 99 Offline-Tests.",
     p6_desc: "Microsofts Phi-3 Mini (3,8B) auf einem eigens erstellten 400-Paar Personal-Finance Q&A-Set mit QLoRA (4-bit, LoRA-Rang 16) feinabgestimmt. Den Adapter zu einem eigenständigen 7,6-GB-Modell zusammengeführt, mit Docker + FastAPI containerisiert und auf GCP Vertex AI hinter einer mehrstufigen Gradio-Chat-Oberfläche deployed — Ende-zu-Ende vom Datensatz zum Live-Cloud-Endpunkt in 11 Deployment-Iterationen.",
     m4: "Q&A-Trainingsset", m5: "Parameter · Phi-3 Mini", m6: "zusammengeführtes Modell",
     stack_eyebrow: "02 — Stack", stack_title: "Die Tools, zu denen ich <span class='accent'>wirklich greife.</span>",
