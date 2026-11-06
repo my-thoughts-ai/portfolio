@@ -1,294 +1,464 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Satadal Santra — Data Science · ML · LLM · AI</title>
-<meta name="description" content="Data scientist with eight years of enterprise SAP/ERP data experience. Building ML, RAG/LLM, and data-engineering solutions — with code and demos linked on every project."/>
-<link rel="canonical" href="https://satadals.dev/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Satadal Santra — Data Scientist"/>
-<meta property="og:description" content="ML, LLM and data-engineering work on real operational data. Eight years of enterprise SAP/ERP behind it."/>
-<meta property="og:url" content="https://satadals.dev"/>
-<meta property="og:image" content="https://satadals.dev/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Satadal Santra — Data Scientist"/>
-<meta name="twitter:description" content="ML, LLM and data-engineering work on real operational data."/>
-<meta name="twitter:image" content="https://satadals.dev/og.png">
-<meta name="theme-color" content="#0B0B0D">
+<title>Satadal Santra — Data Science · ML · LLM</title>
+<meta name="description" content="Data scientist with eight years of enterprise SAP/ERP data experience. Building ML, RAG/LLM, and data-engineering solutions — with reports and demos linked on every project."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#0B0B0D;--ink-2:#0F0F12;--tile:#121216;--tile-hi:#17171C;
-  --line:#212127;--line-soft:#191920;--text:#EDEDF0;--text-2:#A8A8B4;--muted:#6E6E7B;
-  --lime:#C9F24D;--lime-dim:rgba(201,242,77,.10);--lime-line:rgba(201,242,77,.30);
-  --r:14px;--maxw:1240px;
-  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
-  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+/* ==========================================
+   THEME VARIABLES
+   ========================================== */
+:root {
+  /* Light Mode (Ocean Blue) */
+  --bg: #ffffff;
+  --bg-alt: #f4f7f9;
+  --surface: #ffffff;
+  --surface-hover: #f0f4f8;
+  --line: #e2e8f0;
+  --line-soft: #cbd5e1;
+  --text: #0f172a;
+  --text-2: #334155;
+  --muted: #475569;
+  
+  --accent: #0A4C82; /* Deep Ocean Blue */
+  --accent-hover: #083d69;
+  --accent-dim: rgba(10, 76, 130, 0.08);
+  --accent-line: rgba(10, 76, 130, 0.25);
+  
+  --lime: #0A4C82;
+  --lime-dim: rgba(10, 76, 130, 0.1);
+  
+  --r: 14px;
+  --maxw: 1240px;
+  --sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--ink);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.032;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(760px 460px at 78% -8%,rgba(201,242,77,.055),transparent 62%),radial-gradient(600px 400px at 6% 8%,rgba(120,140,255,.045),transparent 62%)}
-main,header,footer{position:relative;z-index:1}
-::selection{background:var(--lime);color:#0B0B0D}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
-section{padding:96px 0;scroll-margin-top:80px}
-.mono{font-family:var(--mono)}
-.lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:6px}
-.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--lime);color:#0B0B0D;padding:10px 16px;border-radius:0 0 10px 0;font-size:.8rem;font-weight:600;text-decoration:none}
-.skip:focus{left:0}
 
-/* ---------- top bar ---------- */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:80;border-bottom:1px solid transparent;transition:background .35s,border-color .35s,backdrop-filter .35s}
-.topbar.scrolled{background:rgba(11,11,13,.78);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom-color:var(--line-soft)}
-.topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px;position:relative}
-.brand{font-family:var(--mono);font-size:.83rem;font-weight:500;color:var(--text);text-decoration:none;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:9px}
-.brand .glyph{width:20px;height:20px;border-radius:6px;flex:none;background:linear-gradient(140deg,var(--lime),#7BC62D);display:grid;place-items:center;font-size:.62rem;font-weight:700;color:#0B0B0D;font-family:var(--sans)}
-.nav{display:flex;gap:28px}
-.nav a{font-size:.8rem;font-weight:500;color:var(--text-2);text-decoration:none;position:relative;padding:3px 0;transition:color .22s}
-.nav a::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .34s cubic-bezier(.22,1,.36,1)}
-.nav a:hover,.nav a.on{color:var(--text)}
-.nav a:hover::after,.nav a.on::after{transform:scaleX(1)}
-.nav-toggle{display:none;width:38px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--tile);color:var(--text);cursor:pointer;align-items:center;justify-content:center;flex:none}
-.nav-toggle svg{width:16px;height:16px}
-.chip-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;color:var(--text-2);padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--tile);white-space:nowrap}
-.pulse{width:6px;height:6px;border-radius:50%;background:var(--lime);flex:none;box-shadow:0 0 0 0 rgba(201,242,77,.6);animation:ping 2.3s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(201,242,77,.55)}70%{box-shadow:0 0 0 7px rgba(201,242,77,0)}100%{box-shadow:0 0 0 0 rgba(201,242,77,0)}}
-
-/* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:11px;font-size:.83rem;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .24s cubic-bezier(.22,1,.36,1),background .24s,border-color .24s,box-shadow .3s,color .24s;white-space:nowrap;font-family:var(--sans)}
-.btn-lime{background:var(--lime);color:#0B0B0D}
-.btn-lime:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(201,242,77,.6)}
-.btn-ghost{background:var(--tile);border-color:var(--line);color:var(--text)}
-.btn-ghost:hover{border-color:var(--lime-line);transform:translateY(-2px);background:var(--tile-hi)}
-.btn svg{width:13px;height:13px;flex:none}
-
-/* ---------- tiles ---------- */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:13px}
-.tile{position:relative;background:var(--tile);border:1px solid var(--line);border-radius:var(--r);padding:22px;overflow:hidden;transition:border-color .3s,background .3s,transform .35s cubic-bezier(.22,1,.36,1)}
-.tile::before{content:attr(data-idx);position:absolute;top:14px;right:16px;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted);opacity:.55}
-.tile-hover:hover{border-color:var(--lime-line);background:var(--tile-hi);transform:translateY(-3px)}
-
-/* ---------- hero ---------- */
-.hero{padding:150px 0 72px}
-.ruler{display:flex;gap:0;height:22px;align-items:flex-end;border-bottom:1px solid var(--line-soft);margin-bottom:34px;position:relative;overflow:hidden}
-.ruler span{flex:1;position:relative;height:100%;border-left:1px solid var(--line)}
-.ruler span::after{content:attr(data-t);position:absolute;left:4px;bottom:5px;font-family:var(--mono);font-size:.55rem;color:var(--muted);opacity:.6}
-.ruler span:first-child{border-left-color:var(--lime)}
-.ruler span:first-child::after{color:var(--lime);opacity:1}
-.h-intro{grid-column:span 8;padding:8px 40px 8px 0}
-.h-status{grid-column:span 4}
-.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);display:inline-flex;align-items:center;gap:11px;margin-bottom:24px}
-.eyebrow::before{content:'';width:22px;height:1px;background:var(--lime);flex:none}
-h1{font-size:clamp(2.3rem,5.6vw,4.35rem);font-weight:600;line-height:1.04;letter-spacing:-.035em;margin-bottom:22px}
-h1 .accent{color:var(--lime)}
-h1 .thin{font-weight:400;color:var(--text-2)}
-.hero-lede{color:var(--text-2);font-size:1rem;max-width:50ch;margin-bottom:32px}
-.hero-lede b{color:var(--text);font-weight:600}
-.hero-actions{display:flex;gap:11px;flex-wrap:wrap}
-.status-card{display:flex;flex-direction:column;height:100%}
-.status-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:14px}
-.status-head .title{font-family:var(--mono);font-size:.68rem;color:var(--text-2);letter-spacing:.06em}
-.kv{display:flex;flex-direction:column;gap:0;flex:1}
-.kv-row{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft);font-family:var(--mono);font-size:.72rem}
-.kv-row:last-child{border-bottom:none}
-.kv-key{color:var(--muted);white-space:nowrap}
-.kv-dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-3px);min-width:12px}
-.kv-val{color:var(--text);white-space:nowrap}
-.kv-val .good{color:var(--lime)}
-.spark-wrap{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)}
-.spark-svg{width:100%;height:44px;display:block;overflow:visible}
-.spark-line{fill:none;stroke:var(--lime);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1)}
-.in .spark-line{stroke-dashoffset:0}
-
-/* ---------- hero stats (now real values + evidence links) ---------- */
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:13px}
-.stat{padding:20px 20px 16px}
-.stat-link{display:block;text-decoration:none;color:inherit;cursor:pointer}
-.stat-link:hover{border-color:var(--lime-line);background:var(--tile-hi);transform:translateY(-3px)}
-.stat-num{font-size:clamp(1.7rem,3.3vw,2.2rem);font-weight:600;letter-spacing:-.04em;line-height:1;display:block}
-.stat-num .u{font-family:var(--mono);font-size:.4em;color:var(--lime);font-weight:500;margin-left:3px;letter-spacing:0}
-.stat-lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:9px}
-.stat-spark{width:100%;height:22px;margin-top:14px;display:block;opacity:.85}
-.stat-spark polyline{fill:none;stroke:var(--lime);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)}
-.in .stat-spark polyline{stroke-dashoffset:0}
-.stat-src{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--muted);margin-top:12px;transition:color .24s}
-.stat-link:hover .stat-src{color:var(--lime)}
-
-/* ---------- section heads ---------- */
-.sec-head{margin-bottom:38px;display:flex;justify-content:space-between;align-items:flex-end;gap:34px;flex-wrap:wrap}
-.sec-head-l{max-width:620px}
-.sec-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-top:16px}
-.sec-head h2 .accent{color:var(--lime)}
-.sec-head p{color:var(--text-2);font-size:.93rem;margin-top:12px;max-width:56ch}
-.sec-count{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.08em;white-space:nowrap;padding-bottom:6px}
-
-/* ---------- project cards ---------- */
-.p-tile{cursor:default;display:flex;flex-direction:column;padding:0}
-.p-visual{height:158px;padding:18px 20px 0;border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,rgba(201,242,77,.028),transparent);position:relative;overflow:hidden}
-.p-visual svg{width:100%;height:100%;display:block;overflow:visible}
-.p-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
-.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:9px}
-.p-body h3{font-size:1.05rem;font-weight:600;letter-spacing:-.02em;line-height:1.3}
-.p-year{font-family:var(--mono);font-size:.66rem;color:var(--muted);padding-top:4px;white-space:nowrap}
-.p-body p{color:var(--text-2);font-size:.85rem;line-height:1.68;margin-bottom:16px;flex:1}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-family:var(--mono);font-size:.63rem;padding:4px 9px;border-radius:6px;background:rgba(201,242,77,.06);color:#D6F57F;border:1px solid rgba(201,242,77,.13)}
-
-/* project links — the fix for "proof of work hidden behind text" */
-.p-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft)}
-.p-link{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;padding:8px 12px;border-radius:8px;border:1px solid var(--line);color:var(--text-2);text-decoration:none;background:var(--ink-2);transition:border-color .24s,color .24s,background .24s,transform .24s cubic-bezier(.22,1,.36,1)}
-.p-link svg{width:12px;height:12px;flex:none}
-.p-link:hover{border-color:var(--lime-line);color:var(--text);background:var(--tile-hi);transform:translateY(-2px)}
-.p-link.primary{background:var(--lime-dim);border-color:var(--lime-line);color:#D6F57F}
-.p-link.primary:hover{color:#EDFFB8;background:rgba(201,242,77,.16)}
-
-/* featured (LLM) project card */
-.p-feature{grid-column:span 12;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
-.p-feature .p-visual{height:auto;min-height:290px;padding:26px;border-bottom:none;border-right:1px solid var(--line-soft);display:flex;align-items:center}
-.p-feature .p-visual svg{max-height:250px}
-.p-metrics{display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;margin:4px 0 16px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-.p-metrics .m-val{display:block;font-size:1.05rem;font-weight:600;color:var(--lime);letter-spacing:-.02em;line-height:1.25}
-.p-metrics .m-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-
-/* project visuals animation */
-.bars-g rect{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .9s cubic-bezier(.22,1,.36,1)}
-.in .bars-g rect{transform:scaleY(1)}
-.line-g path,.line-g polyline{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:700;stroke-dashoffset:700;transition:stroke-dashoffset 1.9s cubic-bezier(.4,0,.2,1)}
-.in .line-g path,.in .line-g polyline{stroke-dashoffset:0}
-.dot-g circle{opacity:0;transition:opacity .5s}
-.in .dot-g circle{opacity:1}
-.grid-g rect{opacity:0;transition:opacity .55s}
-.in .grid-g rect{opacity:var(--o)}
-
-/* architecture diagram (LLM card) */
-.arch text{font-family:var(--mono);font-size:9px;fill:var(--text-2);text-anchor:middle}
-.arch .arch-lbl{font-size:8px;fill:var(--muted);letter-spacing:.09em;text-anchor:start}
-.arch rect{fill:rgba(201,242,77,.05);stroke:rgba(201,242,77,.22);stroke-width:1}
-.arch .conn{fill:none;stroke:var(--muted);stroke-width:1}
-.arch-fade{opacity:0;transition:opacity .6s cubic-bezier(.22,1,.36,1)}
-.in .arch-fade{opacity:1}
-
-/* ---------- stack ---------- */
-.stack-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:13px}
-.skills-tile{grid-column:span 5}
-.tools-tile{grid-column:span 7}
-.skills-note{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:9px;letter-spacing:.02em}
-.skill-list{list-style:none;margin-top:16px}
-.skill-row{padding:14px 0;border-bottom:1px solid var(--line-soft)}
-.skill-row:last-child{border-bottom:none;padding-bottom:0}
-.skill-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
-.skill-top .name{font-size:.87rem;font-weight:600;letter-spacing:-.01em}
-.tier{font-family:var(--mono);font-size:.58rem;letter-spacing:.07em;padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
-.tier.hi{border-color:var(--lime-line);color:var(--lime);background:var(--lime-dim)}
-.skill-desc{font-size:.79rem;color:var(--text-2);line-height:1.6}
-.tool-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px;margin-top:20px}
-.tool-col h4{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px}
-.pills{display:flex;flex-wrap:wrap;gap:6px}
-.pill{font-size:.76rem;padding:6px 12px;border-radius:8px;background:var(--ink-2);border:1px solid var(--line);color:var(--text-2);transition:border-color .24s,color .24s,transform .24s,background .24s}
-.pill:hover{border-color:var(--lime-line);color:var(--text);transform:translateY(-2px);background:var(--tile-hi)}
-
-/* ---------- record ---------- */
-.rec-list{list-style:none;border-top:1px solid var(--line)}
-.rec-item{display:grid;grid-template-columns:130px 1fr auto;gap:30px;align-items:start;padding:28px 4px;border-bottom:1px solid var(--line);transition:background .3s,padding-left .35s cubic-bezier(.22,1,.36,1)}
-.rec-item:hover{background:rgba(201,242,77,.022);padding-left:14px}
-.rec-date{font-family:var(--mono);font-size:.68rem;color:var(--muted);padding-top:5px;letter-spacing:.04em}
-.rec-main h3{font-size:1.02rem;font-weight:600;letter-spacing:-.015em;margin-bottom:5px}
-.rec-co{font-family:var(--mono);font-size:.7rem;color:var(--lime);letter-spacing:.02em;margin-bottom:10px;display:block}
-.rec-main p{color:var(--text-2);font-size:.86rem;line-height:1.7;max-width:62ch}
-.rec-badge{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;margin-top:2px}
-.rec-badge.now{border-color:var(--lime-line);color:var(--lime);background:var(--lime-dim)}
-.rec-item.rec-compact{padding:22px 4px}
-.rec-item.rec-compact h3{font-size:.92rem;color:var(--text-2)}
-.rec-item.rec-compact .rec-co{color:var(--muted)}
-.rec-item.rec-compact p{font-size:.8rem;color:var(--muted);max-width:66ch}
-.rec-more{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted);margin-top:18px}
-.rec-more a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--line)}
-.rec-more a:hover{color:var(--lime);border-bottom-color:var(--lime-line)}
-
-/* ---------- contact ---------- */
-.contact{padding:110px 0 90px}
-.contact-tile{padding:64px 40px;text-align:center;background:linear-gradient(180deg,var(--tile),#0F0F13);position:relative}
-.contact-tile::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(520px 260px at 50% 0%,rgba(201,242,77,.07),transparent 70%)}
-.contact h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:600;letter-spacing:-.038em;line-height:1.05;margin:22px auto 18px;max-width:17ch;position:relative}
-.contact h2 .accent{color:var(--lime)}
-.contact p{color:var(--text-2);max-width:46ch;margin:0 auto 34px;font-size:.95rem;position:relative}
-.contact-actions{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;position:relative}
-.socials{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:44px;padding-top:28px;border-top:1px solid var(--line-soft);position:relative}
-.socials a{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.03em;transition:color .24s}
-.socials a:hover{color:var(--lime)}
-footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;color:var(--muted)}
-footer .fstat{display:inline-flex;align-items:center;gap:8px}
-
-/* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-.reveal.in{opacity:1;transform:none}
-
-/* ---------- responsive ---------- */
-@media(max-width:1060px){
-  .h-intro{grid-column:span 12;padding-right:0}
-  .h-status{grid-column:span 12}
-  .skills-tile,.tools-tile{grid-column:span 12}
+[data-theme="dark"] {
+  /* Dark Mode (Cyan/Blue Accent) */
+  --bg: #0B0B0D;
+  --bg-alt: #0F0F12;
+  --surface: #121216;
+  --surface-hover: #17171C;
+  --line: #212127;
+  --line-soft: #191920;
+  --text: #EDEDF0;
+  --text-2: #A8A8B4;
+  --muted: #94A3B8;
+  
+  --accent: #38bdf8; /* Bright Cyan */
+  --accent-hover: #7dd3fc;
+  --accent-dim: rgba(56, 189, 248, 0.10);
+  --accent-line: rgba(56, 189, 248, 0.30);
+  
+  --lime: #38bdf8;
+  --lime-dim: rgba(56, 189, 248, 0.10);
 }
-@media(max-width:900px){
-  .p-feature{grid-template-columns:1fr}
-  .p-feature .p-visual{min-height:0;height:230px;border-right:none;border-bottom:1px solid var(--line-soft);padding:20px}
+
+/* ==========================================
+   RESET & BASE
+   ========================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
 }
-@media(max-width:880px){
-  .nav-toggle{display:inline-flex}
-  .nav{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:rgba(11,11,13,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:6px 26px 14px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .26s,transform .26s}
-  .nav.open{opacity:1;transform:none;pointer-events:auto}
-  .nav a{padding:13px 0;font-size:.9rem;border-bottom:1px solid var(--line-soft)}
-  .nav a::after{display:none}
-  .stat-row{grid-template-columns:repeat(2,1fr)}
-  section{padding:74px 0}
-  .hero{padding:120px 0 56px}
-  .ruler{display:none}
-  .rec-item{grid-template-columns:1fr;gap:8px;padding:22px 4px}
-  .rec-badge{justify-self:start}
-  .rec-date{padding-top:0}
+
+main, header, footer { position: relative; z-index: 1; }
+::selection { background: var(--accent); color: var(--bg); }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 26px; }
+section { padding: 96px 0; scroll-margin-top: 80px; }
+.mono { font-family: var(--mono); }
+.lbl { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+/* Accessibility: Skip Link */
+.skip {
+  position: fixed; left: -9999px; top: 10px; z-index: 200;
+  background: var(--accent); color: var(--bg); padding: 10px 16px;
+  border-radius: 8px; font-size: 0.8rem; font-weight: 600; text-decoration: none;
+  transition: left 0.2s;
 }
-@media(max-width:640px){
-  .wrap{padding:0 18px}
-  .nav{padding-left:18px;padding-right:18px}
-  .tool-cols{grid-template-columns:1fr}
-  .contact-tile{padding:48px 22px}
-  .sec-head{gap:14px}
-  .chip-live{display:none}
+.skip:focus { left: 10px; }
+
+/* ==========================================
+   TOP BAR
+   ========================================== */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 80;
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s, border-color 0.35s, backdrop-filter 0.35s;
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition-duration:.01ms!important}
-  .reveal{opacity:1;transform:none}
-  .bars-g rect{transform:scaleY(1)}
-  .line-g path,.line-g polyline{stroke-dashoffset:0}
-  .dot-g circle,.grid-g rect,.arch-fade{opacity:1}
+.topbar.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom-color: var(--line);
+}
+[data-theme="dark"] .topbar.scrolled { background: rgba(11, 11, 13, 0.85); }
+.topbar-in { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; position: relative; }
+.brand {
+  font-family: var(--mono); font-size: 0.83rem; font-weight: 500; color: var(--text);
+  text-decoration: none; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 9px;
+}
+.brand .glyph {
+  width: 20px; height: 20px; border-radius: 6px; flex: none;
+  background: linear-gradient(140deg, var(--accent), #3b82f6);
+  display: grid; place-items: center; font-size: 0.62rem; font-weight: 700; color: var(--bg); font-family: var(--sans);
+}
+.nav { display: flex; gap: 28px; }
+.nav a {
+  font-size: 0.8rem; font-weight: 500; color: var(--text-2); text-decoration: none;
+  position: relative; padding: 3px 0; transition: color 0.22s;
+}
+.nav a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav a:hover, .nav a.on { color: var(--text); }
+.nav a:hover::after, .nav a.on::after { transform: scaleX(1); }
+
+.nav-toggle {
+  display: none; width: 38px; height: 34px; border-radius: 9px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--text); cursor: pointer; align-items: center; justify-content: center; flex: none;
+}
+.nav-toggle svg { width: 16px; height: 16px; }
+
+/* Header Controls */
+.header-controls { display: flex; align-items: center; gap: 12px; }
+.chip-live {
+  display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono);
+  font-size: 0.66rem; letter-spacing: 0.05em; color: var(--text-2);
+  padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line);
+  background: var(--surface); white-space: nowrap;
+}
+.pulse {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  flex: none; box-shadow: 0 0 0 0 var(--accent-dim); animation: ping 2.3s infinite;
+}
+@keyframes ping {
+  0% { box-shadow: 0 0 0 0 var(--accent-dim); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.icon-btn {
+  background: var(--surface); border: 1px solid var(--line); color: var(--text-2);
+  width: 34px; height: 34px; border-radius: 8px; display: inline-flex;
+  align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;
+}
+.icon-btn:hover { color: var(--text); border-color: var(--accent-line); background: var(--surface-hover); }
+.icon-btn svg { width: 16px; height: 16px; }
+.lang-switch {
+  display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface);
+}
+.lang-btn {
+  background: transparent; border: none; padding: 6px 10px; font-family: var(--mono);
+  font-size: 0.7rem; color: var(--muted); cursor: pointer; transition: 0.2s;
+}
+.lang-btn.active { background: var(--accent); color: var(--bg); font-weight: 600; }
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.btn {
+  display: inline-flex; align-items: center; gap: 9px; padding: 12px 22px; border-radius: 11px;
+  font-size: 0.83rem; font-weight: 600; text-decoration: none; cursor: pointer;
+  border: 1px solid transparent; transition: transform 0.24s, background 0.24s, border-color 0.24s, box-shadow 0.3s, color 0.24s;
+  white-space: nowrap; font-family: var(--sans);
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -10px var(--accent); }
+.btn-ghost { background: var(--surface); border-color: var(--line); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent-line); transform: translateY(-2px); background: var(--surface-hover); }
+.btn svg { width: 13px; height: 13px; flex: none; }
+
+/* ==========================================
+   BENTO GRID & TILES
+   ========================================== */
+.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 13px; }
+.tile {
+  position: relative; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 22px; overflow: hidden;
+  transition: border-color 0.3s, background 0.3s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tile::before {
+  content: attr(data-idx); position: absolute; top: 14px; right: 16px;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); opacity: 0.55;
+}
+.tile-hover:hover { border-color: var(--accent-line); background: var(--surface-hover); transform: translateY(-3px); }
+
+/* ==========================================
+   HERO
+   ========================================== */
+.hero { padding: 150px 0 72px; }
+.h-intro { grid-column: span 8; padding: 8px 40px 8px 0; }
+.h-status { grid-column: span 4; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); display: inline-flex; align-items: center; gap: 11px; margin-bottom: 24px;
+}
+.eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--accent); flex: none; }
+h1 { font-size: clamp(2.3rem, 5.6vw, 4.35rem); font-weight: 600; line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 22px; }
+h1 .accent { color: var(--accent); }
+h1 .thin { font-weight: 400; color: var(--text-2); }
+.hero-lede { color: var(--text-2); font-size: 1rem; max-width: 50ch; margin-bottom: 32px; }
+.hero-lede b { color: var(--text); font-weight: 600; }
+.hero-actions { display: flex; gap: 11px; flex-wrap: wrap; }
+
+.status-card { display: flex; flex-direction: column; height: 100%; }
+.status-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+.status-head .title { font-family: var(--mono); font-size: 0.68rem; color: var(--text-2); letter-spacing: 0.06em; }
+.kv { display: flex; flex-direction: column; gap: 0; flex: 1; }
+.kv-row { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.72rem; }
+.kv-row:last-child { border-bottom: none; }
+.kv-key { color: var(--muted); white-space: nowrap; }
+.kv-dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-3px); min-width: 12px; }
+.kv-val { color: var(--text); white-space: nowrap; }
+.kv-val .good { color: var(--accent); }
+.kv-val .ex { color: var(--muted); }
+
+/* Stats */
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-top: 13px; }
+.stat { padding: 20px 20px 16px; }
+.stat-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
+.stat-link:hover { border-color: var(--accent-line); background: var(--surface-hover); transform: translateY(-3px); }
+.stat-num { font-size: clamp(1.7rem, 3.3vw, 2.2rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1; display: block; }
+.stat-num .u { font-family: var(--mono); font-size: 0.5em; color: var(--accent); font-weight: 500; margin-left: 3px; letter-spacing: 0; }
+.stat-lbl { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 9px; }
+.stat-src { display: block; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em; color: var(--muted); margin-top: 12px; transition: color 0.24s; }
+.stat-link:hover .stat-src { color: var(--accent); }
+
+/* ==========================================
+   SECTION HEADS
+   ========================================== */
+.sec-head { margin-bottom: 38px; display: flex; justify-content: space-between; align-items: flex-end; gap: 34px; flex-wrap: wrap; }
+.sec-head-l { max-width: 620px; }
+.sec-head h2 { font-size: clamp(1.7rem, 3.6vw, 2.5rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-top: 16px; }
+.sec-head h2 .accent { color: var(--accent); }
+.sec-head p { color: var(--text-2); font-size: 0.93rem; margin-top: 12px; max-width: 56ch; }
+.sec-count { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; padding-bottom: 6px; }
+
+/* ==========================================
+   PROJECT / READING CARDS
+   ========================================== */
+.p-tile { cursor: default; display: flex; flex-direction: column; padding: 0; }
+.p-visual {
+  height: 158px; padding: 18px 20px 0; border-bottom: 1px solid var(--line);
+  background: var(--bg-alt); position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.p-visual svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.p-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+.p-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 9px; }
+.p-body h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; }
+.p-year { font-family: var(--mono); font-size: 0.66rem; color: var(--muted); padding-top: 4px; white-space: nowrap; }
+.p-body p { color: var(--text-2); font-size: 0.85rem; line-height: 1.68; margin-bottom: 16px; flex: 1; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tag {
+  font-family: var(--mono); font-size: 0.63rem; padding: 4px 9px; border-radius: 6px;
+  background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-line);
+}
+
+/* Report Links */
+.p-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+.p-link {
+  display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono);
+  font-size: 0.66rem; letter-spacing: 0.03em; padding: 8px 12px; border-radius: 8px;
+  border: 1px solid var(--line); color: var(--text-2); text-decoration: none;
+  background: var(--bg-alt); transition: border-color 0.24s, color 0.24s, background 0.24s, transform 0.24s;
+}
+.p-link svg { width: 12px; height: 12px; flex: none; }
+.p-link:hover { border-color: var(--accent-line); color: var(--text); background: var(--surface-hover); transform: translateY(-2px); }
+.p-link.primary { background: var(--accent-dim); border-color: var(--accent-line); color: var(--accent); }
+.p-link.primary:hover { background: var(--accent); color: var(--bg); }
+
+/* Feature Card (LLM) */
+.p-feature { grid-column: span 12; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+.p-feature .p-visual { height: auto; min-height: 290px; padding: 26px; border-bottom: none; border-right: 1px solid var(--line); }
+.p-feature .p-visual svg { max-height: 250px; }
+.p-metrics {
+  display: flex; gap: 24px; flex-wrap: wrap; padding: 14px 0; margin: 4px 0 16px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.p-metrics .m-val { display: block; font-size: 1.05rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; line-height: 1.25; }
+.p-metrics .m-lbl { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+
+/* Architecture Diagram */
+.arch text { font-family: var(--mono); font-size: 11px; fill: var(--text-2); text-anchor: middle; }
+.arch .arch-lbl { font-size: 10px; fill: var(--muted); letter-spacing: 0.09em; text-anchor: start; }
+.arch rect { fill: var(--accent-dim); stroke: var(--accent-line); stroke-width: 1; }
+.arch .conn { fill: none; stroke: var(--muted); stroke-width: 1; }
+
+/* ==========================================
+   STACK
+   ========================================== */
+.stack-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 13px; }
+.skills-tile { grid-column: span 5; }
+.tools-tile { grid-column: span 7; }
+.skills-note { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-top: 9px; letter-spacing: 0.02em; }
+.skill-list { list-style: none; margin-top: 16px; }
+.skill-row { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.skill-row:last-child { border-bottom: none; padding-bottom: 0; }
+.skill-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.skill-top .name { font-size: 0.87rem; font-weight: 600; letter-spacing: -0.01em; }
+.tier { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.07em; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.tier.hi { border-color: var(--accent-line); color: var(--accent); background: var(--accent-dim); }
+.tier.ex { border-color: var(--line-soft); color: var(--muted); background: var(--bg-alt); }
+.skill-desc { font-size: 0.79rem; color: var(--text-2); line-height: 1.6; }
+
+.tool-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 22px; margin-top: 20px; }
+.tool-col h4 { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 12px; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-size: 0.76rem; padding: 6px 12px; border-radius: 8px; background: var(--bg-alt);
+  border: 1px solid var(--line); color: var(--text-2); transition: 0.24s;
+}
+.pill:hover { border-color: var(--accent-line); color: var(--text); transform: translateY(-2px); background: var(--surface-hover); }
+
+/* ==========================================
+   RECORD
+   ========================================== */
+.rec-list { list-style: none; border-top: 1px solid var(--line); }
+.rec-item {
+  display: grid; grid-template-columns: 130px 1fr auto; gap: 30px; align-items: start;
+  padding: 28px 4px; border-bottom: 1px solid var(--line); transition: background 0.3s, padding-left 0.35s;
+}
+.rec-item:hover { background: var(--accent-dim); padding-left: 14px; }
+.rec-date { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); padding-top: 5px; letter-spacing: 0.04em; }
+.rec-main h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 5px; }
+.rec-co { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.02em; margin-bottom: 10px; display: block; }
+.rec-main p { color: var(--text-2); font-size: 0.86rem; line-height: 1.7; max-width: 62ch; }
+.rec-badge { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; margin-top: 2px; }
+.rec-badge.now { border-color: var(--accent-line); color: var(--accent); background: var(--accent-dim); }
+.rec-item.rec-compact { padding: 22px 4px; }
+.rec-item.rec-compact h3 { font-size: 0.92rem; color: var(--text-2); }
+.rec-item.rec-compact .rec-co { color: var(--muted); }
+.rec-item.rec-compact p { font-size: 0.8rem; color: var(--muted); max-width: 66ch; }
+.rec-more { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--muted); margin-top: 18px; }
+.rec-more a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--line); }
+.rec-more a:hover { color: var(--accent); border-bottom-color: var(--accent-line); }
+
+/* ==========================================
+   CONTACT & FOOTER
+   ========================================== */
+.contact { padding: 110px 0 90px; }
+.contact-tile { padding: 64px 40px; text-align: center; background: var(--surface); position: relative; }
+.contact h2 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.038em; line-height: 1.05; margin: 22px auto 18px; max-width: 17ch; position: relative; }
+.contact h2 .accent { color: var(--accent); }
+.contact p { color: var(--text-2); max-width: 46ch; margin: 0 auto 34px; font-size: 0.95rem; position: relative; }
+.contact-actions { display: flex; gap: 11px; justify-content: center; flex-wrap: wrap; position: relative; }
+.socials { display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); position: relative; }
+.socials a { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.03em; transition: color 0.24s; }
+.socials a:hover { color: var(--accent); }
+footer { border-top: 1px solid var(--line); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.66rem; color: var(--muted); }
+footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
+
+/* Toast Notification */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--text); color: var(--bg); padding: 0.75rem 1.5rem;
+  border-radius: 99px; font-weight: 600; font-size: 0.9rem; z-index: 999;
+  opacity: 0; transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ==========================================
+   REVEAL ANIMATIONS (Fallback safe)
+   ========================================== */
+.reveal { opacity: 1; transform: none; }
+.js-enabled .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s, transform 0.8s; }
+.js-enabled .reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 1060px) {
+  .h-intro { grid-column: span 12; padding-right: 0; }
+  .h-status { grid-column: span 12; }
+  .skills-tile, .tools-tile { grid-column: span 12; }
+}
+
+@media (max-width: 900px) {
+  .p-tile, .p-feature { grid-column: span 12 !important; }
+  .p-feature { grid-template-columns: 1fr; }
+  .p-feature .p-visual { min-height: 0; height: 230px; border-right: none; border-bottom: 1px solid var(--line); padding: 20px; }
+}
+
+@media (max-width: 880px) {
+  .nav-toggle { display: inline-flex; }
+  .nav {
+    position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0;
+    background: var(--surface); border-bottom: 1px solid var(--line); padding: 6px 18px 14px;
+    opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity 0.26s, transform 0.26s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  .nav.open { opacity: 1; transform: none; pointer-events: auto; }
+  .nav a { padding: 13px 0; font-size: 0.9rem; border-bottom: 1px solid var(--line); }
+  .nav a::after { display: none; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  section { padding: 74px 0; }
+  .hero { padding: 120px 0 56px; }
+  .rec-item { grid-template-columns: 1fr; gap: 8px; padding: 22px 4px; }
+  .rec-badge { justify-self: start; }
+  .rec-date { padding-top: 0; }
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .tool-cols { grid-template-columns: 1fr; }
+  .contact-tile { padding: 48px 22px; }
+  .sec-head { gap: 14px; }
+  .chip-live { display: none; }
+  .header-controls { gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition-duration: 0.01ms !important; }
+  .js-enabled .reveal { opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
 <body>
-<a class="skip" href="#work">Skip to selected work</a>
+
+<a class="skip" href="#work" data-i18n="skip">Skip to selected work</a>
 
 <header class="topbar" id="topbar">
   <div class="wrap topbar-in">
     <a href="#top" class="brand"><span class="glyph" aria-hidden="true">SS</span> satadal.santra</a>
 
     <nav class="nav" id="nav" aria-label="Primary">
-      <a href="#work">Work</a>
-      <a href="#stack">Stack</a>
-      <a href="#record">Record</a>
-      <a href="#contact">Contact</a>
+      <a href="#work" data-i18n="nav_work">Work</a>
+      <a href="#stack" data-i18n="nav_stack">Stack</a>
+      <a href="#record" data-i18n="nav_record">Record</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
 
-    <span class="chip-live"><span class="pulse" aria-hidden="true"></span> <span id="clock">--:--:--</span> CET</span>
+    <div class="header-controls">
+      <div class="lang-switch" aria-label="Language">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+      
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark Mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
 
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
-    </button>
+      <span class="chip-live"><span class="pulse" aria-hidden="true"></span> <span id="clock">--:--:--</span> CET/CEST</span>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -297,73 +467,63 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="ruler reveal" id="ruler" aria-hidden="true"></div>
     <div class="bento">
 
       <div class="h-intro reveal">
-        <span class="eyebrow">Data Science · ML Systems · LLM · AI · Analytics</span>
-        <h1>
+        <span class="eyebrow" data-i18n="hero_eyebrow">Data Science · ML Systems · LLM · AI · Analytics</span>
+        <h1 data-i18n="hero_title">
           Somewhere between a <span class="accent">p-value</span><br>
           <span class="thin">and a production deploy.</span>
         </h1>
-        <p class="hero-lede">
-          Data Science student backed by <b>8 years</b> of hands-on experience in SAP IS-U &amp; FI-CA at a state power utility — master data, MIS reporting, billing &amp; revenue analysis. Now applying that foundation to <b>ML, RAG/LLM systems, and data engineering</b> — with the code and demos linked below.
+        <p class="hero-lede" data-i18n="hero_lede">
+          Data Science student with a unique edge: <b>8 years</b> of enterprise data experience in SAP IS-U & FI-CA. I bridge the gap between deep operational data and <b>modern ML, RAG/LLM systems, and data engineering</b>.
         </p>
         <div class="hero-actions">
-          <a href="#work" class="btn btn-lime">
-            Selected work
+          <a href="#work" class="btn btn-primary">
+            <span data-i18n="btn_work">Selected work</span>
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
-          <a href="#contact" class="btn btn-ghost">satadals121@gmail.com</a>
+          <button class="btn btn-ghost" id="copyEmailHero">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span data-i18n="btn_copy">Copy Email</span>
+          </button>
         </div>
       </div>
 
       <aside class="tile h-status status-card reveal" data-idx="SYS">
         <div class="status-head"><span class="title">current_profile</span><span class="pulse" aria-hidden="true"></span></div>
         <div class="kv">
-          <div class="kv-row"><span class="kv-key">focus</span><span class="kv-dots"></span><span class="kv-val"><span class="good">Data Science &amp; ML</span></span></div>
-          <div class="kv-row"><span class="kv-key">prior domain</span><span class="kv-dots"></span><span class="kv-val">SAP IS-U · FI-CA</span></div>
-          <div class="kv-row"><span class="kv-key">location</span><span class="kv-dots"></span><span class="kv-val">Bochum, DE</span></div>
-          <div class="kv-row"><span class="kv-key">status</span><span class="kv-dots"></span><span class="kv-val"><span class="good">Open to roles</span></span></div>
-        </div>
-        <div class="spark-wrap">
-          <svg class="spark-svg" viewBox="0 0 240 44" preserveAspectRatio="none" aria-hidden="true">
-            <polyline class="spark-line" points="0,38 24,35 48,36 72,28 96,30 120,22 144,24 168,16 192,18 216,10 240,12"/>
-          </svg>
-          <div class="lbl" style="margin-top:6px">project output · 2024–2026</div>
+          <div class="kv-row"><span class="kv-key" data-i18n="kv_focus">focus</span><span class="kv-dots"></span><span class="kv-val"><span class="good" data-i18n="kv_focus_val">Data Science & ML</span></span></div>
+          <div class="kv-row"><span class="kv-key" data-i18n="kv_status">status</span><span class="kv-dots"></span><span class="kv-val"><span class="good" data-i18n="kv_status_val">Open to roles</span></span></div>
+          <div class="kv-row"><span class="kv-key" data-i18n="kv_loc">location</span><span class="kv-dots"></span><span class="kv-val" data-i18n="kv_loc_val">Bochum, GE</span></div>
+          <div class="kv-row"><span class="kv-key" data-i18n="kv_prior">ex-domain</span><span class="kv-dots"></span><span class="kv-val"><span class="ex">SAP IS-U · FI-CA</span></span></div>
         </div>
       </aside>
 
     </div>
 
-    <!-- Stats now render real values without JS, and each links to its evidence. -->
     <div class="stat-row reveal">
       <a class="tile stat stat-link" href="#p-dhl" data-idx="01">
         <span class="stat-num"><span data-count="518">518</span></span>
-        <div class="stat-lbl">Models benchmarked</div>
-        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,17 15,15 30,16 45,12 60,13 75,9 90,10 105,6 120,7"/></svg>
+        <div class="stat-lbl" data-i18n="stat_1">Models benchmarked</div>
         <span class="stat-src">↳ DHL forecasting</span>
       </a>
       <a class="tile stat stat-link" href="#p-dhl" data-idx="02">
         <span class="stat-num"><span data-count="14">14</span><span class="u">%</span></span>
-        <div class="stat-lbl">Forecast error reduced</div>
-        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,19 15,17 30,14 45,15 60,11 75,12 90,8 105,9 120,5"/></svg>
+        <div class="stat-lbl" data-i18n="stat_2">Forecast error reduced</div>
         <span class="stat-src">↳ DHL forecasting</span>
       </a>
       <a class="tile stat stat-link" href="#record" data-idx="03">
         <span class="stat-num"><span data-count="8">8</span><span class="u">YRS</span></span>
-        <div class="stat-lbl">Enterprise data exp</div>
-        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,18 15,18 30,15 45,15 60,12 75,12 90,9 105,9 120,6"/></svg>
+        <div class="stat-lbl" data-i18n="stat_3">Enterprise data exp</div>
         <span class="stat-src">↳ WBSEDCL, 2013–2021</span>
       </a>
       <a class="tile stat stat-link" href="#work" data-idx="04">
         <span class="stat-num"><span data-count="5">5</span></span>
-        <div class="stat-lbl">Projects shipped</div>
-        <svg class="stat-spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,14 15,13 30,15 45,10 60,11 75,8 90,9 105,6 120,5"/></svg>
-        <span class="stat-src">↳ all with repo links</span>
+        <div class="stat-lbl" data-i18n="stat_4">Works published</div>
+        <span class="stat-src" data-i18n="stat_4_src">↳ all with reports</span>
       </a>
     </div>
-
   </div>
 </section>
 
@@ -372,103 +532,133 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
   <div class="wrap">
     <header class="sec-head reveal">
       <div class="sec-head-l">
-        <span class="eyebrow">01 — Selected work</span>
-        <h2>Real data, <span class="accent">real code.</span></h2>
-        <p>From seminar projects with industry partners to independent builds — every card links straight to the repository or live demo, so nothing has to be taken on trust.</p>
+        <span class="eyebrow" data-i18n="work_eyebrow">01 — Selected works</span>
+        <h2 data-i18n="work_title">Real data, <span class="accent">real reports.</span></h2>
+        <p data-i18n="work_desc">From seminar projects with industry partners to independent builds — every card links straight to the readme, report, or live demo, so nothing has to be taken on trust.</p>
       </div>
       <span class="sec-count">05 / 05</span>
     </header>
 
     <div class="bento">
 
-      <!-- ── P-01 ─────────────────────────────────────────── -->
+      <!-- P-01 -->
       <article class="tile tile-hover p-tile reveal" id="p-dhl" data-idx="P-01" style="grid-column:span 7">
-        <div class="p-visual"><svg class="line-g" viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0,104 L50,92 L100,98 L150,72 L200,80 L250,52 L300,60 L350,34 L400,42" stroke="#C9F24D"/><path d="M250,52 L300,60 L350,34 L400,42" stroke="#6E6E7B" stroke-dasharray="5 6"/></svg></div>
+        <div class="p-visual">
+          <svg viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true">
+            <rect x="20" y="20" width="360" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+            <line x1="40" y1="40" x2="200" y2="40" stroke="var(--line)" stroke-width="2"/>
+            <line x1="40" y1="55" x2="300" y2="55" stroke="var(--line)" stroke-width="2"/>
+            <line x1="40" y1="70" x2="250" y2="70" stroke="var(--line)" stroke-width="2"/>
+            <path d="M40,100 L80,90 L120,95 L160,80 L200,85 L240,70 L280,75 L320,60 L360,65" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          </svg>
+        </div>
         <div class="p-body">
           <div class="p-top"><h3>DHL Demand Forecasting</h3><span class="p-year">2026</span></div>
-          <p>Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">Holt-Winters</span><span class="tag">scikit-learn</span><span class="tag">Time Series</span></div>
+          <p data-i18n="p1_desc">Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">Time Series</span></div>
           <div class="p-links">
             <a class="p-link primary" href="https://github.com/SatadalS99/dhl-demand-forecasting" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
-              GitHub repo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              <span data-i18n="link_readme">View Readme</span>
             </a>
             <a class="p-link" href="https://github.com/SatadalS99/dhl-demand-forecasting/blob/main/notebooks/benchmark.ipynb" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              Benchmark notebook
+              <span data-i18n="link_report">Read Report</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- ── P-02 ─────────────────────────────────────────── -->
+      <!-- P-02 -->
       <article class="tile tile-hover p-tile reveal" id="p-picnic" data-idx="P-02" style="grid-column:span 5">
-        <div class="p-visual"><svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true"><g class="dot-g" id="scatterArt" fill="#C9F24D"></g></svg></div>
+        <div class="p-visual">
+          <svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true">
+            <rect x="20" y="20" width="260" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+            <circle cx="80" cy="60" r="15" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <circle cx="140" cy="80" r="20" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <circle cx="200" cy="50" r="10" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <circle cx="240" cy="90" r="25" fill="var(--accent-dim)" stroke="var(--accent)"/>
+          </svg>
+        </div>
         <div class="p-body">
           <div class="p-top"><h3>Picnic Customer Segmentation</h3><span class="p-year">2026</span></div>
-          <p>K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% "peak-and-fade" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.</p>
+          <p data-i18n="p2_desc">K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% "peak-and-fade" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.</p>
           <div class="tags"><span class="tag">K-Means</span><span class="tag">pandas</span><span class="tag">EDA</span></div>
           <div class="p-links">
             <a class="p-link primary" href="https://github.com/SatadalS99/picnic-customer-segmentation" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
-              GitHub repo
-            </a>
-            <a class="p-link" href="https://github.com/SatadalS99/picnic-customer-segmentation#readme" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              Write-up
+              <span data-i18n="link_readme">View Readme</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- ── P-03 ─────────────────────────────────────────── -->
+      <!-- P-03 -->
       <article class="tile tile-hover p-tile reveal" id="p-destatis" data-idx="P-03" style="grid-column:span 5">
-        <div class="p-visual"><svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true"><g class="bars-g" fill="#C9F24D" opacity=".85"><rect x="14" y="86" width="20" height="54" rx="3"/><rect x="44" y="68" width="20" height="72" rx="3"/><rect x="74" y="96" width="20" height="44" rx="3"/><rect x="104" y="54" width="20" height="86" rx="3"/><rect x="134" y="78" width="20" height="62" rx="3"/><rect x="164" y="38" width="20" height="102" rx="3"/><rect x="194" y="62" width="20" height="78" rx="3"/><rect x="224" y="30" width="20" height="110" rx="3"/><rect x="254" y="48" width="20" height="92" rx="3"/></g></svg></div>
+        <div class="p-visual">
+          <svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true">
+            <rect x="20" y="20" width="260" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+            <rect x="40" y="80" width="30" height="30" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="90" y="60" width="30" height="50" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="140" y="40" width="30" height="70" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="190" y="70" width="30" height="40" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="240" y="30" width="30" height="80" fill="var(--accent-dim)" stroke="var(--accent)"/>
+          </svg>
+        </div>
         <div class="p-body">
-          <div class="p-top"><h3>German Wholesale &amp; Retail Trade</h3><span class="p-year">2025</span></div>
-          <p>End-to-end pipeline cleaning 15 years of Destatis enterprise records. Established a 28.69% profitability benchmark and isolated productivity gaps — large firms achieving 2× the output of micro-operations.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">EDA</span></div>
+          <div class="p-top"><h3>German Wholesale & Retail Trade</h3><span class="p-year">2025</span></div>
+          <p data-i18n="p3_desc">End-to-end pipeline cleaning 15 years of Destatis enterprise records. Established a 28.69% profitability benchmark and isolated productivity gaps — large firms achieving 2× the output of micro-operations.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">EDA</span></div>
           <div class="p-links">
             <a class="p-link primary" href="https://github.com/SatadalS99/destatis-wholesale-retail" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
-              GitHub repo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              <span data-i18n="link_readme">View Readme</span>
             </a>
             <a class="p-link" href="https://github.com/SatadalS99/destatis-wholesale-retail/blob/main/report.pdf" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              Full report
+              <span data-i18n="link_pdf">Full Report (PDF)</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- ── P-04 ─────────────────────────────────────────── -->
+      <!-- P-04 -->
       <article class="tile tile-hover p-tile reveal" id="p-sudan" data-idx="P-04" style="grid-column:span 7">
-        <div class="p-visual"><svg viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true"><g class="grid-g" id="heatArt" fill="#C9F24D"></g></svg></div>
+        <div class="p-visual">
+          <svg viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true">
+            <rect x="20" y="20" width="360" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+            <path d="M40,80 Q100,40 150,70 T250,50 T360,80" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="40" cy="80" r="4" fill="var(--accent)"/>
+            <circle cx="150" cy="70" r="4" fill="var(--accent)"/>
+            <circle cx="250" cy="50" r="4" fill="var(--accent)"/>
+            <circle cx="360" cy="80" r="4" fill="var(--accent)"/>
+          </svg>
+        </div>
         <div class="p-body">
           <div class="p-top"><h3>Healthcare Accessibility — Sudan</h3><span class="p-year">2024</span></div>
-          <p>Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.</p>
-          <div class="tags"><span class="tag">ML</span><span class="tag">Geospatial</span><span class="tag">Open Source</span><span class="tag">Omdena</span></div>
+          <p data-i18n="p4_desc">Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.</p>
+          <div class="tags"><span class="tag">ML</span><span class="tag">Geospatial</span><span class="tag">Omdena</span></div>
           <div class="p-links">
             <a class="p-link primary" href="https://github.com/SatadalS99/sudan-healthcare-accessibility" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
-              GitHub repo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              <span data-i18n="link_readme">View Readme</span>
             </a>
             <a class="p-link" href="https://omdena.com/challenges/sudan-healthcare" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 6.5 9.5M11 10v3H3V5h3"/></svg>
-              Challenge page
+              <span data-i18n="link_challenge">Challenge Page</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- ── P-05 · LLM / RAG — this is what backs the "LLM · AI" claim ── -->
+      <!-- P-05 · LLM / RAG -->
       <article class="tile tile-hover p-tile p-feature reveal" id="p-rag" data-idx="P-05">
         <div class="p-visual">
           <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
                aria-label="Retrieval-augmented generation pipeline: SAP documents and resolved tickets are chunked, embedded and written to a pgvector store; a user query is retrieved against that store, passed to an LLM, and returned as an answer with citations.">
             <defs>
               <marker id="arw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
-                <path d="M0,0 L8,4 L0,8 Z" fill="#6E6E7B"/>
+                <path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/>
               </marker>
             </defs>
 
@@ -476,48 +666,48 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
             <text class="arch-lbl" x="4" y="140">② SERVE · online</text>
 
             <!-- indexing row -->
-            <g class="arch-fade" style="transition-delay:60ms">
+            <g>
               <rect x="4" y="22" width="116" height="36" rx="8"/>
-              <text x="62" y="43">SAP docs + tickets</text>
+              <text x="62" y="43">SAP docs</text>
             </g>
-            <g class="arch-fade" style="transition-delay:180ms">
+            <g>
               <rect x="150" y="22" width="80" height="36" rx="8"/>
               <text x="190" y="43">Chunker</text>
             </g>
-            <g class="arch-fade" style="transition-delay:300ms">
+            <g>
               <rect x="260" y="22" width="80" height="36" rx="8"/>
               <text x="300" y="43">Embeddings</text>
             </g>
-            <g class="arch-fade" style="transition-delay:420ms">
+            <g>
               <rect x="370" y="22" width="96" height="36" rx="8"/>
               <text x="418" y="43">pgvector</text>
             </g>
 
             <!-- retrieval / generation row -->
-            <g class="arch-fade" style="transition-delay:540ms">
+            <g>
               <rect x="4" y="150" width="76" height="36" rx="8"/>
               <text x="42" y="171">User query</text>
             </g>
-            <g class="arch-fade" style="transition-delay:660ms">
+            <g>
               <rect x="120" y="150" width="124" height="36" rx="8"/>
               <text x="182" y="171">Retrieve top-k</text>
             </g>
-            <g class="arch-fade" style="transition-delay:780ms">
+            <g>
               <rect x="276" y="150" width="72" height="36" rx="8"/>
               <text x="312" y="171">LLM</text>
             </g>
-            <g class="arch-fade" style="transition-delay:900ms">
+            <g>
               <rect x="378" y="150" width="88" height="36" rx="8"/>
-              <text x="422" y="171">Answer + cites</text>
+              <text x="422" y="171">Answer</text>
             </g>
 
             <!-- connectors -->
-            <g class="arch-fade" style="transition-delay:480ms">
+            <g>
               <line class="conn" x1="124" y1="40" x2="146" y2="40" marker-end="url(#arw)"/>
               <line class="conn" x1="234" y1="40" x2="256" y2="40" marker-end="url(#arw)"/>
               <line class="conn" x1="344" y1="40" x2="366" y2="40" marker-end="url(#arw)"/>
             </g>
-            <g class="arch-fade" style="transition-delay:1020ms">
+            <g>
               <line class="conn" x1="84" y1="168" x2="116" y2="168" marker-end="url(#arw)"/>
               <line class="conn" x1="248" y1="168" x2="272" y2="168" marker-end="url(#arw)"/>
               <line class="conn" x1="352" y1="168" x2="374" y2="168" marker-end="url(#arw)"/>
@@ -528,28 +718,24 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
 
         <div class="p-body">
           <div class="p-top"><h3>SAP Incident Triage Assistant (RAG)</h3><span class="p-year">2025 — 2026</span></div>
-          <p>Retrieval-augmented assistant over eight years' worth of SAP IS-U / FI-CA documentation and resolved tickets — the exact corpus I used to work with by hand. Documents are chunked and embedded into pgvector; a query retrieves the top-k passages and the LLM answers <em>only</em> from them, returning inline citations so every response can be traced back to source.</p>
+          <p data-i18n="p5_desc">Retrieval-augmented assistant over eight years' worth of SAP IS-U / FI-CA documentation and resolved tickets. Documents are chunked and embedded into pgvector; a query retrieves the top-k passages and the LLM answers <em>only</em> from them, returning inline citations so every response can be traced back to source.</p>
 
           <div class="p-metrics">
-            <div><span class="m-val">120</span><span class="m-lbl">question eval set</span></div>
-            <div><span class="m-val">87%</span><span class="m-lbl">answer accuracy</span></div>
-            <div><span class="m-val">0.91</span><span class="m-lbl">citation precision</span></div>
+            <div><span class="m-val">120</span><span class="m-lbl" data-i18n="m1">question eval set</span></div>
+            <div><span class="m-val">87%</span><span class="m-lbl" data-i18n="m2">answer accuracy</span></div>
+            <div><span class="m-val">0.91</span><span class="m-lbl" data-i18n="m3">citation precision</span></div>
           </div>
 
-          <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">pgvector</span><span class="tag">Embeddings</span><span class="tag">LLM API</span><span class="tag">FastAPI</span><span class="tag">Docker</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">pgvector</span><span class="tag">LLM API</span></div>
 
           <div class="p-links">
             <a class="p-link primary" href="https://github.com/SatadalS99/sap-rag-assistant" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>
-              GitHub repo
-            </a>
-            <a class="p-link" href="https://sap-rag-demo.satadals.dev" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 6.5 9.5M11 10v3H3V5h3"/></svg>
-              Live demo
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+              <span data-i18n="link_readme">View Readme</span>
             </a>
             <a class="p-link" href="https://github.com/SatadalS99/sap-rag-assistant/blob/main/EVAL.md" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              Evaluation write-up
+              <span data-i18n="link_eval">Evaluation Report</span>
             </a>
           </div>
         </div>
@@ -564,66 +750,63 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
   <div class="wrap">
     <header class="sec-head reveal">
       <div class="sec-head-l">
-        <span class="eyebrow">02 — Stack</span>
-        <h2>The tools I <span class="accent">actually reach for.</span></h2>
-        <p>Eight years of enterprise systems plus a graduate data-science toolkit — from SAP transaction codes to PyTorch tensors.</p>
+        <span class="eyebrow" data-i18n="stack_eyebrow">02 — Stack</span>
+        <h2 data-i18n="stack_title">The tools I <span class="accent">actually reach for.</span></h2>
+        <p data-i18n="stack_desc">A modern data-science toolkit, backed by a deep understanding of enterprise data systems.</p>
       </div>
       <span class="sec-count">STACK / v.2026</span>
     </header>
 
     <div class="stack-grid">
-
-      <!-- Skill percentages replaced with categorical capability groups -->
       <div class="tile skills-tile reveal" data-idx="LANG">
-        <span class="lbl">Core fluency</span>
-        <p class="skills-note">Grouped by capability — no invented percentages.</p>
+        <span class="lbl" data-i18n="stack_fluency">Core fluency</span>
+        <p class="skills-note" data-i18n="stack_note">Grouped by capability.</p>
 
         <ul class="skill-list">
           <li class="skill-row">
-            <div class="skill-top"><span class="name">Enterprise SAP / ERP</span><span class="tier hi">8 YRS · DAILY DRIVER</span></div>
-            <p class="skill-desc">SAP IS-U &amp; FI-CA master data, billing and revenue analysis, MIS reporting, audit-ready records.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_2_name">Python for data</span><span class="tier hi" data-i18n="skill_2_tier">DAILY</span></div>
+            <p class="skill-desc" data-i18n="skill_2_desc">pandas, NumPy, scikit-learn, statsmodels — time-series benchmarking and clustering taken end to end.</p>
           </li>
           <li class="skill-row">
-            <div class="skill-top"><span class="name">Python for data</span><span class="tier hi">DAILY</span></div>
-            <p class="skill-desc">pandas, NumPy, scikit-learn, statsmodels — time-series benchmarking and clustering taken end to end.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_3_name">SQL & PostgreSQL</span><span class="tier hi" data-i18n="skill_3_tier">DAILY</span></div>
+            <p class="skill-desc" data-i18n="skill_3_desc">Analytical queries, window functions, schema design, pgvector for embedding storage and search.</p>
           </li>
           <li class="skill-row">
-            <div class="skill-top"><span class="name">SQL &amp; PostgreSQL</span><span class="tier hi">DAILY</span></div>
-            <p class="skill-desc">Analytical queries, window functions, schema design, pgvector for embedding storage and search.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_4_name">Statistics & ML</span><span class="tier" data-i18n="skill_4_tier">COURSEWORK + PROJECTS</span></div>
+            <p class="skill-desc" data-i18n="skill_4_desc">Rolling cross-validation, model benchmarking, Monte Carlo simulation, Bayesian fundamentals.</p>
           </li>
           <li class="skill-row">
-            <div class="skill-top"><span class="name">Statistics &amp; ML</span><span class="tier">COURSEWORK + PROJECTS</span></div>
-            <p class="skill-desc">Rolling cross-validation, model benchmarking, Monte Carlo simulation, Bayesian fundamentals.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_5_name">Data engineering & tooling</span><span class="tier" data-i18n="skill_5_tier">PROJECT-TESTED</span></div>
+            <p class="skill-desc" data-i18n="skill_5_desc">Docker, FastAPI, Prefect, Git/Linux, CI/CD pipelines for reproducible model delivery.</p>
           </li>
-          <li class="skill-row">
-            <div class="skill-top"><span class="name">Data engineering &amp; tooling</span><span class="tier">PROJECT-TESTED</span></div>
-            <p class="skill-desc">Docker, FastAPI, Prefect, Git/Linux, CI/CD pipelines for reproducible model delivery.</p>
+          <li class="skill-row" style="margin-top: 10px; border-top: 1px dashed var(--line); padding-top: 14px;">
+            <div class="skill-top"><span class="name" data-i18n="skill_1_name">Enterprise SAP / ERP (Ex-Work)</span><span class="tier ex" data-i18n="skill_1_tier">PREVIOUS 8 YRS</span></div>
+            <p class="skill-desc" data-i18n="skill_1_desc">SAP IS-U & FI-CA master data, billing and revenue analysis, MIS reporting, audit-ready records.</p>
           </li>
         </ul>
       </div>
 
       <div class="tile tools-tile reveal" data-idx="TOOLS">
-        <span class="lbl">Toolbelt</span>
+        <span class="lbl" data-i18n="stack_toolbelt">Toolbelt</span>
         <div class="tool-cols">
           <div class="tool-col">
-            <h4>Machine Learning</h4>
+            <h4 data-i18n="tool_ml">Machine Learning</h4>
             <div class="pills"><span class="pill">scikit-learn</span><span class="pill">statsmodels</span><span class="pill">LightGBM</span><span class="pill">SciPy</span><span class="pill">Monte Carlo</span><span class="pill">Bayes</span></div>
           </div>
           <div class="tool-col">
-            <h4>LLM &amp; GenAI</h4>
+            <h4 data-i18n="tool_llm">LLM & GenAI</h4>
             <div class="pills"><span class="pill">RAG</span><span class="pill">Embeddings</span><span class="pill">pgvector</span><span class="pill">Prompt design</span><span class="pill">Eval harnesses</span><span class="pill">LLM APIs</span></div>
           </div>
           <div class="tool-col">
-            <h4>Data Engineering</h4>
+            <h4 data-i18n="tool_de">Data Engineering</h4>
             <div class="pills"><span class="pill">Docker</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span><span class="pill">Prefect</span><span class="pill">ETL</span><span class="pill">CI/CD</span></div>
           </div>
           <div class="tool-col">
-            <h4>Analytics &amp; Enterprise</h4>
+            <h4 data-i18n="tool_analytics">Analytics & Enterprise</h4>
             <div class="pills"><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Matplotlib</span><span class="pill">Streamlit</span><span class="pill">SAP IS-U</span><span class="pill">SAP FI-CA</span></div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -633,9 +816,9 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
   <div class="wrap">
     <header class="sec-head reveal">
       <div class="sec-head-l">
-        <span class="eyebrow">03 — Record</span>
-        <h2>Where I've <span class="accent">been.</span></h2>
-        <p>Two entries that matter — the current M.Sc. and eight years of enterprise data — plus a one-line summary of everything earlier.</p>
+        <span class="eyebrow" data-i18n="record_eyebrow">03 — Record</span>
+        <h2 data-i18n="record_title">Where I've <span class="accent">been.</span></h2>
+        <p data-i18n="record_desc">Bridging deep enterprise data operations with modern machine learning. Here is the timeline of that transition.</p>
       </div>
       <span class="sec-count">2013 — PRESENT</span>
     </header>
@@ -644,36 +827,35 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
       <li class="rec-item reveal">
         <span class="rec-date">2021 — NOW</span>
         <div class="rec-main">
-          <h3>M.Sc. Data Science</h3>
+          <h3 data-i18n="rec_1_title">M.Sc. Data Science</h3>
           <span class="rec-co">TU Dortmund University · Dortmund, Germany</span>
-          <p>Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with DHL and Picnic Germany on real operational datasets.</p>
+          <p data-i18n="rec_1_desc">Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with DHL and Picnic Germany on real operational datasets.</p>
         </div>
-        <span class="rec-badge now">CURRENT</span>
+        <span class="rec-badge now" data-i18n="rec_1_badge">CURRENT</span>
       </li>
 
       <li class="rec-item reveal">
         <span class="rec-date">2013 — 2021</span>
         <div class="rec-main">
-          <h3>Office Executive</h3>
+          <h3 data-i18n="rec_2_title">Office Executive (Enterprise Data)</h3>
           <span class="rec-co">West Bengal State Electricity Distribution Co. Ltd. · Kolkata</span>
-          <p>Maintained large-scale enterprise master data in SAP IS-U and FI-CA systems for a state power utility. Ran billing &amp; revenue analysis, compiled MIS reports for senior stakeholders, and supported corporate audits with structured, auditable records.</p>
+          <p data-i18n="rec_2_desc">Maintained large-scale enterprise master data in SAP IS-U and FI-CA systems for a state power utility. Ran billing & revenue analysis, compiled MIS reports for senior stakeholders, and supported corporate audits with structured, auditable records.</p>
         </div>
-        <span class="rec-badge">8 YRS</span>
+        <span class="rec-badge" data-i18n="rec_2_badge">8 YRS</span>
       </li>
 
-      <!-- Everything pre-2013 consolidated into one scannable row -->
       <li class="rec-item rec-compact reveal">
         <span class="rec-date">2006 — 2013</span>
         <div class="rec-main">
-          <h3>Earlier — Computer Applications &amp; Tutoring</h3>
+          <h3 data-i18n="rec_3_title">Earlier — Computer Applications & Tutoring</h3>
           <span class="rec-co">West Bengal University of Technology · One To One Tutor India</span>
-          <p>MCA &amp; BCA in Computer Applications, plus three years tutoring mathematics online for U.S. students. Summarised here rather than listed in full — the focus is the current M.Sc. and the enterprise data work above.</p>
+          <p data-i18n="rec_3_desc">MCA & BCA in Computer Applications, plus three years tutoring mathematics online for U.S. students. Summarised here rather than listed in full — the focus is the current M.Sc. and the enterprise data work above.</p>
         </div>
-        <span class="rec-badge">SUMMARY</span>
+        <span class="rec-badge" data-i18n="rec_3_badge">SUMMARY</span>
       </li>
     </ol>
 
-    <p class="rec-more reveal">Full pre-2013 history available on request → <a href="mailto:satadals121@gmail.com">satadals121@gmail.com</a></p>
+    <p class="rec-more reveal"><span data-i18n="rec_more">Full pre-2013 history available on request</span> → <a href="mailto:satadals121@gmail.com">satadals121@gmail.com</a></p>
   </div>
 </section>
 
@@ -681,15 +863,17 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="tile contact-tile reveal" data-idx="END">
-      <span class="eyebrow" style="margin-bottom:0">04 — Contact</span>
-      <h2>Your data has answers.<br><span class="accent">Let's find them.</span></h2>
-      <p>Open to Werkstudent, internship and full-time data science roles.</p>
+      <span class="eyebrow" style="margin-bottom:0" data-i18n="contact_eyebrow">04 — Contact</span>
+      <h2 data-i18n="contact_title">Your data has answers.<br><span class="accent">Let's find them.</span></h2>
+      <p data-i18n="contact_desc">Open to Werkstudent, internship and full-time data science roles.</p>
       <div class="contact-actions">
-        <a href="mailto:satadals121@gmail.com" class="btn btn-lime">
+        <button class="btn btn-primary" id="copyEmailContact">
           satadals121@gmail.com
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+        <a href="cv.pdf" class="btn btn-ghost" download>
+          <span data-i18n="btn_cv">Download CV</span>
         </a>
-        <a href="cv.pdf" class="btn btn-ghost" download>Download CV</a>
       </div>
       <div class="socials">
         <a href="https://github.com/SatadalS99" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
@@ -702,164 +886,299 @@ footer .fstat{display:inline-flex;align-items:center;gap:8px}
 </main>
 
 <footer class="wrap">
-  <span>© <span id="yr">2026</span> Satadal Santra — Data Science · ML · LLM · AI</span>
-  <span class="fstat"><span class="pulse" aria-hidden="true"></span> connecting dots</span>
+  <span>© <span id="yr">2026</span> Satadal Santra</span>
+  <span class="fstat"><span class="pulse" aria-hidden="true"></span> <span data-i18n="footer_status">connecting dots</span></span>
 </footer>
 
+<!-- Toast -->
+<div id="toast" class="toast" role="alert" aria-live="polite">Email copied!</div>
+
 <script>
-/* ---------- ruler ticks ---------- */
-(function(){
-  var ruler=document.getElementById('ruler'); if(!ruler) return;
-  ['00','10','20','30','40','50','60','70','80','90','100'].forEach(function(t){
-    var s=document.createElement('span'); s.dataset.t=t; ruler.appendChild(s);
-  });
-})();
+/* ==========================================
+   SAFE STORAGE WRAPPER
+   ========================================== */
+const safeStorage = {
+  get(key) { try { return localStorage.getItem(key); } catch(e) { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch(e) {} }
+};
 
-/* ---------- clock (real Europe/Berlin time, not local time) ---------- */
-(function(){
-  var el=document.getElementById('clock'); if(!el) return;
-  var fmt=null;
-  try{
-    fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Berlin',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-  }catch(e){ fmt=null; }
-  function tick(){
-    var d=new Date();
-    if(fmt){ el.textContent=fmt.format(d); return; }
-    var p=function(n){return String(n).padStart(2,'0');};
-    el.textContent=p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
+document.documentElement.classList.add('js-enabled');
+
+/* ==========================================
+   1. TRANSLATIONS (EN / DE)
+   ========================================== */
+const i18n = {
+  en: {
+    skip: "Skip to selected work",
+    nav_work: "Work", nav_stack: "Stack", nav_record: "Record", nav_contact: "Contact",
+    hero_eyebrow: "Data Science · ML Systems · LLM · AI · Analytics",
+    hero_title: "Somewhere between a <span class='accent'>p-value</span><br><span class='thin'>and a production deploy.</span>",
+    hero_lede: "Data Science student with a unique edge: <b>8 years</b> of enterprise data experience in SAP IS-U & FI-CA. I bridge the gap between deep operational data and <b>modern ML, RAG/LLM systems, and data engineering</b>.",
+    btn_work: "Selected work", btn_copy: "Copy Email", btn_cv: "Download CV",
+    kv_focus: "focus", kv_focus_val: "Data Science & ML",
+    kv_loc: "location", kv_loc_val: "Bochum, GE", kv_prior: "ex-domain", kv_status: "status", kv_status_val: "Open to roles",
+    stat_1: "Models benchmarked", stat_2: "Forecast error reduced", stat_3: "Enterprise data exp", stat_4: "Works published", stat_4_src: "↳ all with reports",
+    work_eyebrow: "01 — Selected works", work_title: "Real data, <span class='accent'>real reports.</span>",
+    work_desc: "From seminar projects with industry partners to independent builds — every card links straight to the readme, report, or live demo, so nothing has to be taken on trust.",
+    link_readme: "View Readme", link_report: "Read Report", link_pdf: "Full Report (PDF)", link_challenge: "Challenge Page", link_eval: "Evaluation Report",
+    p1_desc: "Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.",
+    p2_desc: "K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% \"peak-and-fade\" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.",
+    p3_desc: "End-to-end pipeline cleaning 15 years of Destatis enterprise records. Established a 28.69% profitability benchmark and isolated productivity gaps — large firms achieving 2× the output of micro-operations.",
+    p4_desc: "Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.",
+    p5_desc: "Retrieval-augmented assistant over eight years' worth of SAP IS-U / FI-CA documentation and resolved tickets. Documents are chunked and embedded into pgvector; a query retrieves the top-k passages and the LLM answers <em>only</em> from them, returning inline citations so every response can be traced back to source.",
+    m1: "question eval set", m2: "answer accuracy", m3: "citation precision",
+    stack_eyebrow: "02 — Stack", stack_title: "The tools I <span class='accent'>actually reach for.</span>",
+    stack_desc: "A modern data-science toolkit, backed by a deep understanding of enterprise data systems.",
+    stack_fluency: "Core fluency", stack_note: "Grouped by capability.",
+    skill_1_name: "Enterprise SAP / ERP (Ex-Work)", skill_1_tier: "PREVIOUS 8 YRS", skill_1_desc: "SAP IS-U & FI-CA master data, billing and revenue analysis, MIS reporting, audit-ready records.",
+    skill_2_name: "Python for data", skill_2_tier: "DAILY", skill_2_desc: "pandas, NumPy, scikit-learn, statsmodels — time-series benchmarking and clustering taken end to end.",
+    skill_3_name: "SQL & PostgreSQL", skill_3_tier: "DAILY", skill_3_desc: "Analytical queries, window functions, schema design, pgvector for embedding storage and search.",
+    skill_4_name: "Statistics & ML", skill_4_tier: "COURSEWORK + PROJECTS", skill_4_desc: "Rolling cross-validation, model benchmarking, Monte Carlo simulation, Bayesian fundamentals.",
+    skill_5_name: "Data engineering & tooling", skill_5_tier: "PROJECT-TESTED", skill_5_desc: "Docker, FastAPI, Prefect, Git/Linux, CI/CD pipelines for reproducible model delivery.",
+    stack_toolbelt: "Toolbelt", tool_ml: "Machine Learning", tool_llm: "LLM & GenAI", tool_de: "Data Engineering", tool_analytics: "Analytics & Enterprise",
+    record_eyebrow: "03 — Record", record_title: "Where I've <span class='accent'>been.</span>",
+    record_desc: "Bridging deep enterprise data operations with modern machine learning. Here is the timeline of that transition.",
+    rec_1_title: "M.Sc. Data Science", rec_1_desc: "Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with DHL and Picnic Germany on real operational datasets.", rec_1_badge: "CURRENT",
+    rec_2_title: "Office Executive (Enterprise Data)", rec_2_desc: "Maintained large-scale enterprise master data in SAP IS-U and FI-CA systems for a state power utility. Ran billing & revenue analysis, compiled MIS reports for senior stakeholders, and supported corporate audits with structured, auditable records.", rec_2_badge: "8 YRS",
+    rec_3_title: "Earlier — Computer Applications & Tutoring", rec_3_desc: "MCA & BCA in Computer Applications, plus three years tutoring mathematics online for U.S. students. Summarised here rather than listed in full — the focus is the current M.Sc. and the enterprise data work above.", rec_3_badge: "SUMMARY",
+    rec_more: "Full pre-2013 history available on request",
+    contact_eyebrow: "04 — Contact", contact_title: "Your data has answers.<br><span class='accent'>Let's find them.</span>",
+    contact_desc: "Open to Werkstudent, internship and full-time data science roles.",
+    footer_status: "connecting dots"
+  },
+  de: {
+    skip: "Zum ausgewählten Bereich springen",
+    nav_work: "Arbeiten", nav_stack: "Stack", nav_record: "Werdegang", nav_contact: "Kontakt",
+    hero_eyebrow: "Data Science · ML Systeme · LLM · KI · Analytics",
+    hero_title: "Irgendwo zwischen einem <span class='accent'>p-Wert</span><br><span class='thin'>und einem Production Deploy.</span>",
+    hero_lede: "Data Science Student mit einem einzigartigen Vorteil: <b>8 Jahre</b> Erfahrung mit Enterprise-Daten in SAP IS-U & FI-CA. Ich schließe die Lücke zwischen tiefen operativen Daten und <b>modernem ML, RAG/LLM-Systemen und Data Engineering</b>.",
+    btn_work: "Ausgewählte Arbeiten", btn_copy: "E-Mail kopieren", btn_cv: "Lebenslauf herunterladen",
+    kv_focus: "Fokus", kv_focus_val: "Data Science & ML",
+    kv_loc: "Standort", kv_loc_val: "Bochum, DE", kv_prior: "Ex-Domäne", kv_status: "Status", kv_status_val: "Offen für Stellen",
+    stat_1: "Modelle gebenchmarkt", stat_2: "Prognosefehler reduziert", stat_3: "Enterprise-Daten-Erfahrung", stat_4: "Arbeiten veröffentlicht", stat_4_src: "↳ alle mit Berichten",
+    work_eyebrow: "01 — Ausgewählte Arbeiten", work_title: "Echte Daten, <span class='accent'>echte Berichte.</span>",
+    work_desc: "Von Seminarprojekten mit Industriepartnern bis zu unabhängigen Builds — jede Karte verlinkt direkt auf das Readme, den Bericht oder die Live-Demo, damit nichts auf Vertrauen basiert.",
+    link_readme: "Readme ansehen", link_report: "Bericht lesen", link_pdf: "Vollständiger Bericht (PDF)", link_challenge: "Challenge-Seite", link_eval: "Evaluierungsbericht",
+    p1_desc: "Prognose wöchentlicher Paketvolumina über 37 Kunden-Produkt-Linien. 14 Modelle pro Linie gebenchmarkt — insgesamt 518 Läufe — unter rollierender Kreuzvalidierung. Die Auswahl pro Linie senkte den durchschnittlichen Prognosefehler um ~14%.",
+    p2_desc: "K-Means-Clustering auf einer 5.722 × 23 Wochen-Trajektorien-Matrix. Eine 11% \"Peak-and-Fade\"-Kohorte identifiziert, die 6,5× mehr pro Kunde wert ist als das Segment, das den Großteil des Retention-Budgets absorbiert.",
+    p3_desc: "End-to-End-Pipeline zur Bereinigung von 15 Jahren Destatis-Unternehmensdaten. Etablierte einen Rentabilitäts-Benchmark von 28,69% und isolierte Produktivitätslücken — große Unternehmen erreichen die 2-fache Leistung von Mikrobetrieben.",
+    p4_desc: "Open-Source-Omdena-Challenge mit einem verteilten internationalen Team. Erstellung einer ML-Pipeline zur Krankheitsausbruchsprognose und Kartierung der Zugänglichkeit von Gesundheitseinrichtungen unter Verwendung historischer und geospatialer Daten.",
+    p5_desc: "Retrieval-augmentierter Assistent über acht Jahre SAP IS-U / FI-CA-Dokumentation und gelöste Tickets. Dokumente werden gechunkt und in pgvector eingebettet; eine Abfrage ruft die Top-k-Passagen ab und das LLM antwortet <em>nur</em> aus diesen, mit Inline-Zitaten, damit jede Antwort auf die Quelle zurückgeführt werden kann.",
+    m1: "Fragen-Eval-Set", m2: "Antwortgenauigkeit", m3: "Zitierpräzision",
+    stack_eyebrow: "02 — Stack", stack_title: "Die Tools, zu denen ich <span class='accent'>wirklich greife.</span>",
+    stack_desc: "Ein modernes Data-Science-Toolkit, gestützt auf ein tiefes Verständnis für Enterprise-Datensysteme.",
+    stack_fluency: "Kernkompetenz", stack_note: "Nach Fähigkeit gruppiert.",
+    skill_1_name: "Enterprise SAP / ERP (Ex-Arbeit)", skill_1_tier: "VORHERIGE 8 JAHRE", skill_1_desc: "SAP IS-U & FI-CA Stammdaten, Abrechnungs- und Umsatzanalyse, MIS-Reporting, prüfungssichere Aufzeichnungen.",
+    skill_2_name: "Python für Daten", skill_2_tier: "TÄGLICH", skill_2_desc: "pandas, NumPy, scikit-learn, statsmodels — Time-Series-Benchmarking und Clustering end-to-end.",
+    skill_3_name: "SQL & PostgreSQL", skill_3_tier: "TÄGLICH", skill_3_desc: "Analytische Abfragen, Window Functions, Schema-Design, pgvector für Embedding-Speicherung und -Suche.",
+    skill_4_name: "Statistik & ML", skill_4_tier: "STUDIUM + PROJEKTE", skill_4_desc: "Rollierende Kreuzvalidierung, Modell-Benchmarking, Monte-Carlo-Simulation, Bayes-Grundlagen.",
+    skill_5_name: "Data Engineering & Tooling", skill_5_tier: "PROJEKTGETESTET", skill_5_desc: "Docker, FastAPI, Prefect, Git/Linux, CI/CD-Pipelines für reproduzierbare Modellbereitstellung.",
+    stack_toolbelt: "Werkzeugkasten", tool_ml: "Machine Learning", tool_llm: "LLM & GenAI", tool_de: "Data Engineering", tool_analytics: "Analytics & Enterprise",
+    record_eyebrow: "03 — Werdegang", record_title: "Wo ich <span class='accent'>war.</span>",
+    record_desc: "Die Verbindung von tiefer Enterprise-Datenarbeit mit modernem maschinellem Lernen. Hier ist die Zeitleiste dieses Übergangs.",
+    rec_1_title: "M.Sc. Data Science", rec_1_desc: "Studium der statistischen Modellierung, des maschinellen Lernens und des Data Engineering. Seminarprojekte mit DHL und Picnic Germany auf echten operativen Datensätzen.", rec_1_badge: "AKTUELL",
+    rec_2_title: "Office Executive (Enterprise-Daten)", rec_2_desc: "Pflege großflächiger Enterprise-Stammdaten in SAP IS-U und FI-CA Systemen für einen staatlichen Energieversorger. Durchführung von Abrechnungs- und Umsatzanalysen, Erstellung von MIS-Berichten für Führungskräfte und Unterstützung von Unternehmensprüfungen mit strukturierten, prüfbaren Aufzeichnungen.", rec_2_badge: "8 JAHRE",
+    rec_3_title: "Früher — Computeranwendungen & Nachhilfe", rec_3_desc: "MCA & BCA in Computeranwendungen, plus drei Jahre Online-Nachhilfe in Mathematik für US-Studenten. Hier zusammengefasst statt vollständig aufgelistet — der Fokus liegt auf dem aktuellen M.Sc. und der oben genannten Enterprise-Datenarbeit.", rec_3_badge: "ZUSAMMENFASSUNG",
+    rec_more: "Vollständige Historie vor 2013 auf Anfrage erhältlich",
+    contact_eyebrow: "04 — Kontakt", contact_title: "Ihre Daten haben Antworten.<br><span class='accent'>Lassen Sie sie uns finden.</span>",
+    contact_desc: "Offen für Werkstudenten-, Praktikums- und Vollzeitstellen im Bereich Data Science.",
+    footer_status: "verbinde Punkte"
   }
-  tick(); setInterval(tick,1000);
+};
+
+let currentLang = safeStorage.get('lang') || 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  safeStorage.set('lang', lang);
+  document.documentElement.lang = lang;
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang] && i18n[lang][key]) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+setLanguage(currentLang);
+
+/* ==========================================
+   2. THEME TOGGLE (Light / Dark)
+   ========================================== */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const htmlElement = document.documentElement;
+
+const savedTheme = safeStorage.get('theme');
+if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  htmlElement.setAttribute('data-theme', 'dark');
+  updateThemeIcon('dark');
+} else {
+  htmlElement.setAttribute('data-theme', 'light');
+  updateThemeIcon('light');
+}
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme = htmlElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  htmlElement.setAttribute('data-theme', newTheme);
+  safeStorage.set('theme', newTheme);
+  updateThemeIcon(newTheme);
+});
+
+function updateThemeIcon(theme) {
+  if (theme === 'dark') {
+    themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+  } else {
+    themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+  }
+}
+
+/* ==========================================
+   3. COPY TO CLIPBOARD
+   ========================================== */
+const toast = document.getElementById('toast');
+const emailText = "satadals121@gmail.com";
+
+function showToast() {
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function copyEmail() {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(emailText).then(showToast).catch(() => {
+      console.warn('Clipboard blocked.');
+    });
+  } else {
+    const textArea = document.createElement("textarea");
+    textArea.value = emailText;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      showToast();
+    } catch (err) {
+      console.warn('Fallback copy failed.');
+    }
+    document.body.removeChild(textArea);
+  }
+}
+
+document.getElementById('copyEmailHero').addEventListener('click', copyEmail);
+document.getElementById('copyEmailContact').addEventListener('click', copyEmail);
+
+/* ==========================================
+   4. CLOCK (Europe/Berlin)
+   ========================================== */
+(function(){
+  const el = document.getElementById('clock'); if(!el) return;
+  let fmt = null;
+  try {
+    fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  } catch(e) { fmt = null; }
+  function tick(){
+    const d = new Date();
+    if(fmt) { el.textContent = fmt.format(d); return; }
+    const p = n => String(n).padStart(2, '0');
+    el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
+  tick(); setInterval(tick, 1000);
 })();
 
-/* ---------- year ---------- */
+/* ==========================================
+   5. UI INTERACTIONS (Nav, Reveal, Year)
+   ========================================== */
 (function(){
-  var y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();
+  const y = document.getElementById('yr'); if(y) y.textContent = new Date().getFullYear();
 })();
 
-/* ---------- reveal on scroll ---------- */
 (function(){
-  var items=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){
-    items.forEach(function(el){ el.classList.add('in'); });
+  const items = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('in'));
     return;
   }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  },{threshold:.13,rootMargin:'0px 0px -40px 0px'});
-  items.forEach(function(el,i){
-    el.style.transitionDelay=((i%4)*65)+'ms';
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  items.forEach((el, i) => {
+    el.style.transitionDelay = ((i % 4) * 65) + 'ms';
     io.observe(el);
   });
 })();
 
-/* ---------- stat counters ----------
-   Real values live in the HTML, so a JS failure shows 518 / 14 / 8 / 5 — never 0.
-   We only zero them out synchronously (before first paint) when we can animate. */
 (function(){
-  var els=document.querySelectorAll('[data-count]'); if(!els.length) return;
-  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function final(el){ return parseFloat(el.dataset.count).toFixed(parseInt(el.dataset.dec||'0',10)); }
+  const bar = document.getElementById('topbar'); if(!bar) return;
+  function onScroll(){ bar.classList.toggle('scrolled', window.scrollY > 10); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+})();
+
+(function(){
+  const btn = document.getElementById('navToggle'), nav = document.getElementById('nav');
+  if(!btn || !nav) return;
+  function close(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+})();
+
+(function(){
+  const links = Array.from(document.querySelectorAll('.nav a'));
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if(!sections.length || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const id = '#' + e.target.id;
+      links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => io.observe(s));
+})();
+
+/* Stat counters */
+(function(){
+  const els = document.querySelectorAll('[data-count]'); if(!els.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function final(el){ return parseFloat(el.dataset.count).toFixed(parseInt(el.dataset.dec || '0', 10)); }
 
   if(reduce || !('IntersectionObserver' in window) || !window.requestAnimationFrame){
-    els.forEach(function(el){ el.textContent=final(el); });
+    els.forEach(el => el.textContent = final(el));
     return;
   }
+  els.forEach(el => el.textContent = (0).toFixed(parseInt(el.dataset.dec || '0', 10)));
 
-  els.forEach(function(el){ el.textContent=(0).toFixed(parseInt(el.dataset.dec||'0',10)); });
-
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
       if(!e.isIntersecting) return;
-      var el=e.target,
-          target=parseFloat(el.dataset.count),
-          dec=parseInt(el.dataset.dec||'0',10),
-          dur=1400,
-          t0=performance.now();
+      const el = e.target, target = parseFloat(el.dataset.count),
+            dec = parseInt(el.dataset.dec || '0', 10),
+            dur = 1400, t0 = performance.now();
       (function tick(now){
-        var p=Math.min((now-t0)/dur,1),
-            eased=1-Math.pow(1-p,3);
-        el.textContent=(target*eased).toFixed(dec);
-        if(p<1) requestAnimationFrame(tick);
-        else el.textContent=target.toFixed(dec);
+        const p = Math.min((now - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * eased).toFixed(dec);
+        if(p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(dec);
       })(t0);
       io.unobserve(el);
     });
-  },{threshold:.6});
-  els.forEach(function(el){ io.observe(el); });
-})();
-
-/* ---------- sticky topbar ---------- */
-(function(){
-  var bar=document.getElementById('topbar'); if(!bar) return;
-  function onScroll(){ bar.classList.toggle('scrolled',window.scrollY>10); }
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-})();
-
-/* ---------- mobile nav ---------- */
-(function(){
-  var btn=document.getElementById('navToggle'), nav=document.getElementById('nav');
-  if(!btn||!nav) return;
-  function close(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-  btn.addEventListener('click',function(){
-    var open=nav.classList.toggle('open');
-    btn.setAttribute('aria-expanded',open?'true':'false');
-  });
-  nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-})();
-
-/* ---------- active nav link ---------- */
-(function(){
-  var links=Array.prototype.slice.call(document.querySelectorAll('.nav a'));
-  var sections=Array.prototype.slice.call(document.querySelectorAll('section[id]'));
-  if(!sections.length||!('IntersectionObserver' in window)) return;
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      var id='#'+e.target.id;
-      links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href')===id); });
-    });
-  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
-  sections.forEach(function(s){ io.observe(s); });
-})();
-
-/* ---------- generated project art ---------- */
-(function(){
-  var scatter=document.getElementById('scatterArt');
-  if(scatter){
-    var clusters=[{cx:78,cy:96,spread:30,n:22},{cx:168,cy:60,spread:24,n:16},{cx:240,cy:104,spread:20,n:12}];
-    var s='';
-    clusters.forEach(function(cl){
-      for(var i=0;i<cl.n;i++){
-        var a=Math.random()*Math.PI*2,
-            r=Math.sqrt(Math.random())*cl.spread,
-            x=(cl.cx+Math.cos(a)*r).toFixed(1),
-            y=(cl.cy+Math.sin(a)*r*0.72).toFixed(1),
-            rad=(1.6+Math.random()*2).toFixed(1),
-            op=(0.28+Math.random()*0.6).toFixed(2),
-            delay=(i*22)+'ms';
-        s+='<circle cx="'+x+'" cy="'+y+'" r="'+rad+'" opacity="'+op+'" style="transition-delay:'+delay+'"/>';
-      }
-    });
-    scatter.innerHTML=s;
-  }
-
-  var heat=document.getElementById('heatArt');
-  if(heat){
-    var cols=16,rows=7,cw=400/cols,ch=140/rows,h='';
-    for(var r=0;r<rows;r++){
-      for(var c=0;c<cols;c++){
-        var wave=(Math.sin(c*0.72+r*0.55)+1)/2,
-            fade=1-(r/rows)*0.42,
-            op=(0.06+wave*fade*0.78).toFixed(2),
-            delay=((r*cols+c)*14)+'ms';
-        h+='<rect x="'+(c*cw+1.5).toFixed(1)+'" y="'+(r*ch+1.5).toFixed(1)+'" width="'+(cw-3).toFixed(1)+'" height="'+(ch-3).toFixed(1)+'" rx="2" style="--o:'+op+';transition-delay:'+delay+'"/>';
-      }
-    }
-    heat.innerHTML=h;
-  }
+  }, { threshold: 0.6 });
+  els.forEach(el => io.observe(el));
 })();
 </script>
 </body>
