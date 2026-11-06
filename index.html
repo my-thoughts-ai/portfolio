@@ -519,7 +519,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <span class="stat-src">↳ WBSEDCL, 2013–2021</span>
       </a>
       <a class="tile stat stat-link" href="#work" data-idx="04">
-        <span class="stat-num"><span data-count="5">5</span></span>
+        <span class="stat-num"><span data-count="6">6</span></span>
         <div class="stat-lbl" data-i18n="stat_4">Works published</div>
         <span class="stat-src" data-i18n="stat_4_src">↳ all with reports</span>
       </a>
@@ -536,7 +536,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <h2 data-i18n="work_title">Real data, <span class="accent">real reports.</span></h2>
         <p data-i18n="work_desc">From seminar projects with industry partners to independent builds — every card links straight to the readme, report, or live demo, so nothing has to be taken on trust.</p>
       </div>
-      <span class="sec-count">05 / 05</span>
+      <span class="sec-count">06 / 06</span>
     </header>
 
     <div class="bento">
@@ -740,7 +740,65 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
           </div>
         </div>
       </article>
+<!-- P-06 · LLM Fine-Tune / Deploy -->
+<article class="tile tile-hover p-tile p-feature reveal" id="p-phi3" data-idx="P-06">
+  <div class="p-visual">
+    <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
+         aria-label="Fine-tuning and deployment pipeline: 400 finance Q&A pairs fine-tune Phi-3 Mini with QLoRA, the LoRA adapter is merged into a 7.6 GB model, which is containerised with Docker and FastAPI, deployed on GCP Vertex AI, and served through a Gradio chat UI.">
+      <defs>
+        <marker id="arw2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/>
+        </marker>
+      </defs>
 
+      <text class="arch-lbl" x="4" y="12">① TRAIN · offline</text>
+      <text class="arch-lbl" x="4" y="140">② SERVE · online</text>
+
+      <!-- train row -->
+      <rect x="4"   y="22" width="92"  height="36" rx="8"/><text x="50"  y="43">400 Q&amp;A</text>
+      <rect x="118" y="22" width="120" height="36" rx="8"/><text x="178" y="43">Phi-3 · QLoRA</text>
+      <rect x="260" y="22" width="92"  height="36" rx="8"/><text x="306" y="43">Merge LoRA</text>
+      <rect x="374" y="22" width="92"  height="36" rx="8"/><text x="420" y="43">7.6 GB</text>
+
+      <!-- serve row -->
+      <rect x="4"   y="150" width="150" height="36" rx="8"/><text x="79"  y="171">Docker · FastAPI</text>
+      <rect x="176" y="150" width="140" height="36" rx="8"/><text x="246" y="171">GCP Vertex AI</text>
+      <rect x="338" y="150" width="128" height="36" rx="8"/><text x="402" y="171">Gradio chat</text>
+
+      <!-- connectors -->
+      <g>
+        <line class="conn" x1="98"  y1="40" x2="116" y2="40" marker-end="url(#arw2)"/>
+        <line class="conn" x1="240" y1="40" x2="258" y2="40" marker-end="url(#arw2)"/>
+        <line class="conn" x1="354" y1="40" x2="372" y2="40" marker-end="url(#arw2)"/>
+      </g>
+      <g>
+        <line class="conn" x1="156" y1="168" x2="174" y2="168" marker-end="url(#arw2)"/>
+        <line class="conn" x1="318" y1="168" x2="336" y2="168" marker-end="url(#arw2)"/>
+        <path class="conn" d="M420,58 V116 H79 V146" marker-end="url(#arw2)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="p-body">
+    <div class="p-top"><h3>Phi-3 Finance LLM — Fine-Tune & Deploy</h3><span class="p-year">2026</span></div>
+    <p data-i18n="p6_desc">Fine-tuned Microsoft's Phi-3 Mini (3.8B) on a purpose-built 400-pair personal-finance Q&amp;A set using QLoRA (4-bit, LoRA rank-16). Merged the adapter into a standalone 7.6 GB model, containerised it with Docker + FastAPI, and deployed it on GCP Vertex AI behind a multi-turn Gradio chat UI — taken end-to-end from dataset to a live cloud endpoint over 11 deployment iterations.</p>
+
+    <div class="p-metrics">
+      <div><span class="m-val">400</span><span class="m-lbl" data-i18n="m4">Q&amp;A training set</span></div>
+      <div><span class="m-val">3.8B</span><span class="m-lbl" data-i18n="m5">params · Phi-3 Mini</span></div>
+      <div><span class="m-val">7.6 GB</span><span class="m-lbl" data-i18n="m6">merged model</span></div>
+    </div>
+
+    <div class="tags"><span class="tag">QLoRA</span><span class="tag">Phi-3 Mini</span><span class="tag">Docker</span><span class="tag">GCP Vertex AI</span></div>
+
+    <div class="p-links">
+      <a class="p-link primary" href="https://github.com/SatadalS99/REPO-NAME" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
+        <span data-i18n="link_readme">View Readme</span>
+      </a>
+    </div>
+  </div>
+</article>
     </div>
   </div>
 </section>
