@@ -426,6 +426,43 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   * { animation: none !important; transition-duration: 0.01ms !important; }
   .js-enabled .reveal { opacity: 1 !important; transform: none !important; }
 }
+
+/* ===== Project case-study modal ===== */
+.pm-overlay{position:fixed;inset:0;z-index:300;display:none;align-items:flex-start;justify-content:center;background:rgba(2,6,15,.6);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);padding:40px 18px;overflow:hidden;}
+.pm-overlay.open{display:flex;}
+.pm-dialog{width:100%;max-width:820px;max-height:calc(100vh - 80px);overflow-y:auto;background:var(--bg);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 90px -25px rgba(0,0,0,.6);animation:pmIn .3s cubic-bezier(.22,1,.36,1);}
+@keyframes pmIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.pm-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px 14px 26px;background:var(--bg);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;z-index:3;}
+.pm-head .lbl2{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.pm-close{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--text-2);cursor:pointer;font-size:1.05rem;line-height:1;display:inline-flex;align-items:center;justify-content:center;transition:.2s;flex:none;}
+.pm-close:hover{color:var(--text);border-color:var(--accent-line);background:var(--surface-hover);}
+.pm-content{padding:26px 32px 40px;}
+@media(max-width:640px){.pm-content{padding:22px 20px 32px;}}
+.pm-eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.pm-title{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:600;letter-spacing:-.02em;line-height:1.12;margin:.35em 0 .3em;}
+.pm-lede{color:var(--text-2);font-size:1rem;line-height:1.6;max-width:60ch;margin-bottom:14px;}
+.pm-meta{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin:2px 0 18px;}
+.pm-meta a{color:var(--accent);text-decoration:none;}
+.pm-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0 6px;}
+@media(max-width:640px){.pm-stats{grid-template-columns:repeat(2,1fr);}}
+.pm-stat{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:13px 10px;text-align:center;}
+.pm-stat b{display:block;font-size:1.3rem;font-weight:600;letter-spacing:-.02em;}
+.pm-stat span{display:block;font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.3;}
+.pm-h2{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin:30px 0 10px;}
+.pm-content p{color:var(--text-2);font-size:.9rem;line-height:1.7;margin-bottom:12px;}
+.pm-fig{background:var(--bg-alt);border:1px solid var(--line);border-radius:14px;padding:20px 16px;margin:16px 0;}
+.pm-fig figcaption{font-family:var(--mono);font-size:.62rem;color:var(--muted);text-align:center;margin-top:10px;letter-spacing:.04em;}
+.pm-phase{border-left:2px solid var(--accent-line);padding:2px 0 2px 16px;margin:14px 0;}
+.pm-phase h3{font-size:.95rem;font-weight:600;margin-bottom:4px;}
+.pm-phase h3 em{font-style:normal;color:var(--accent);}
+.pm-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:10px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.pm-table th,.pm-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-2);}
+.pm-table th{background:var(--bg-alt);font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.pm-table tr:last-child td{border-bottom:none;}
+.pm-content code{font-family:var(--mono);font-size:.78rem;background:var(--accent-dim);color:var(--accent);padding:1px 5px;border-radius:5px;}
+.pm-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.pm-stack span{font-family:var(--mono);font-size:.68rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:7px;padding:4px 9px;color:var(--text-2);}
+.p-tile[data-detail]{cursor:pointer;}
 </style>
 </head>
 <body>
@@ -741,7 +778,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         </div>
       </article>
 <!-- P-06 · LLM Fine-Tune / Deploy -->
-<article class="tile tile-hover p-tile p-feature reveal" id="p-phi3" data-idx="P-06">
+<article class="tile tile-hover p-tile p-feature reveal" id="p-phi3" data-idx="P-06" data-detail="phi3">
   <div class="p-visual">
     <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
          aria-label="Fine-tuning and deployment pipeline: 400 finance Q&A pairs fine-tune Phi-3 Mini with QLoRA, the LoRA adapter is merged into a 7.6 GB model, which is containerised with Docker and FastAPI, deployed on GCP Vertex AI, and served through a Gradio chat UI.">
@@ -792,7 +829,11 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
     <div class="tags"><span class="tag">QLoRA</span><span class="tag">Phi-3 Mini</span><span class="tag">Docker</span><span class="tag">GCP Vertex AI</span></div>
 
     <div class="p-links">
-      <a class="p-link primary" href="https://github.com/SatadalS99/Fine_tune_llm" target="_blank" rel="noopener noreferrer">
+      <a class="p-link primary" data-open-detail="phi3" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+        <span>Case study</span>
+      </a>
+      <a class="p-link" href="https://github.com/SatadalS99/Fine_tune_llm" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
         <span data-i18n="link_readme">View Readme</span>
       </a>
@@ -950,6 +991,80 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
 <!-- Toast -->
 <div id="toast" class="toast" role="alert" aria-live="polite">Email copied!</div>
+
+<!-- ===== Project case-study modal ===== -->
+<div class="pm-overlay" id="pm-overlay" role="dialog" aria-modal="true" aria-label="Project case study">
+  <div class="pm-dialog">
+    <div class="pm-head">
+      <span class="lbl2">Project case study</span>
+      <button class="pm-close" id="pm-close" aria-label="Close">✕</button>
+    </div>
+    <div class="pm-content" id="pm-body"></div>
+  </div>
+</div>
+
+<template id="detail-phi3">
+  <div class="pm-eyebrow">Machine Learning · MLOps</div>
+  <h1 class="pm-title">Fine-Tuning &amp; Deploying a Domain-Specialist LLM</h1>
+  <p class="pm-lede">Teaching a small 3.8-billion-parameter open model to answer personal-finance questions reliably — then shipping it as a live, containerised cloud service rather than leaving it in a notebook.</p>
+  <p class="pm-meta">Jul – Aug 2026 · Solo project · Code: <a href="https://github.com/SatadalS99/Fine_tune_llm" target="_blank" rel="noopener noreferrer">github.com/SatadalS99/Fine_tune_llm</a></p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>3.8B</b><span>params</span></div>
+    <div class="pm-stat"><b>400</b><span>Q&amp;A pairs</span></div>
+    <div class="pm-stat"><b>4-bit</b><span>QLoRA r16</span></div>
+    <div class="pm-stat"><b>7.6 GB</b><span>merged model</span></div>
+    <div class="pm-stat"><b>v11</b><span>deploy iterations</span></div>
+  </div>
+  <h2 class="pm-h2">The problem</h2>
+  <p>General-purpose language models are large, expensive to run, and give broad, hedged answers to narrow questions. For a focused use case — everyday personal-finance questions like budgeting, compound interest, credit scores and index funds — a 70B-class model is overkill, and prompting a hosted API gives up control, privacy and cost predictability.</p>
+  <p>The real challenge isn't the training step most tutorials stop at. It's everything after: evaluating whether the tuned model is actually better, packaging it so it loads correctly outside the notebook, and getting it to survive a managed cloud platform's health checks and weight-loading quirks. A model that works in Colab but dies in a container is not a deliverable.</p>
+  <h2 class="pm-h2">The approach</h2>
+  <p>Take a small, capable open model — Microsoft's Phi-3 Mini (3.8B) — and specialise it to one narrow domain with parameter-efficient fine-tuning, so the result stays cheap to train and small enough to self-host. Then carry it end-to-end: build the dataset, fine-tune with QLoRA, evaluate manually, merge the adapter back into the base weights, wrap it in a Docker + FastAPI inference service, and deploy it on GCP Vertex AI with a Gradio chat front end.</p>
+  <figure class="pm-fig">
+    <svg class="arch" viewBox="0 0 720 210" preserveAspectRatio="xMidYMid meet" role="img" aria-label="End-to-end pipeline from dataset to a deployed chat endpoint.">
+      <defs><marker id="arwM" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker></defs>
+      <text class="arch-lbl" x="8" y="14">① TRAIN · offline</text>
+      <text class="arch-lbl" x="8" y="140">② SERVE · online</text>
+      <rect x="8" y="24" width="158" height="38" rx="8"/><text x="87" y="48">400 Q&amp;A pairs</text>
+      <rect x="190" y="24" width="170" height="38" rx="8"/><text x="275" y="48">Phi-3 · QLoRA 4-bit</text>
+      <rect x="384" y="24" width="158" height="38" rx="8"/><text x="463" y="48">30-prompt eval</text>
+      <rect x="566" y="24" width="146" height="38" rx="8"/><text x="639" y="48">Merge → 7.6 GB</text>
+      <rect x="40" y="150" width="180" height="38" rx="8"/><text x="130" y="174">Docker · FastAPI</text>
+      <rect x="270" y="150" width="180" height="38" rx="8"/><text x="360" y="174">GCP Vertex AI</text>
+      <rect x="500" y="150" width="180" height="38" rx="8"/><text x="590" y="174">Gradio chat UI</text>
+      <g>
+        <line class="conn" x1="166" y1="43" x2="188" y2="43" marker-end="url(#arwM)"/>
+        <line class="conn" x1="360" y1="43" x2="382" y2="43" marker-end="url(#arwM)"/>
+        <line class="conn" x1="542" y1="43" x2="564" y2="43" marker-end="url(#arwM)"/>
+      </g>
+      <g>
+        <line class="conn" x1="220" y1="169" x2="268" y2="169" marker-end="url(#arwM)"/>
+        <line class="conn" x1="450" y1="169" x2="498" y2="169" marker-end="url(#arwM)"/>
+        <path class="conn" d="M639,62 V116 H130 V146" marker-end="url(#arwM)"/>
+      </g>
+    </svg>
+    <figcaption>From a 400-pair dataset to a live, self-hosted chat endpoint.</figcaption>
+  </figure>
+  <h2 class="pm-h2">What I built</h2>
+  <div class="pm-phase"><h3><em>1 · Dataset.</em> A purpose-built training set</h3>
+    <p>Generated 400 clean question-answer pairs across seven personal-finance sub-topics — Budgeting (70), Index Funds &amp; Investing (80), Credit Scores &amp; Cards (70), Compound Interest (60), Debt Management (50), Emergency Funds (40), Taxes &amp; Retirement (30) — stored as a two-column CSV ready for training.</p></div>
+  <div class="pm-phase"><h3><em>2 · Fine-tuning.</em> QLoRA on Phi-3 Mini</h3>
+    <p>Loaded Phi-3 Mini in 4-bit quantisation and attached a rank-16 LoRA adapter (Unsloth, PEFT, TRL, BitsAndBytes). Data was formatted into Phi-3's chat template and trained for 3 epochs at learning rate <code>2e-4</code>, batch size 2 with gradient accumulation 4, on a Colab Pro GPU.</p></div>
+  <div class="pm-phase"><h3><em>3 · Evaluation &amp; merge.</em> Checking it improved</h3>
+    <p>Built a 30-prompt manual evaluation with a 0–2 scoring rubric, used the weak responses to correct the dataset and retrain, then merged the LoRA adapter into the base weights to produce a single 7.6 GB standalone model. Fixed an inference bug where <code>skip_special_tokens=True</code> stripped the <code>&lt;|assistant|&gt;</code> delimiter — decoding only newly generated tokens via <code>outputs[0][input_length:]</code>.</p></div>
+  <div class="pm-phase"><h3><em>4 · Deployment.</em> Notebook → live endpoint</h3>
+    <p>Wrapped the model in a Docker + FastAPI server and deployed it on GCP Vertex AI, fronted by a multi-turn Gradio chat UI. Getting a 7.6 GB model to load cleanly on a managed platform took 11 container iterations (v1 → v11).</p></div>
+  <h2 class="pm-h2">Key engineering problems solved</h2>
+  <table class="pm-table">
+    <tr><th>Symptom</th><th>Root cause</th><th>Fix</th></tr>
+    <tr><td>Container killed in an invisible restart loop</td><td>Synchronous model load blocked Uvicorn, so Vertex AI's health probe timed out</td><td>Async startup with <code>run_in_executor</code> — health checks pass immediately while weights load in the background</td></tr>
+    <tr><td>Model refused to initialise</td><td>Saved <code>tokenizer_config.json</code> held an invalid <code>tokenizer_class</code> key</td><td>Strip the bad key at runtime, with a <code>LlamaTokenizer</code> fallback</td></tr>
+    <tr><td>Generic 500 / weight-shape collision</td><td>A duplicate <code>model.safetensors</code> left in the storage bucket</td><td>Delete the duplicate before deploy — the two startup fixes only worked once applied together</td></tr>
+  </table>
+  <p>The working v11 config pinned <code>torch==2.4.1</code> and <code>transformers==4.46.3</code> on a <code>python:3.11-slim</code> image and an <code>n1-highmem-8</code> (52 GB) machine with <code>low_cpu_mem_usage=True</code>. Final state: model live, answering finance questions correctly.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>Hugging Face Transformers</span><span>PEFT / LoRA</span><span>TRL</span><span>BitsAndBytes</span><span>Unsloth</span><span>QLoRA (4-bit)</span><span>Gradio</span><span>Docker</span><span>FastAPI</span><span>GCP Vertex AI</span><span>Colab Pro</span></div>
+</template>
 
 <script>
 /* ==========================================
@@ -1237,6 +1352,44 @@ document.getElementById('copyEmailContact').addEventListener('click', copyEmail)
     });
   }, { threshold: 0.6 });
   els.forEach(el => io.observe(el));
+})();
+
+/* ===== Project case-study modal ===== */
+(function(){
+  const overlay=document.getElementById('pm-overlay');
+  const bodyEl=document.getElementById('pm-body');
+  const closeBtn=document.getElementById('pm-close');
+  if(!overlay||!bodyEl||!closeBtn) return;
+  let lastFocus=null;
+  function open(key){
+    const tpl=document.getElementById('detail-'+key);
+    if(!tpl) return;
+    bodyEl.innerHTML=tpl.innerHTML;
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    overlay.querySelector('.pm-dialog').scrollTop=0;
+    lastFocus=document.activeElement;
+    closeBtn.focus();
+  }
+  function close(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    bodyEl.innerHTML='';
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('.p-tile[data-detail]').forEach(card=>{
+    card.addEventListener('click',e=>{
+      if(e.target.closest('a[href]:not([data-open-detail]), button')) return;
+      const t=e.target.closest('[data-open-detail]');
+      open(t?t.getAttribute('data-open-detail'):card.getAttribute('data-detail'));
+    });
+  });
+  document.querySelectorAll('[data-open-detail]').forEach(el=>{
+    el.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();open(el.getAttribute('data-open-detail'));});
+  });
+  closeBtn.addEventListener('click',close);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close();});
 })();
 </script>
 </body>
