@@ -273,12 +273,15 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 .p-feature { grid-column: span 12; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
 .p-feature .p-visual { height: auto; min-height: 290px; padding: 26px; border-bottom: none; border-right: 1px solid var(--line); }
 .p-feature .p-visual svg { max-height: 250px; }
+
+/* Stats strip inside cards */
 .p-metrics {
-  display: flex; gap: 24px; flex-wrap: wrap; padding: 14px 0; margin: 4px 0 16px;
+  display: flex; gap: 20px; flex-wrap: wrap; padding: 14px 0; margin: 4px 0 16px;
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
+.p-metrics > div { flex: 1 1 0; min-width: 0; }
 .p-metrics .m-val { display: block; font-size: 1.05rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; line-height: 1.25; }
-.p-metrics .m-lbl { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.p-metrics .m-lbl { display: block; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 
 /* Architecture Diagram */
 .arch text { font-family: var(--mono); font-size: 11px; fill: var(--text-2); text-anchor: middle; }
@@ -311,6 +314,8 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
   border: 1px solid var(--line); color: var(--text-2); transition: 0.24s;
 }
 .pill:hover { border-color: var(--accent-line); color: var(--text); transform: translateY(-2px); background: var(--surface-hover); }
+.cert-note { margin-top: 16px; font-family: var(--mono); font-size: 0.66rem; color: var(--muted); line-height: 1.6; border-top: 1px dashed var(--line); padding-top: 12px; }
+.cert-note b { color: var(--accent); font-weight: 500; }
 
 /* ==========================================
    RECORD
@@ -398,6 +403,10 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   .sec-head { gap: 14px; }
   .chip-live { display: none; }
   .header-controls { gap: 8px; }
+}
+@media (max-width: 480px) {
+  .p-metrics { gap: 12px; }
+  .p-metrics .m-val { font-size: 0.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition-duration: 0.01ms !important; }
@@ -518,24 +527,24 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
     <div class="stat-row reveal">
       <a class="tile stat stat-link" href="#p-dhl" data-idx="01">
-        <span class="stat-num"><span data-count="518">518</span></span>
-        <div class="stat-lbl" data-i18n="stat_1">Models benchmarked</div>
-        <span class="stat-src">↳ DHL forecasting</span>
-      </a>
-      <a class="tile stat stat-link" href="#p-dhl" data-idx="02">
         <span class="stat-num"><span data-count="14">14</span><span class="u">%</span></span>
-        <div class="stat-lbl" data-i18n="stat_2">Forecast error reduced</div>
-        <span class="stat-src">↳ DHL forecasting</span>
+        <div class="stat-lbl" data-i18n="stat_1">Forecast error reduced</div>
+        <span class="stat-src">↳ Parcel forecasting</span>
       </a>
-      <a class="tile stat stat-link" href="#record" data-idx="03">
-        <span class="stat-num"><span data-count="8">8</span><span class="u">YRS</span></span>
-        <div class="stat-lbl" data-i18n="stat_3">Enterprise data exp</div>
-        <span class="stat-src">↳ WBSEDCL, 2013–2021</span>
+      <a class="tile stat stat-link" href="#p-picnic" data-idx="02">
+        <span class="stat-num"><span data-count="6.5" data-dec="1">6.5</span><span class="u">×</span></span>
+        <div class="stat-lbl" data-i18n="stat_2">Value per head</div>
+        <span class="stat-src">↳ Onboarding segmentation</span>
       </a>
-      <a class="tile stat stat-link" href="#work" data-idx="04">
-        <span class="stat-num"><span data-count="5">5</span></span>
-        <div class="stat-lbl" data-i18n="stat_4">Works published</div>
-        <span class="stat-src" data-i18n="stat_4_src">↳ all with reports</span>
+      <a class="tile stat stat-link" href="#p-destatis" data-idx="03">
+        <span class="stat-num"><span data-count="8064">8,064</span></span>
+        <div class="stat-lbl" data-i18n="stat_3">Records analyzed</div>
+        <span class="stat-src">↳ Destatis WZ2008</span>
+      </a>
+      <a class="tile stat stat-link" href="#p-manaslu" data-idx="04">
+        <span class="stat-num"><span data-count="99">99</span></span>
+        <div class="stat-lbl" data-i18n="stat_4">Offline tests</div>
+        <span class="stat-src">↳ Manaslu pipeline</span>
       </a>
     </div>
   </div>
@@ -555,53 +564,59 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
     <div class="bento">
 
-      <!-- P-01 -->
-      <article class="tile tile-hover p-tile reveal" id="p-dhl" data-idx="P-01" style="grid-column:span 7">
+      <!-- P-01 · Parcel Demand Forecasting -->
+      <article class="tile tile-hover p-tile reveal" id="p-dhl" data-idx="P-01" data-detail="dhl" style="grid-column:span 7">
         <div class="p-visual">
           <svg viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true">
             <rect x="20" y="20" width="360" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
-            <line x1="40" y1="40" x2="200" y2="40" stroke="var(--line)" stroke-width="2"/>
-            <line x1="40" y1="55" x2="300" y2="55" stroke="var(--line)" stroke-width="2"/>
-            <line x1="40" y1="70" x2="250" y2="70" stroke="var(--line)" stroke-width="2"/>
-            <path d="M40,100 L80,90 L120,95 L160,80 L200,85 L240,70 L280,75 L320,60 L360,65" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <line x1="40" y1="100" x2="360" y2="100" stroke="var(--line)" stroke-width="1"/>
+            <path d="M40,88 C70,58 92,58 118,84 C144,110 166,110 196,78 C224,52 246,52 262,80" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <line x1="262" y1="34" x2="262" y2="112" stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+            <path d="M262,80 C288,104 308,104 330,74 L358,84" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4" opacity="0.8"/>
           </svg>
         </div>
         <div class="p-body">
-          <div class="p-top"><h3>DHL Demand Forecasting</h3><span class="p-year">2026</span></div>
-          <p data-i18n="p1_desc">Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">Time Series</span></div>
+          <div class="p-top"><h3>Parcel Demand Forecasting</h3><span class="p-year">2026</span></div>
+          <p data-i18n="p1_desc">Weekly parcel-volume forecasting for a major logistics operator — 37 customer-product lines, a 16-week horizon, three years of history. Benchmarked 14 models (naïve, Croston, ARIMA, Holt-Winters, ML, robust shrinkage) under 7-fold rolling time-based validation; matching a model to each line beat the best single global rule by ~14%. Figures withheld for confidentiality.</p>
+          <div class="p-metrics">
+            <div><span class="m-val">37</span><span class="m-lbl" data-i18n="m_dhl_1">lines</span></div>
+            <div><span class="m-val">14</span><span class="m-lbl" data-i18n="m_dhl_2">models tested</span></div>
+            <div><span class="m-val">~14%</span><span class="m-lbl" data-i18n="m_dhl_3">lower error</span></div>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Time Series</span><span class="tag">Forecasting</span><span class="tag">ARIMA</span></div>
           <div class="p-links">
-            <a class="p-link primary" href="https://github.com/SatadalS99/dhl-demand-forecasting" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              <span data-i18n="link_readme">View Readme</span>
-            </a>
-            <a class="p-link" href="https://github.com/SatadalS99/dhl-demand-forecasting/blob/main/notebooks/benchmark.ipynb" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              <span data-i18n="link_report">Read Report</span>
+            <a class="p-link primary" data-open-detail="dhl" href="#">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+              <span>Case study</span>
             </a>
           </div>
         </div>
       </article>
 
-      <!-- P-02 -->
-      <article class="tile tile-hover p-tile reveal" id="p-picnic" data-idx="P-02" style="grid-column:span 5">
+      <!-- P-02 · Customer Onboarding Segmentation -->
+      <article class="tile tile-hover p-tile reveal" id="p-picnic" data-idx="P-02" data-detail="picnic" style="grid-column:span 5">
         <div class="p-visual">
           <svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true">
             <rect x="20" y="20" width="260" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
-            <circle cx="80" cy="60" r="15" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <circle cx="140" cy="80" r="20" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <circle cx="200" cy="50" r="10" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <circle cx="240" cy="90" r="25" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <path d="M40,95 L90,70 L128,44 L172,74 L224,100 L260,106" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+            <path d="M40,106 L120,92 L200,70 L260,58" fill="none" stroke="var(--text-2)" stroke-width="1.8" stroke-dasharray="5 4"/>
+            <path d="M40,107 L150,105 L260,104" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+            <circle cx="128" cy="44" r="3" fill="var(--accent)"/>
           </svg>
         </div>
         <div class="p-body">
-          <div class="p-top"><h3>Picnic Customer Segmentation</h3><span class="p-year">2026</span></div>
-          <p data-i18n="p2_desc">K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% "peak-and-fade" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.</p>
-          <div class="tags"><span class="tag">K-Means</span><span class="tag">pandas</span><span class="tag">EDA</span></div>
+          <div class="p-top"><h3>Customer Onboarding Segmentation</h3><span class="p-year">2026</span></div>
+          <p data-i18n="p2_desc">K-Means trajectory clustering that groups new grocery-delivery customers by the shape of their first 23 weeks, not their volume. Three archetypes emerged — never-activated (70%), late adopters (19%) and an early-active-then-fading 11% worth 6.5× more per head — pinpointing Week 9 as the moment to intervene. Figures withheld for confidentiality.</p>
+          <div class="p-metrics">
+            <div><span class="m-val">3</span><span class="m-lbl" data-i18n="m_pic_1">archetypes</span></div>
+            <div><span class="m-val">11%</span><span class="m-lbl" data-i18n="m_pic_2">fading cohort</span></div>
+            <div><span class="m-val">6.5×</span><span class="m-lbl" data-i18n="m_pic_3">value per head</span></div>
+          </div>
+          <div class="tags"><span class="tag">K-Means</span><span class="tag">Clustering</span><span class="tag">scikit-learn</span><span class="tag">EDA</span></div>
           <div class="p-links">
-            <a class="p-link primary" href="https://github.com/SatadalS99/picnic-customer-segmentation" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              <span data-i18n="link_readme">View Readme</span>
+            <a class="p-link primary" data-open-detail="picnic" href="#">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+              <span>Case study</span>
             </a>
           </div>
         </div>
@@ -622,6 +637,11 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <div class="p-body">
           <div class="p-top"><h3>German Wholesale & Retail Trade</h3><span class="p-year">2025</span></div>
           <p data-i18n="p3_desc">Multi-dimensional analysis of 8,064 Destatis records (2005–2020, WZ2008) across industry, firm size and time. Found a stable 28.69% mean gross yield and clear economies of scale — firms with 20+ staff reach ~2.3× the labour productivity of micro-operations.</p>
+          <div class="p-metrics">
+            <div><span class="m-val">8,064</span><span class="m-lbl" data-i18n="m_dst_1">records</span></div>
+            <div><span class="m-val">16</span><span class="m-lbl" data-i18n="m_dst_2">years</span></div>
+            <div><span class="m-val">28.69%</span><span class="m-lbl" data-i18n="m_dst_3">gross yield</span></div>
+          </div>
           <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">EDA</span></div>
           <div class="p-links">
             <a class="p-link primary" data-open-detail="destatis" href="#">
@@ -636,7 +656,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         </div>
       </article>
 
-      <!-- P-04 · Manaslu (replaced Sudan) -->
+      <!-- P-04 · Manaslu -->
       <article class="tile tile-hover p-tile reveal" id="p-manaslu" data-idx="P-04" data-detail="manaslu" style="grid-column:span 7">
         <div class="p-visual">
           <svg viewBox="0 0 400 140" preserveAspectRatio="none" role="img" aria-label="ETL pipeline: API to transform to store to alert">
@@ -657,6 +677,11 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <div class="p-body">
           <div class="p-top"><h3>Manaslu High-Altitude Forecast Alerter</h3><span class="p-year">2026</span></div>
           <p data-i18n="p4_desc">Automated forecast pipeline for Mt Manaslu (8,163 m): pulls Open-Meteo API data, vertically interpolates it onto six climbing bands via geopotential height, checks safety thresholds, and ships twice-daily digests + real-time danger alerts over email / Telegram / SMS. GitHub Actions-scheduled, SQLite-deduplicated, 99 offline tests.</p>
+          <div class="p-metrics">
+            <div><span class="m-val">8,163 m</span><span class="m-lbl" data-i18n="m_man_1">summit</span></div>
+            <div><span class="m-val">6</span><span class="m-lbl" data-i18n="m_man_2">altitude bands</span></div>
+            <div><span class="m-val">99</span><span class="m-lbl" data-i18n="m_man_3">offline tests</span></div>
+          </div>
           <div class="tags"><span class="tag">Python</span><span class="tag">ETL</span><span class="tag">API</span><span class="tag">CI/CD</span></div>
           <div class="p-links">
             <a class="p-link primary" data-open-detail="manaslu" href="#">
@@ -754,24 +779,24 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
         <ul class="skill-list">
           <li class="skill-row">
-            <div class="skill-top"><span class="name" data-i18n="skill_2_name">Python for data</span><span class="tier hi" data-i18n="skill_2_tier">DAILY</span></div>
-            <p class="skill-desc" data-i18n="skill_2_desc">pandas, NumPy, scikit-learn, statsmodels — time-series benchmarking and clustering taken end to end.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_2_name">Python for data</span><span class="tier hi" data-i18n="skill_2_tier">INTERMEDIATE</span></div>
+            <p class="skill-desc" data-i18n="skill_2_desc">pandas, NumPy, scikit-learn, statsmodels, SciPy, matplotlib, Streamlit.</p>
           </li>
           <li class="skill-row">
-            <div class="skill-top"><span class="name" data-i18n="skill_3_name">SQL & PostgreSQL</span><span class="tier hi" data-i18n="skill_3_tier">DAILY</span></div>
+            <div class="skill-top"><span class="name" data-i18n="skill_3_name">SQL & PostgreSQL</span><span class="tier hi" data-i18n="skill_3_tier">INTERMEDIATE</span></div>
             <p class="skill-desc" data-i18n="skill_3_desc">Analytical queries, window functions, schema design, pgvector for embedding storage and search.</p>
           </li>
           <li class="skill-row">
-            <div class="skill-top"><span class="name" data-i18n="skill_4_name">Statistics & ML</span><span class="tier" data-i18n="skill_4_tier">COURSEWORK + PROJECTS</span></div>
-            <p class="skill-desc" data-i18n="skill_4_desc">Rolling cross-validation, model benchmarking, Monte Carlo simulation, Bayesian fundamentals.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_4_name">Machine Learning & Methods</span><span class="tier" data-i18n="skill_4_tier">COURSEWORK + PROJECTS</span></div>
+            <p class="skill-desc" data-i18n="skill_4_desc">Statistical modeling, EDA, data visualization, time series forecasting, Monte Carlo, Bayesian application.</p>
           </li>
           <li class="skill-row">
-            <div class="skill-top"><span class="name" data-i18n="skill_5_name">Data engineering & tooling</span><span class="tier" data-i18n="skill_5_tier">PROJECT-TESTED</span></div>
-            <p class="skill-desc" data-i18n="skill_5_desc">Docker, FastAPI, Prefect, Git/Linux, CI/CD pipelines for reproducible model delivery.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_5_name">Data engineering & tooling</span><span class="tier" data-i18n="skill_5_tier">BASIC KNOWLEDGE</span></div>
+            <p class="skill-desc" data-i18n="skill_5_desc">Git, Jupyter, VS Code, Linux (intermediate); Docker, FastAPI, ETL, CI/CD (basic).</p>
           </li>
           <li class="skill-row" style="margin-top: 10px; border-top: 1px dashed var(--line); padding-top: 14px;">
-            <div class="skill-top"><span class="name" data-i18n="skill_1_name">Enterprise SAP / ERP (Ex-Work)</span><span class="tier ex" data-i18n="skill_1_tier">PREVIOUS 8 YRS</span></div>
-            <p class="skill-desc" data-i18n="skill_1_desc">SAP IS-U & FI-CA master data, billing and revenue analysis, MIS reporting, audit-ready records.</p>
+            <div class="skill-top"><span class="name" data-i18n="skill_1_name">Enterprise SAP / ERP (Ex-Work)</span><span class="tier ex" data-i18n="skill_1_tier">ADVANCED</span></div>
+            <p class="skill-desc" data-i18n="skill_1_desc">SAP IS-U & FI-CA master data, MIS reporting, stakeholder reporting, primary point of contact.</p>
           </li>
         </ul>
       </div>
@@ -785,16 +810,19 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
           </div>
           <div class="tool-col">
             <h4 data-i18n="tool_llm">LLM & GenAI</h4>
-            <div class="pills"><span class="pill">RAG</span><span class="pill">Embeddings</span><span class="pill">pgvector</span><span class="pill">Prompt design</span><span class="pill">Eval harnesses</span><span class="pill">LLM APIs</span></div>
+            <div class="pills"><span class="pill">RAG</span><span class="pill">Embeddings</span><span class="pill">pgvector</span><span class="pill">Prompt design</span><span class="pill">QLoRA</span><span class="pill">LLM APIs</span></div>
           </div>
           <div class="tool-col">
             <h4 data-i18n="tool_de">Data Engineering</h4>
-            <div class="pills"><span class="pill">Docker</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span><span class="pill">Prefect</span><span class="pill">ETL</span><span class="pill">CI/CD</span></div>
+            <div class="pills"><span class="pill">Docker</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span><span class="pill">ETL</span><span class="pill">CI/CD</span><span class="pill">Git/Linux</span></div>
           </div>
           <div class="tool-col">
             <h4 data-i18n="tool_analytics">Analytics & Enterprise</h4>
             <div class="pills"><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Matplotlib</span><span class="pill">Streamlit</span><span class="pill">SAP IS-U</span><span class="pill">SAP FI-CA</span></div>
           </div>
+        </div>
+        <div class="cert-note">
+          <span data-i18n="cert_title">Certifications:</span> <b>AWS Certified ML Specialty (2025)</b>, <b>AI Engineer Core Track (RAG, QLoRA)</b>, <b>SQL & Database Design A-Z</b>.
         </div>
       </div>
     </div>
@@ -819,7 +847,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <div class="rec-main">
           <h3 data-i18n="rec_1_title">M.Sc. Data Science</h3>
           <span class="rec-co">TU Dortmund University · Dortmund, Germany</span>
-          <p data-i18n="rec_1_desc">Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with DHL and Picnic Germany on real operational datasets.</p>
+          <p data-i18n="rec_1_desc">Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with industry partners on real operational datasets.</p>
         </div>
         <span class="rec-badge now" data-i18n="rec_1_badge">CURRENT</span>
       </li>
@@ -1078,6 +1106,103 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>httpx</span><span>pandas</span><span>PyYAML</span><span>Jinja2</span><span>SQLite</span><span>Twilio</span><span>pytest</span><span>GitHub Actions</span><span>systemd</span></div>
 </template>
 
+<!-- ===== Parcel Demand Forecasting case-study template (confidential) ===== -->
+<template id="detail-dhl">
+  <div class="pm-eyebrow">Time Series · Forecasting</div>
+  <h1 class="pm-title">Parcel Demand Forecasting</h1>
+  <p class="pm-lede">Benchmarking 14 forecasting models to predict weekly parcel volumes for a major logistics operator — and showing that matching a model to each customer-product line beats forcing one global rule on all of them.</p>
+  <p class="pm-meta">2026 · TU Dortmund Real World Solution Summit · team of 4 · code private</p>
+  <p style="background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:10px;padding:10px 14px;font-family:var(--mono);font-size:.7rem;color:var(--text-2);line-height:1.6;margin:0 0 18px;">Confidential project — a TU Dortmund Real World Solution Summit challenge on a major parcel-logistics operator's proprietary weekly volumes, under a data agreement. Absolute volumes are withheld; percentages, ratios and model results are exact. The code is private.</p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>37</b><span>customer-product lines</span></div>
+    <div class="pm-stat"><b>14</b><span>models benchmarked</span></div>
+    <div class="pm-stat"><b>7-fold</b><span>rolling time CV</span></div>
+    <div class="pm-stat"><b>16-wk</b><span>forecast (CW 1–16)</span></div>
+    <div class="pm-stat"><b>~14%</b><span>lower error, per-line</span></div>
+  </div>
+  <h2 class="pm-h2">The problem</h2>
+  <p>Customers often report their expected volumes too late, yet the operator has to plan staff, trucks, sorting machines and network capacity <em>in advance</em>. Over-capacity wastes money; under-capacity causes delays and parcel backlogs — a direct cost/time/quality trade-off. The goal: a reliable early forecast of weekly parcel volumes that supports operational planning before customers announce.</p>
+  <h2 class="pm-h2">The data &amp; what it demanded</h2>
+  <p>37 active customer-product lines (20 customers × 2 products), weekly from 2023–2025, with no missing values. Two EDA findings shaped the whole approach. First, demand is <strong>heavy-tailed and concentrated</strong>: a handful of huge orders dominate (mean far above median), Product A is 63% of volume vs B's 37%, and the top 10 lines carry ~62% of all volume — so robustness to spikes matters more than model complexity, and a mild ~3%/yr downward trend runs underneath. Second, within a customer, <strong>Products A and B are statistically independent</strong> (p &gt; 0.05, robust across timescales and under multiple-testing correction) — most customers are specialists — which justifies modelling each line on its own. <em>My contributions centred on the EDA and the per-line (customer-based) modelling.</em></p>
+  <h2 class="pm-h2">Validation</h2>
+  <p>Strictly time-based, with no look-ahead: models train only on data available at the forecast date. The main split trains on two years (~87%) and tests the next 16 weeks (~13%), repeated over <strong>7 rolling start weeks</strong> so the score doesn't hinge on one split. Everything is scored on mean absolute error — lower is better — with 14 candidate models compared.</p>
+  <h2 class="pm-h2">Two approaches</h2>
+  <div class="pm-phase"><h3><em>Approach 1 · one global rule.</em></h3>
+    <p>Test all 14 models on the pooled data and keep the single best rule for every line. The winner was a spike-robust shrinkage rule — <code>forecast = [0.5 × last year's same week + 0.5 × trimmed-mean level] × 0.97</code> — blending the yearly pattern with a spike-ignoring average and baking in the ~3%/yr decline. It beat copy-last-year, ARIMA, Holt-Winters and ML on average, but one rule can't fit all 37 lines equally.</p></div>
+  <div class="pm-phase"><h3><em>Approach 2 · a model per line.</em></h3>
+    <p>For each line, pick the lowest-validation-error model from the same 14-model pool. There was <strong>no single winner</strong> — the best model varied by line, spread across flat-level, Croston (intermittent demand), shrink-to-trimmed, Easter-aligned, ARIMA, two-year-average, Holt-Winters and ML. Volatile and intermittent lines favoured robust / intermittent-demand models; stable lines favoured smooth ones.</p></div>
+  <figure class="pm-fig">
+    <svg viewBox="0 0 600 175" role="img" aria-label="Mean absolute error indexed to the best global rule at 100; per-line model selection scores 86, about 14% lower.">
+      <text x="300" y="24" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10">Mean absolute error · indexed (global rule = 100) · lower is better</text>
+      <text x="168" y="74" text-anchor="end" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12">Global rule</text>
+      <rect x="180" y="54" width="320" height="30" rx="5" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <text x="508" y="74" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="12">100</text>
+      <text x="168" y="124" text-anchor="end" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12">Per-line selection</text>
+      <rect x="180" y="104" width="275" height="30" rx="5" fill="var(--accent)" stroke="var(--accent)"/>
+      <text x="463" y="124" fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="700">86</text>
+      <text x="512" y="124" fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="700">−14%</text>
+    </svg>
+    <figcaption>Per-line model selection cut mean absolute error ~14% vs the best single global rule. Absolute error values withheld.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Result</h2>
+  <p>Matching a model to each customer-product line cut mean absolute error by <strong>~14%</strong> over the best single global rule — the core recommendation: don't force one model on all 37 lines, tailor it. The delivered 16-week forecast came in about <strong>3% below last year</strong> (0.97×), in line with the underlying trend, as a 37 × 16 = 592-row deliverable.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>statsmodels</span><span>scikit-learn</span><span>matplotlib</span><span>Jupyter</span></div>
+</template>
+
+<!-- ===== Customer Onboarding Segmentation case-study template (confidential) ===== -->
+<template id="detail-picnic">
+  <div class="pm-eyebrow">Unsupervised ML · Segmentation</div>
+  <h1 class="pm-title">Customer Onboarding Segmentation</h1>
+  <p class="pm-lede">Unsupervised segmentation of new grocery-delivery customers by the <em>shape</em> of their first 23 weeks of ordering — turning a vague "customers are churning" into three precise archetypes, each with its own action and its own moment to act.</p>
+  <p class="pm-meta">2026 · Seminar project with an industry partner · Code private</p>
+  <p style="background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:10px;padding:10px 14px;font-family:var(--mono);font-size:.7rem;color:var(--text-2);line-height:1.6;margin:0 0 18px;">Confidential project — built on an online grocery retailer's proprietary customer panel under a data agreement. Customer counts and order volumes are withheld; cluster proportions, quality metrics and the 6.5× value ratio are exact, and trajectory values are normalised (0–1). The repository is private.</p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>3</b><span>behavioural archetypes</span></div>
+    <div class="pm-stat"><b>23</b><span>week trajectories</span></div>
+    <div class="pm-stat"><b>K=3</b><span>wins 4/5 metrics</span></div>
+    <div class="pm-stat"><b>11%</b><span>high-value fading</span></div>
+    <div class="pm-stat"><b>6.5×</b><span>their value per head</span></div>
+  </div>
+  <h2 class="pm-h2">The problem</h2>
+  <p>The retailer spent heavily acquiring customers who placed one or two orders and then quietly vanished. There was no visibility into drop-off until a customer was already gone, every churned customer got the same generic re-engagement email, and there was no answer to the one operational question that mattered: <em>which week should we intervene?</em> Worst of all, the overall declining-orders trend looked like one problem but was really several different behaviours averaged into a single misleading number.</p>
+  <h2 class="pm-h2">The idea</h2>
+  <p>Standard churn analysis emits a binary label that fires <em>after</em> the customer has left and says nothing about how or when they disengaged. The reframing: customers don't all stop in the same way, so group them by the <strong>shape of their ordering curve over time</strong>, not a single point-in-time metric. Each customer's weekly delivery history becomes a trajectory, and customers are clustered by trajectory shape.</p>
+  <h2 class="pm-h2">Method</h2>
+  <p>A four-check EDA audit (null weeks, pre-acquisition negative rows, zero-delivery accounts, new-vs-existing customers) trimmed the raw weekly panel to a clean cohort of genuinely new customers. Their histories were pivoted into a 23-week trajectory matrix and <strong>per-row min-max normalised</strong> — dividing by each customer's own peak — so clustering keyed on <em>when</em> they were active (shape), not <em>how much</em> they ordered (volume). With fixed-length, ~85%-zero, near-binary sequences, plain <strong>K-Means</strong> beat DTW, k-Shape, DBSCAN and GMM (fixed length removes DTW's edge; sparsity breaks the smooth-distribution methods; centroids stay business-readable). Choosing <code>k</code> across five metrics, <strong>K=3 won four of five</strong> (silhouette 0.153, elbow, Calinski-Harabasz and min-cluster-size; K=4 took only Davies-Bouldin). Final run: Euclidean K-Means, 15 restarts, 500 max iterations, fixed seed.</p>
+  <figure class="pm-fig">
+    <svg viewBox="0 0 560 300" role="img" aria-label="Three normalized customer trajectories over 23 weeks: a flat never-activated group, a rising late-adopter group peaking near week 21, and an early-active group peaking at week 9 then declining.">
+      <line x1="50" y1="40" x2="50" y2="250" stroke="var(--line)" stroke-width="1"/>
+      <line x1="50" y1="250" x2="530" y2="250" stroke="var(--line)" stroke-width="1"/>
+      <text x="44" y="46" text-anchor="end" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">peak</text>
+      <text x="44" y="253" text-anchor="end" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">0</text>
+      <line x1="221" y1="40" x2="221" y2="250" stroke="var(--accent-line)" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="225" y="52" fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="10" font-weight="600">Week 9 — intervene</text>
+      <path d="M50,240 L285,242 L520,239" fill="none" stroke="var(--muted)" stroke-width="1.6"/>
+      <path d="M50,240 L199,208 L349,166 L477,128 L520,135" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-dasharray="6 4"/>
+      <path d="M50,198 L135,145 L221,93 L328,145 L456,198 L520,219" fill="none" stroke="var(--accent)" stroke-width="2.6"/>
+      <circle cx="221" cy="93" r="4" fill="var(--accent)"/>
+      <text x="50" y="266" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">W1</text>
+      <text x="520" y="266" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">W23</text>
+      <text x="290" y="288" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">weeks since first delivery →</text>
+      <line x1="330" y1="283" x2="352" y2="283" stroke="var(--accent)" stroke-width="2.6"/><text x="356" y="286" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="9">Fading 11%</text>
+      <line x1="432" y1="283" x2="454" y2="283" stroke="var(--text-2)" stroke-width="2" stroke-dasharray="6 4"/><text x="458" y="286" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="9">Adopters 19%</text>
+    </svg>
+    <figcaption>Normalised trajectory shapes (0–1) for the three clusters. Absolute volumes withheld; proportions exact.</figcaption>
+  </figure>
+  <h2 class="pm-h2">The three archetypes</h2>
+  <div class="pm-phase"><h3><em>Never Activated — ~70%.</em></h3>
+    <p>Flat near-zero for all 23 weeks: these customers placed an opening order to join but never built a habit — they weren't declining, they were never active. <strong>Action:</strong> low-cost automated reactivation with a strict 2-week deadline; no premium budget.</p></div>
+  <div class="pm-phase"><h3><em>Late Joiners &amp; Adopters — ~19%.</em></h3>
+    <p>Rising trajectory, peaking around Week 21 — recently joined or slowly building, and heading the right way. <strong>Action:</strong> light encouragement and a small loyalty nudge around Weeks 8–10; don't over-intervene.</p></div>
+  <div class="pm-phase"><h3><em>Early Active, Fading — ~11%.</em></h3>
+    <p>Strong start, peak at <strong>Week 9</strong>, then a steady 14-week decline — and <strong>6.5× more valuable per head</strong> than the never-activated group. <strong>Action:</strong> urgent personalised retention triggered at Week 9 — the highest-ROI intervention in the whole analysis.</p></div>
+  <h2 class="pm-h2">The payoff</h2>
+  <p>Instead of one blanket re-engagement email, the business gets three targeted plays — and, critically, a <strong>timing signal</strong>: the most valuable segment is quietly fading from Week 9, so that is exactly when to spend retention budget. Shape-based segmentation converted a misleading aggregate trend into an operational calendar.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>scikit-learn</span><span>SciPy</span><span>matplotlib</span><span>seaborn</span><span>Jupyter</span></div>
+</template>
+
 <script>
 /* ==========================================
    SAFE STORAGE WRAPPER
@@ -1102,28 +1227,33 @@ const i18n = {
     btn_work: "Selected work", btn_copy: "Copy Email", btn_cv: "Download CV",
     kv_focus: "focus", kv_focus_val: "Data Science & ML",
     kv_loc: "location", kv_loc_val: "Bochum, GE", kv_prior: "ex-domain", kv_status: "status", kv_status_val: "Open to roles",
-    stat_1: "Models benchmarked", stat_2: "Forecast error reduced", stat_3: "Enterprise data exp", stat_4: "Works published", stat_4_src: "↳ all with reports",
+    stat_1: "Forecast error reduced", stat_2: "Value per head", stat_3: "Records analyzed", stat_4: "Offline tests",
     work_eyebrow: "01 — Selected works", work_title: "Real data, <span class='accent'>real reports.</span>",
     work_desc: "From seminar projects with industry partners to independent builds — every card links straight to the readme, report, or live demo, so nothing has to be taken on trust.",
     link_readme: "View Readme", link_report: "Read Report", link_pdf: "Full Report (PDF)", link_challenge: "Challenge Page", link_eval: "Evaluation Report",
-    p1_desc: "Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.",
-    p2_desc: "K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% \"peak-and-fade\" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.",
+    p1_desc: "Weekly parcel-volume forecasting for a major logistics operator — 37 customer-product lines, a 16-week horizon, three years of history. Benchmarked 14 models (naïve, Croston, ARIMA, Holt-Winters, ML, robust shrinkage) under 7-fold rolling time-based validation; matching a model to each line beat the best single global rule by ~14%. Figures withheld for confidentiality.",
+    p2_desc: "K-Means trajectory clustering that groups new grocery-delivery customers by the shape of their first 23 weeks, not their volume. Three archetypes emerged — never-activated (70%), late adopters (19%) and an early-active-then-fading 11% worth 6.5× more per head — pinpointing Week 9 as the moment to intervene. Figures withheld for confidentiality.",
     p3_desc: "Multi-dimensional analysis of 8,064 Destatis records (2005–2020, WZ2008) across industry, firm size and time. Found a stable 28.69% mean gross yield and clear economies of scale — firms with 20+ staff reach ~2.3× the labour productivity of micro-operations.",
     p4_desc: "Automated forecast pipeline for Mt Manaslu (8,163 m): pulls Open-Meteo API data, vertically interpolates it onto six climbing bands via geopotential height, checks safety thresholds, and ships twice-daily digests + real-time danger alerts over email / Telegram / SMS. GitHub Actions-scheduled, SQLite-deduplicated, 99 offline tests.",
     p6_desc: "Fine-tuned Microsoft's Phi-3 Mini (3.8B) on a purpose-built 400-pair personal-finance Q&A set using QLoRA (4-bit, LoRA rank-16). Merged the adapter into a standalone 7.6 GB model, containerised it with Docker + FastAPI, and deployed it on GCP Vertex AI behind a multi-turn Gradio chat UI — taken end-to-end from dataset to a live cloud endpoint over 11 deployment iterations.",
     m4: "Q&A training set", m5: "params · Phi-3 Mini", m6: "merged model",
+    m_dhl_1: "lines", m_dhl_2: "models tested", m_dhl_3: "lower error",
+    m_pic_1: "archetypes", m_pic_2: "fading cohort", m_pic_3: "value per head",
+    m_dst_1: "records", m_dst_2: "years", m_dst_3: "gross yield",
+    m_man_1: "summit", m_man_2: "altitude bands", m_man_3: "offline tests",
     stack_eyebrow: "02 — Stack", stack_title: "The tools I <span class='accent'>actually reach for.</span>",
     stack_desc: "A modern data-science toolkit, backed by a deep understanding of enterprise data systems.",
     stack_fluency: "Core fluency", stack_note: "Grouped by capability.",
-    skill_1_name: "Enterprise SAP / ERP (Ex-Work)", skill_1_tier: "PREVIOUS 8 YRS", skill_1_desc: "SAP IS-U & FI-CA master data, billing and revenue analysis, MIS reporting, audit-ready records.",
-    skill_2_name: "Python for data", skill_2_tier: "DAILY", skill_2_desc: "pandas, NumPy, scikit-learn, statsmodels — time-series benchmarking and clustering taken end to end.",
-    skill_3_name: "SQL & PostgreSQL", skill_3_tier: "DAILY", skill_3_desc: "Analytical queries, window functions, schema design, pgvector for embedding storage and search.",
-    skill_4_name: "Statistics & ML", skill_4_tier: "COURSEWORK + PROJECTS", skill_4_desc: "Rolling cross-validation, model benchmarking, Monte Carlo simulation, Bayesian fundamentals.",
-    skill_5_name: "Data engineering & tooling", skill_5_tier: "PROJECT-TESTED", skill_5_desc: "Docker, FastAPI, Prefect, Git/Linux, CI/CD pipelines for reproducible model delivery.",
+    skill_1_name: "Enterprise SAP / ERP (Ex-Work)", skill_1_tier: "ADVANCED", skill_1_desc: "SAP IS-U & FI-CA master data, MIS reporting, stakeholder reporting, primary point of contact.",
+    skill_2_name: "Python for data", skill_2_tier: "INTERMEDIATE", skill_2_desc: "pandas, NumPy, scikit-learn, statsmodels, SciPy, matplotlib, Streamlit.",
+    skill_3_name: "SQL & PostgreSQL", skill_3_tier: "INTERMEDIATE", skill_3_desc: "Analytical queries, window functions, schema design, pgvector for embedding storage and search.",
+    skill_4_name: "Machine Learning & Methods", skill_4_tier: "COURSEWORK + PROJECTS", skill_4_desc: "Statistical modeling, EDA, data visualization, time series forecasting, Monte Carlo, Bayesian application.",
+    skill_5_name: "Data engineering & tooling", skill_5_tier: "BASIC KNOWLEDGE", skill_5_desc: "Git, Jupyter, VS Code, Linux (intermediate); Docker, FastAPI, ETL, CI/CD (basic).",
     stack_toolbelt: "Toolbelt", tool_ml: "Machine Learning", tool_llm: "LLM & GenAI", tool_de: "Data Engineering", tool_analytics: "Analytics & Enterprise",
+    cert_title: "Certifications:",
     record_eyebrow: "03 — Record", record_title: "Where I've <span class='accent'>been.</span>",
     record_desc: "Bridging deep enterprise data operations with modern machine learning. Here is the timeline of that transition.",
-    rec_1_title: "M.Sc. Data Science", rec_1_desc: "Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with DHL and Picnic Germany on real operational datasets.", rec_1_badge: "CURRENT",
+    rec_1_title: "M.Sc. Data Science", rec_1_desc: "Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with industry partners on real operational datasets.", rec_1_badge: "CURRENT",
     rec_2_title: "Office Executive (Enterprise Data)", rec_2_desc: "Maintained large-scale enterprise master data in SAP IS-U and FI-CA systems for a state power utility. Ran billing & revenue analysis, compiled MIS reports for senior stakeholders, and supported corporate audits with structured, auditable records.", rec_2_badge: "8 YRS",
     rec_3_title: "Earlier — Computer Applications & Tutoring", rec_3_desc: "MCA & BCA in Computer Applications, plus three years tutoring mathematics online for U.S. students. Summarised here rather than listed in full — the focus is the current M.Sc. and the enterprise data work above.", rec_3_badge: "SUMMARY",
     rec_more: "Full pre-2013 history available on request",
@@ -1140,28 +1270,33 @@ const i18n = {
     btn_work: "Ausgewählte Arbeiten", btn_copy: "E-Mail kopieren", btn_cv: "Lebenslauf herunterladen",
     kv_focus: "Fokus", kv_focus_val: "Data Science & ML",
     kv_loc: "Standort", kv_loc_val: "Bochum, DE", kv_prior: "Ex-Domäne", kv_status: "Status", kv_status_val: "Offen für Stellen",
-    stat_1: "Modelle gebenchmarkt", stat_2: "Prognosefehler reduziert", stat_3: "Enterprise-Daten-Erfahrung", stat_4: "Arbeiten veröffentlicht", stat_4_src: "↳ alle mit Berichten",
+    stat_1: "Prognosefehler reduziert", stat_2: "Wert pro Kopf", stat_3: "Datensätze analysiert", stat_4: "Offline-Tests",
     work_eyebrow: "01 — Ausgewählte Arbeiten", work_title: "Echte Daten, <span class='accent'>echte Berichte.</span>",
     work_desc: "Von Seminarprojekten mit Industriepartnern bis zu unabhängigen Builds — jede Karte verlinkt direkt auf das Readme, den Bericht oder die Live-Demo, damit nichts auf Vertrauen basiert.",
     link_readme: "Readme ansehen", link_report: "Bericht lesen", link_pdf: "Vollständiger Bericht (PDF)", link_challenge: "Challenge-Seite", link_eval: "Evaluierungsbericht",
-    p1_desc: "Prognose wöchentlicher Paketvolumina über 37 Kunden-Produkt-Linien. 14 Modelle pro Linie gebenchmarkt — insgesamt 518 Läufe — unter rollierender Kreuzvalidierung. Die Auswahl pro Linie senkte den durchschnittlichen Prognosefehler um ~14%.",
-    p2_desc: "K-Means-Clustering auf einer 5.722 × 23 Wochen-Trajektorien-Matrix. Eine 11% \"Peak-and-Fade\"-Kohorte identifiziert, die 6,5× mehr pro Kunde wert ist als das Segment, das den Großteil des Retention-Budgets absorbiert.",
+    p1_desc: "Wöchentliche Paketvolumen-Prognose für einen großen Logistikdienstleister — 37 Kunden-Produkt-Reihen, 16-Wochen-Horizont, drei Jahre Historie. 14 Modelle gebenchmarkt (Naïve, Croston, ARIMA, Holt-Winters, ML, robuste Shrinkage) unter 7-facher rollierender zeitbasierter Validierung; ein Modell pro Reihe schlug die beste globale Einzelregel um ~14%. Zahlen aus Vertraulichkeitsgründen zurückgehalten.",
+    p2_desc: "K-Means-Trajektorien-Clustering, das neue Lebensmittel-Lieferkunden nach der Form ihrer ersten 23 Wochen gruppiert, nicht nach Volumen. Drei Archetypen: nie aktiviert (70%), späte Adopter (19%) und 11% früh aktive, dann abfallende Kunden mit 6,5× höherem Wert pro Kopf — mit Woche 9 als Interventionszeitpunkt. Zahlen aus Vertraulichkeitsgründen zurückgehalten.",
     p3_desc: "Mehrdimensionale Analyse von 8.064 Destatis-Datensätzen (2005–2020, WZ2008) über Branche, Unternehmensgröße und Zeit. Stabile durchschnittliche Bruttorendite von 28,69% und klare Skaleneffekte — Betriebe mit 20+ Beschäftigten erreichen ~2,3× die Arbeitsproduktivität von Kleinstbetrieben.",
     p4_desc: "Automatisierte Prognose-Pipeline für den Manaslu (8.163 m): ruft Open-Meteo-API-Daten ab, interpoliert sie vertikal über die geopotenzielle Höhe auf sechs Höhenbänder, prüft Sicherheitsschwellen und versendet zweimal täglich Digests + Echtzeit-Gefahrenwarnungen per E-Mail / Telegram / SMS. Per GitHub Actions geplant, SQLite-dedupliziert, 99 Offline-Tests.",
     p6_desc: "Microsofts Phi-3 Mini (3,8B) auf einem eigens erstellten 400-Paar Personal-Finance Q&A-Set mit QLoRA (4-bit, LoRA-Rang 16) feinabgestimmt. Den Adapter zu einem eigenständigen 7,6-GB-Modell zusammengeführt, mit Docker + FastAPI containerisiert und auf GCP Vertex AI hinter einer mehrstufigen Gradio-Chat-Oberfläche deployed — Ende-zu-Ende vom Datensatz zum Live-Cloud-Endpunkt in 11 Deployment-Iterationen.",
     m4: "Q&A-Trainingsset", m5: "Parameter · Phi-3 Mini", m6: "zusammengeführtes Modell",
+    m_dhl_1: "Reihen", m_dhl_2: "Modelle getestet", m_dhl_3: "geringerer Fehler",
+    m_pic_1: "Archetypen", m_pic_2: "abwandernde Kohorte", m_pic_3: "Wert pro Kopf",
+    m_dst_1: "Datensätze", m_dst_2: "Jahre", m_dst_3: "Bruttorendite",
+    m_man_1: "Gipfel", m_man_2: "Höhenbänder", m_man_3: "Offline-Tests",
     stack_eyebrow: "02 — Stack", stack_title: "Die Tools, zu denen ich <span class='accent'>wirklich greife.</span>",
     stack_desc: "Ein modernes Data-Science-Toolkit, gestützt auf ein tiefes Verständnis für Enterprise-Datensysteme.",
     stack_fluency: "Kernkompetenz", stack_note: "Nach Fähigkeit gruppiert.",
-    skill_1_name: "Enterprise SAP / ERP (Ex-Arbeit)", skill_1_tier: "VORHERIGE 8 JAHRE", skill_1_desc: "SAP IS-U & FI-CA Stammdaten, Abrechnungs- und Umsatzanalyse, MIS-Reporting, prüfungssichere Aufzeichnungen.",
-    skill_2_name: "Python für Daten", skill_2_tier: "TÄGLICH", skill_2_desc: "pandas, NumPy, scikit-learn, statsmodels — Time-Series-Benchmarking und Clustering end-to-end.",
-    skill_3_name: "SQL & PostgreSQL", skill_3_tier: "TÄGLICH", skill_3_desc: "Analytische Abfragen, Window Functions, Schema-Design, pgvector für Embedding-Speicherung und -Suche.",
-    skill_4_name: "Statistik & ML", skill_4_tier: "STUDIUM + PROJEKTE", skill_4_desc: "Rollierende Kreuzvalidierung, Modell-Benchmarking, Monte-Carlo-Simulation, Bayes-Grundlagen.",
-    skill_5_name: "Data Engineering & Tooling", skill_5_tier: "PROJEKTGETESTET", skill_5_desc: "Docker, FastAPI, Prefect, Git/Linux, CI/CD-Pipelines für reproduzierbare Modellbereitstellung.",
+    skill_1_name: "Enterprise SAP / ERP (Ex-Arbeit)", skill_1_tier: "FORTGESCHRITTEN", skill_1_desc: "SAP IS-U & FI-CA Stammdaten, MIS-Reporting, Stakeholder-Reporting, Hauptansprechpartner.",
+    skill_2_name: "Python für Daten", skill_2_tier: "MITTLERE KENNTNISSE", skill_2_desc: "pandas, NumPy, scikit-learn, statsmodels, SciPy, matplotlib, Streamlit.",
+    skill_3_name: "SQL & PostgreSQL", skill_3_tier: "MITTLERE KENNTNISSE", skill_3_desc: "Analytische Abfragen, Window Functions, Schema-Design, pgvector für Embedding-Speicherung und -Suche.",
+    skill_4_name: "Machine Learning & Methoden", skill_4_tier: "STUDIUM + PROJEKTE", skill_4_desc: "Statistische Modellierung, EDA, Datenvisualisierung, Zeitreihenprognose, Monte-Carlo, Bayes.",
+    skill_5_name: "Data Engineering & Tooling", skill_5_tier: "GRUNDKENNTNISSE", skill_5_desc: "Git, Jupyter, VS Code, Linux (mittlere); Docker, FastAPI, ETL, CI/CD (Grundlagen).",
     stack_toolbelt: "Werkzeugkasten", tool_ml: "Machine Learning", tool_llm: "LLM & GenAI", tool_de: "Data Engineering", tool_analytics: "Analytics & Enterprise",
+    cert_title: "Zertifizierungen:",
     record_eyebrow: "03 — Werdegang", record_title: "Wo ich <span class='accent'>war.</span>",
     record_desc: "Die Verbindung von tiefer Enterprise-Datenarbeit mit modernem maschinellem Lernen. Hier ist die Zeitleiste dieses Übergangs.",
-    rec_1_title: "M.Sc. Data Science", rec_1_desc: "Studium der statistischen Modellierung, des maschinellen Lernens und des Data Engineering. Seminarprojekte mit DHL und Picnic Germany auf echten operativen Datensätzen.", rec_1_badge: "AKTUELL",
+    rec_1_title: "M.Sc. Data Science", rec_1_desc: "Studium der statistischen Modellierung, des maschinellen Lernens und des Data Engineering. Seminarprojekte mit Industriepartnern auf echten operativen Datensätzen.", rec_1_badge: "AKTUELL",
     rec_2_title: "Office Executive (Enterprise-Daten)", rec_2_desc: "Pflege großflächiger Enterprise-Stammdaten in SAP IS-U und FI-CA Systemen für einen staatlichen Energieversorger. Durchführung von Abrechnungs- und Umsatzanalysen, Erstellung von MIS-Berichten für Führungskräfte und Unterstützung von Unternehmensprüfungen mit strukturierten, prüfbaren Aufzeichnungen.", rec_2_badge: "8 JAHRE",
     rec_3_title: "Früher — Computeranwendungen & Nachhilfe", rec_3_desc: "MCA & BCA in Computeranwendungen, plus drei Jahre Online-Nachhilfe in Mathematik für US-Studenten. Hier zusammengefasst statt vollständig aufgelistet — der Fokus liegt auf dem aktuellen M.Sc. und der oben genannten Enterprise-Datenarbeit.", rec_3_badge: "ZUSAMMENFASSUNG",
     rec_more: "Vollständige Historie vor 2013 auf Anfrage erhältlich",
