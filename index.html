@@ -14,7 +14,6 @@
    THEME VARIABLES
    ========================================== */
 :root {
-  /* Light Mode (Ocean Blue) */
   --bg: #ffffff;
   --bg-alt: #f4f7f9;
   --surface: #ffffff;
@@ -24,23 +23,18 @@
   --text: #0f172a;
   --text-2: #334155;
   --muted: #475569;
-  
-  --accent: #0A4C82; /* Deep Ocean Blue */
+  --accent: #0A4C82;
   --accent-hover: #083d69;
   --accent-dim: rgba(10, 76, 130, 0.08);
   --accent-line: rgba(10, 76, 130, 0.25);
-  
   --lime: #0A4C82;
   --lime-dim: rgba(10, 76, 130, 0.1);
-  
   --r: 14px;
   --maxw: 1240px;
   --sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
-
 [data-theme="dark"] {
-  /* Dark Mode (Cyan/Blue Accent) */
   --bg: #0B0B0D;
   --bg-alt: #0F0F12;
   --surface: #121216;
@@ -50,12 +44,10 @@
   --text: #EDEDF0;
   --text-2: #A8A8B4;
   --muted: #94A3B8;
-  
-  --accent: #38bdf8; /* Bright Cyan */
+  --accent: #38bdf8;
   --accent-hover: #7dd3fc;
   --accent-dim: rgba(56, 189, 248, 0.10);
   --accent-line: rgba(56, 189, 248, 0.30);
-  
   --lime: #38bdf8;
   --lime-dim: rgba(56, 189, 248, 0.10);
 }
@@ -74,7 +66,6 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s, color 0.3s;
 }
-
 main, header, footer { position: relative; z-index: 1; }
 ::selection { background: var(--accent); color: var(--bg); }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 26px; }
@@ -83,7 +74,6 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 .lbl { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
-/* Accessibility: Skip Link */
 .skip {
   position: fixed; left: -9999px; top: 10px; z-index: 200;
   background: var(--accent); color: var(--bg); padding: 10px 16px;
@@ -128,14 +118,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 }
 .nav a:hover, .nav a.on { color: var(--text); }
 .nav a:hover::after, .nav a.on::after { transform: scaleX(1); }
-
 .nav-toggle {
   display: none; width: 38px; height: 34px; border-radius: 9px; border: 1px solid var(--line);
   background: var(--surface); color: var(--text); cursor: pointer; align-items: center; justify-content: center; flex: none;
 }
 .nav-toggle svg { width: 16px; height: 16px; }
 
-/* Header Controls */
 .header-controls { display: flex; align-items: center; gap: 12px; }
 .chip-live {
   display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono);
@@ -228,7 +216,6 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 .kv-val .good { color: var(--accent); }
 .kv-val .ex { color: var(--muted); }
 
-/* Stats */
 .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-top: 13px; }
 .stat { padding: 20px 20px 16px; }
 .stat-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
@@ -250,7 +237,7 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 .sec-count { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; padding-bottom: 6px; }
 
 /* ==========================================
-   PROJECT / READING CARDS
+   PROJECT CARDS
    ========================================== */
 .p-tile { cursor: default; display: flex; flex-direction: column; padding: 0; }
 .p-visual {
@@ -271,7 +258,6 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
   background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-line);
 }
 
-/* Report Links */
 .p-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
 .p-link {
   display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono);
@@ -284,7 +270,6 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 .p-link.primary { background: var(--accent-dim); border-color: var(--accent-line); color: var(--accent); }
 .p-link.primary:hover { background: var(--accent); color: var(--bg); }
 
-/* Feature Card (LLM) */
 .p-feature { grid-column: span 12; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
 .p-feature .p-visual { height: auto; min-height: 290px; padding: 26px; border-bottom: none; border-right: 1px solid var(--line); }
 .p-feature .p-visual svg { max-height: 250px; }
@@ -365,7 +350,6 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 footer { border-top: 1px solid var(--line); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.66rem; color: var(--muted); }
 footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
-/* Toast Notification */
 .toast {
   position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
   background: var(--text); color: var(--bg); padding: 0.75rem 1.5rem;
@@ -375,9 +359,6 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 }
 .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-/* ==========================================
-   REVEAL ANIMATIONS (Fallback safe)
-   ========================================== */
 .reveal { opacity: 1; transform: none; }
 .js-enabled .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s, transform 0.8s; }
 .js-enabled .reveal.in { opacity: 1; transform: none; }
@@ -387,13 +368,11 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   .h-status { grid-column: span 12; }
   .skills-tile, .tools-tile { grid-column: span 12; }
 }
-
 @media (max-width: 900px) {
   .p-tile, .p-feature { grid-column: span 12 !important; }
   .p-feature { grid-template-columns: 1fr; }
   .p-feature .p-visual { min-height: 0; height: 230px; border-right: none; border-bottom: 1px solid var(--line); padding: 20px; }
 }
-
 @media (max-width: 880px) {
   .nav-toggle { display: inline-flex; }
   .nav {
@@ -412,7 +391,6 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   .rec-badge { justify-self: start; }
   .rec-date { padding-top: 0; }
 }
-
 @media (max-width: 640px) {
   .wrap { padding: 0 18px; }
   .tool-cols { grid-template-columns: 1fr; }
@@ -421,7 +399,6 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   .chip-live { display: none; }
   .header-controls { gap: 8px; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition-duration: 0.01ms !important; }
   .js-enabled .reveal { opacity: 1 !important; transform: none !important; }
@@ -485,7 +462,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <button class="lang-btn active" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="de">DE</button>
       </div>
-      
+
       <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark Mode">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
@@ -556,7 +533,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <span class="stat-src">↳ WBSEDCL, 2013–2021</span>
       </a>
       <a class="tile stat stat-link" href="#work" data-idx="04">
-        <span class="stat-num"><span data-count="6">6</span></span>
+        <span class="stat-num"><span data-count="5">5</span></span>
         <div class="stat-lbl" data-i18n="stat_4">Works published</div>
         <span class="stat-src" data-i18n="stat_4_src">↳ all with reports</span>
       </a>
@@ -573,7 +550,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <h2 data-i18n="work_title">Real data, <span class="accent">real reports.</span></h2>
         <p data-i18n="work_desc">From seminar projects with industry partners to independent builds — every card links straight to the readme, report, or live demo, so nothing has to be taken on trust.</p>
       </div>
-      <span class="sec-count">06 / 06</span>
+      <span class="sec-count">05 / 05</span>
     </header>
 
     <div class="bento">
@@ -630,30 +607,30 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         </div>
       </article>
 
-      <!-- P-03 -->
-      <article class="tile tile-hover p-tile reveal" id="p-destatis" data-idx="P-03" style="grid-column:span 5">
+      <!-- P-03 · Destatis (updated) -->
+      <article class="tile tile-hover p-tile reveal" id="p-destatis" data-idx="P-03" data-detail="destatis" style="grid-column:span 5">
         <div class="p-visual">
-          <svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true">
+          <svg viewBox="0 0 300 140" preserveAspectRatio="none" role="img" aria-label="Labour productivity rising with firm size">
             <rect x="20" y="20" width="260" height="100" rx="6" fill="var(--bg)" stroke="var(--line)"/>
-            <rect x="40" y="80" width="30" height="30" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <rect x="90" y="60" width="30" height="50" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <rect x="140" y="40" width="30" height="70" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <rect x="190" y="70" width="30" height="40" fill="var(--accent-dim)" stroke="var(--accent)"/>
-            <rect x="240" y="30" width="30" height="80" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <line x1="38" y1="112" x2="262" y2="112" stroke="var(--line)" stroke-width="1"/>
+            <rect x="44"  y="73" width="38" height="39" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="100" y="67" width="38" height="45" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="156" y="53" width="38" height="59" fill="var(--accent-dim)" stroke="var(--accent)"/>
+            <rect x="212" y="22" width="38" height="90" fill="var(--accent)" stroke="var(--accent)"/>
           </svg>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>German Wholesale & Retail Trade</h3><span class="p-year">2025</span></div>
-          <p data-i18n="p3_desc">End-to-end pipeline cleaning 15 years of Destatis enterprise records. Established a 28.69% profitability benchmark and isolated productivity gaps — large firms achieving 2× the output of micro-operations.</p>
+          <p data-i18n="p3_desc">Multi-dimensional analysis of 8,064 Destatis records (2005–2020, WZ2008) across industry, firm size and time. Found a stable 28.69% mean gross yield and clear economies of scale — firms with 20+ staff reach ~2.3× the labour productivity of micro-operations.</p>
           <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">EDA</span></div>
           <div class="p-links">
-            <a class="p-link primary" href="https://github.com/SatadalS99/destatis-wholesale-retail" target="_blank" rel="noopener noreferrer">
+            <a class="p-link primary" data-open-detail="destatis" href="#">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+              <span>Case study</span>
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/Annual_statistics_of_wholesale_and_retail_trade_de" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
               <span data-i18n="link_readme">View Readme</span>
-            </a>
-            <a class="p-link" href="https://github.com/SatadalS99/destatis-wholesale-retail/blob/main/report.pdf" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              <span data-i18n="link_pdf">Full Report (PDF)</span>
             </a>
           </div>
         </div>
@@ -688,158 +665,66 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         </div>
       </article>
 
-      <!-- P-05 · LLM / RAG -->
-      <article class="tile tile-hover p-tile p-feature reveal" id="p-rag" data-idx="P-05">
+      <!-- P-05 · Phi-3 (renumbered from P-06) -->
+      <article class="tile tile-hover p-tile p-feature reveal" id="p-phi3" data-idx="P-05" data-detail="phi3">
         <div class="p-visual">
           <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
-               aria-label="Retrieval-augmented generation pipeline: SAP documents and resolved tickets are chunked, embedded and written to a pgvector store; a user query is retrieved against that store, passed to an LLM, and returned as an answer with citations.">
+               aria-label="Fine-tuning and deployment pipeline: 400 finance Q&A pairs fine-tune Phi-3 Mini with QLoRA, the LoRA adapter is merged into a 7.6 GB model, which is containerised with Docker and FastAPI, deployed on GCP Vertex AI, and served through a Gradio chat UI.">
             <defs>
-              <marker id="arw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+              <marker id="arw2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
                 <path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/>
               </marker>
             </defs>
 
-            <text class="arch-lbl" x="4" y="12">① INDEX · offline</text>
+            <text class="arch-lbl" x="4" y="12">① TRAIN · offline</text>
             <text class="arch-lbl" x="4" y="140">② SERVE · online</text>
 
-            <!-- indexing row -->
-            <g>
-              <rect x="4" y="22" width="116" height="36" rx="8"/>
-              <text x="62" y="43">SAP docs</text>
-            </g>
-            <g>
-              <rect x="150" y="22" width="80" height="36" rx="8"/>
-              <text x="190" y="43">Chunker</text>
-            </g>
-            <g>
-              <rect x="260" y="22" width="80" height="36" rx="8"/>
-              <text x="300" y="43">Embeddings</text>
-            </g>
-            <g>
-              <rect x="370" y="22" width="96" height="36" rx="8"/>
-              <text x="418" y="43">pgvector</text>
-            </g>
+            <rect x="4"   y="22" width="92"  height="36" rx="8"/><text x="50"  y="43">400 Q&amp;A</text>
+            <rect x="118" y="22" width="120" height="36" rx="8"/><text x="178" y="43">Phi-3 · QLoRA</text>
+            <rect x="260" y="22" width="92"  height="36" rx="8"/><text x="306" y="43">Merge LoRA</text>
+            <rect x="374" y="22" width="92"  height="36" rx="8"/><text x="420" y="43">7.6 GB</text>
 
-            <!-- retrieval / generation row -->
-            <g>
-              <rect x="4" y="150" width="76" height="36" rx="8"/>
-              <text x="42" y="171">User query</text>
-            </g>
-            <g>
-              <rect x="120" y="150" width="124" height="36" rx="8"/>
-              <text x="182" y="171">Retrieve top-k</text>
-            </g>
-            <g>
-              <rect x="276" y="150" width="72" height="36" rx="8"/>
-              <text x="312" y="171">LLM</text>
-            </g>
-            <g>
-              <rect x="378" y="150" width="88" height="36" rx="8"/>
-              <text x="422" y="171">Answer</text>
-            </g>
+            <rect x="4"   y="150" width="150" height="36" rx="8"/><text x="79"  y="171">Docker · FastAPI</text>
+            <rect x="176" y="150" width="140" height="36" rx="8"/><text x="246" y="171">GCP Vertex AI</text>
+            <rect x="338" y="150" width="128" height="36" rx="8"/><text x="402" y="171">Gradio chat</text>
 
-            <!-- connectors -->
             <g>
-              <line class="conn" x1="124" y1="40" x2="146" y2="40" marker-end="url(#arw)"/>
-              <line class="conn" x1="234" y1="40" x2="256" y2="40" marker-end="url(#arw)"/>
-              <line class="conn" x1="344" y1="40" x2="366" y2="40" marker-end="url(#arw)"/>
+              <line class="conn" x1="98"  y1="40" x2="116" y2="40" marker-end="url(#arw2)"/>
+              <line class="conn" x1="240" y1="40" x2="258" y2="40" marker-end="url(#arw2)"/>
+              <line class="conn" x1="354" y1="40" x2="372" y2="40" marker-end="url(#arw2)"/>
             </g>
             <g>
-              <line class="conn" x1="84" y1="168" x2="116" y2="168" marker-end="url(#arw)"/>
-              <line class="conn" x1="248" y1="168" x2="272" y2="168" marker-end="url(#arw)"/>
-              <line class="conn" x1="352" y1="168" x2="374" y2="168" marker-end="url(#arw)"/>
-              <path class="conn" d="M418,58 V120 H182 V146" marker-end="url(#arw)"/>
+              <line class="conn" x1="156" y1="168" x2="174" y2="168" marker-end="url(#arw2)"/>
+              <line class="conn" x1="318" y1="168" x2="336" y2="168" marker-end="url(#arw2)"/>
+              <path class="conn" d="M420,58 V116 H79 V146" marker-end="url(#arw2)"/>
             </g>
           </svg>
         </div>
 
         <div class="p-body">
-          <div class="p-top"><h3>SAP Incident Triage Assistant (RAG)</h3><span class="p-year">2025 — 2026</span></div>
-          <p data-i18n="p5_desc">Retrieval-augmented assistant over eight years' worth of SAP IS-U / FI-CA documentation and resolved tickets. Documents are chunked and embedded into pgvector; a query retrieves the top-k passages and the LLM answers <em>only</em> from them, returning inline citations so every response can be traced back to source.</p>
+          <div class="p-top"><h3>Phi-3 Finance LLM — Fine-Tune & Deploy</h3><span class="p-year">2026</span></div>
+          <p data-i18n="p6_desc">Fine-tuned Microsoft's Phi-3 Mini (3.8B) on a purpose-built 400-pair personal-finance Q&amp;A set using QLoRA (4-bit, LoRA rank-16). Merged the adapter into a standalone 7.6 GB model, containerised it with Docker + FastAPI, and deployed it on GCP Vertex AI behind a multi-turn Gradio chat UI — taken end-to-end from dataset to a live cloud endpoint over 11 deployment iterations.</p>
 
           <div class="p-metrics">
-            <div><span class="m-val">120</span><span class="m-lbl" data-i18n="m1">question eval set</span></div>
-            <div><span class="m-val">87%</span><span class="m-lbl" data-i18n="m2">answer accuracy</span></div>
-            <div><span class="m-val">0.91</span><span class="m-lbl" data-i18n="m3">citation precision</span></div>
+            <div><span class="m-val">400</span><span class="m-lbl" data-i18n="m4">Q&amp;A training set</span></div>
+            <div><span class="m-val">3.8B</span><span class="m-lbl" data-i18n="m5">params · Phi-3 Mini</span></div>
+            <div><span class="m-val">7.6 GB</span><span class="m-lbl" data-i18n="m6">merged model</span></div>
           </div>
 
-          <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">pgvector</span><span class="tag">LLM API</span></div>
+          <div class="tags"><span class="tag">QLoRA</span><span class="tag">Phi-3 Mini</span><span class="tag">Docker</span><span class="tag">GCP Vertex AI</span></div>
 
           <div class="p-links">
-            <a class="p-link primary" href="https://github.com/SatadalS99/sap-rag-assistant" target="_blank" rel="noopener noreferrer">
+            <a class="p-link primary" data-open-detail="phi3" href="#">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+              <span>Case study</span>
+            </a>
+            <a class="p-link" href="https://github.com/SatadalS99/Fine_tune_llm" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
               <span data-i18n="link_readme">View Readme</span>
-            </a>
-            <a class="p-link" href="https://github.com/SatadalS99/sap-rag-assistant/blob/main/EVAL.md" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-              <span data-i18n="link_eval">Evaluation Report</span>
             </a>
           </div>
         </div>
       </article>
-<!-- P-06 · LLM Fine-Tune / Deploy -->
-<article class="tile tile-hover p-tile p-feature reveal" id="p-phi3" data-idx="P-06" data-detail="phi3">
-  <div class="p-visual">
-    <svg class="arch" viewBox="0 0 470 210" preserveAspectRatio="xMidYMid meet" role="img"
-         aria-label="Fine-tuning and deployment pipeline: 400 finance Q&A pairs fine-tune Phi-3 Mini with QLoRA, the LoRA adapter is merged into a 7.6 GB model, which is containerised with Docker and FastAPI, deployed on GCP Vertex AI, and served through a Gradio chat UI.">
-      <defs>
-        <marker id="arw2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/>
-        </marker>
-      </defs>
-
-      <text class="arch-lbl" x="4" y="12">① TRAIN · offline</text>
-      <text class="arch-lbl" x="4" y="140">② SERVE · online</text>
-
-      <!-- train row -->
-      <rect x="4"   y="22" width="92"  height="36" rx="8"/><text x="50"  y="43">400 Q&amp;A</text>
-      <rect x="118" y="22" width="120" height="36" rx="8"/><text x="178" y="43">Phi-3 · QLoRA</text>
-      <rect x="260" y="22" width="92"  height="36" rx="8"/><text x="306" y="43">Merge LoRA</text>
-      <rect x="374" y="22" width="92"  height="36" rx="8"/><text x="420" y="43">7.6 GB</text>
-
-      <!-- serve row -->
-      <rect x="4"   y="150" width="150" height="36" rx="8"/><text x="79"  y="171">Docker · FastAPI</text>
-      <rect x="176" y="150" width="140" height="36" rx="8"/><text x="246" y="171">GCP Vertex AI</text>
-      <rect x="338" y="150" width="128" height="36" rx="8"/><text x="402" y="171">Gradio chat</text>
-
-      <!-- connectors -->
-      <g>
-        <line class="conn" x1="98"  y1="40" x2="116" y2="40" marker-end="url(#arw2)"/>
-        <line class="conn" x1="240" y1="40" x2="258" y2="40" marker-end="url(#arw2)"/>
-        <line class="conn" x1="354" y1="40" x2="372" y2="40" marker-end="url(#arw2)"/>
-      </g>
-      <g>
-        <line class="conn" x1="156" y1="168" x2="174" y2="168" marker-end="url(#arw2)"/>
-        <line class="conn" x1="318" y1="168" x2="336" y2="168" marker-end="url(#arw2)"/>
-        <path class="conn" d="M420,58 V116 H79 V146" marker-end="url(#arw2)"/>
-      </g>
-    </svg>
-  </div>
-
-  <div class="p-body">
-    <div class="p-top"><h3>Phi-3 Finance LLM — Fine-Tune & Deploy</h3><span class="p-year">2026</span></div>
-    <p data-i18n="p6_desc">Fine-tuned Microsoft's Phi-3 Mini (3.8B) on a purpose-built 400-pair personal-finance Q&amp;A set using QLoRA (4-bit, LoRA rank-16). Merged the adapter into a standalone 7.6 GB model, containerised it with Docker + FastAPI, and deployed it on GCP Vertex AI behind a multi-turn Gradio chat UI — taken end-to-end from dataset to a live cloud endpoint over 11 deployment iterations.</p>
-
-    <div class="p-metrics">
-      <div><span class="m-val">400</span><span class="m-lbl" data-i18n="m4">Q&amp;A training set</span></div>
-      <div><span class="m-val">3.8B</span><span class="m-lbl" data-i18n="m5">params · Phi-3 Mini</span></div>
-      <div><span class="m-val">7.6 GB</span><span class="m-lbl" data-i18n="m6">merged model</span></div>
-    </div>
-
-    <div class="tags"><span class="tag">QLoRA</span><span class="tag">Phi-3 Mini</span><span class="tag">Docker</span><span class="tag">GCP Vertex AI</span></div>
-
-    <div class="p-links">
-      <a class="p-link primary" data-open-detail="phi3" href="#">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
-        <span>Case study</span>
-      </a>
-      <a class="p-link" href="https://github.com/SatadalS99/Fine_tune_llm" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>
-        <span data-i18n="link_readme">View Readme</span>
-      </a>
-    </div>
-  </div>
-</article>
     </div>
   </div>
 </section>
@@ -1003,6 +888,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   </div>
 </div>
 
+<!-- ===== Phi-3 case-study template ===== -->
 <template id="detail-phi3">
   <div class="pm-eyebrow">Machine Learning · MLOps</div>
   <h1 class="pm-title">Fine-Tuning &amp; Deploying a Domain-Specialist LLM</h1>
@@ -1066,6 +952,57 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>Hugging Face Transformers</span><span>PEFT / LoRA</span><span>TRL</span><span>BitsAndBytes</span><span>Unsloth</span><span>QLoRA (4-bit)</span><span>Gradio</span><span>Docker</span><span>FastAPI</span><span>GCP Vertex AI</span><span>Colab Pro</span></div>
 </template>
 
+<!-- ===== Destatis case-study template ===== -->
+<template id="detail-destatis">
+  <div class="pm-eyebrow">Data Analysis · Economics</div>
+  <h1 class="pm-title">German Wholesale &amp; Retail Trade — Economic Activity Analysis</h1>
+  <p class="pm-lede">A multi-dimensional study of 16 years of official German trade statistics (Destatis, WZ2008) — profiling profitability, capital investment, labour productivity, firm-size economies and growth across industries, firm sizes and time.</p>
+  <p class="pm-meta">2025 · Solo project · Data: Destatis (WZ2008 / NACE Rev. 2) · Code: <a href="https://github.com/SatadalS99/Annual_statistics_of_wholesale_and_retail_trade_de" target="_blank" rel="noopener noreferrer">github.com/SatadalS99/Annual_statistics…trade_de</a></p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>8,064</b><span>records</span></div>
+    <div class="pm-stat"><b>2005–20</b><span>16 years</span></div>
+    <div class="pm-stat"><b>15</b><span>metrics / row</span></div>
+    <div class="pm-stat"><b>5</b><span>research questions</span></div>
+    <div class="pm-stat"><b>28.69%</b><span>mean gross yield</span></div>
+  </div>
+  <h2 class="pm-h2">The question</h2>
+  <p>Germany's economy rests on its Mittelstand and industrial base. Using the official Destatis annual statistics of wholesale and retail trade (WZ2008 classification, aligned with European NACE Rev. 2), this project asks how profitability, capital investment, labour productivity, firm size and firm counts moved across industries and firm-size classes between 2005 and 2020 — a window spanning the 2008 financial crisis, the eurozone debt crisis and the run-up to COVID-19.</p>
+  <h2 class="pm-h2">Data &amp; method</h2>
+  <p>The processed dataset holds 8,064 observations, each a unique Year × Economic Activity × Employee-Size-Class combination described by 15 columns — enterprise counts, local units, persons employed, turnover, turnover per enterprise and per person, input of goods, gross capital formation, gross yield ratio and expenditure. From the raw Destatis Excel export the pipeline standardises number formats, handles confidentiality-suppressed cells, harmonises WZ2008 codes and size classes across years, and recomputes the derived ratios. Analysis and visualisation are in Python — <code>pandas</code>, <code>NumPy</code>, <code>matplotlib</code>, <code>seaborn</code> — with reusable functions factored into a utilities module and the full workflow in a Jupyter notebook.</p>
+  <figure class="pm-fig">
+    <svg viewBox="0 0 460 220" role="img" aria-label="Median turnover per person employed by firm-size class: 116, 134, 176, 268 — rising with size.">
+      <line x1="40" y1="170" x2="440" y2="170" stroke="var(--line)" stroke-width="1"/>
+      <rect x="55"  y="109" width="70" height="61"  rx="4" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <rect x="160" y="100" width="70" height="70"  rx="4" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <rect x="265" y="78"  width="70" height="92"  rx="4" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <rect x="370" y="30"  width="70" height="140" rx="4" fill="var(--accent)" stroke="var(--accent)"/>
+      <text x="90"  y="101" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle">116</text>
+      <text x="195" y="92"  fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle">134</text>
+      <text x="300" y="70"  fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle">176</text>
+      <text x="405" y="22"  fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="700" text-anchor="middle">268</text>
+      <text x="90"  y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">1–2</text>
+      <text x="195" y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">3–5</text>
+      <text x="300" y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">6–19</text>
+      <text x="405" y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">20+</text>
+      <text x="240" y="208" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9" text-anchor="middle">employees per firm →</text>
+    </svg>
+    <figcaption>Median turnover per person employed rises monotonically with firm size — ~2.3× from micro-firms (1–2) to large firms (20+). Source: own analysis of Destatis WZ2008 data.</figcaption>
+  </figure>
+  <h2 class="pm-h2">What the data shows</h2>
+  <div class="pm-phase"><h3><em>RQ1 · Profitability is stable.</em></h3>
+    <p>Across 7,857 valid observations the gross yield ratio averages 28.69% (median 29.30%, SD 11.42%), holding in a narrow 27–31% band for 16 years. The one real dip is 2011–2012 (~27%), a lagged echo of the financial crisis, after which it settles back to 28–29% — resilient in aggregate but highly variable firm to firm.</p></div>
+  <div class="pm-phase"><h3><em>RQ2 · Investment intensity is rising.</em></h3>
+    <p>Gross capital formation averages 1.22% of turnover and climbs from ~0.95% in the mid-2000s to ~1.30% by 2020 — a ~27% relative increase, with a time trend explaining ~64% of the variation (R²=0.637). It peaks around 2011–2012 and plateaus at elevated levels after 2016.</p></div>
+  <div class="pm-phase"><h3><em>RQ3 · Scale drives productivity.</em></h3>
+    <p>Median turnover per person employed rises monotonically with firm size — 1–2, 3–5, 6–19, 20+ — with the largest firms more than doubling the smallest (~2.3×, +131%). A high mean but low median in the smallest class shows a few exceptional micro-operators pulling the average up while most stay modest (charted above).</p></div>
+  <div class="pm-phase"><h3><em>RQ4 · Bigger firms, more revenue.</em></h3>
+    <p>Firm-size class and turnover per enterprise correlate at r=0.542 — size alone explains ~29% of the variance (R²≈0.29). Each step up in size class adds roughly €8,900 in enterprise turnover; the 20+ class spreads widest, many firms above €1M. Scale is a structural advantage, not a guarantee — within-class variation stays large.</p></div>
+  <div class="pm-phase"><h3><em>RQ5 · Growth, then contraction.</em></h3>
+    <p>Enterprises and local units both grow ~27% from 2005 to 2020, reaching about 5.2M enterprises and 7.3M local units, but the path is boom-and-bust: expansion to a ~2015 peak (~5.8M / ~8.0M), then sustained decline through 2016–2020. Local units run ~38% above enterprise counts throughout, pointing to many multi-site operators.</p></div>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>matplotlib</span><span>seaborn</span><span>openpyxl</span><span>Jupyter</span><span>Destatis (WZ2008)</span></div>
+</template>
+
 <script>
 /* ==========================================
    SAFE STORAGE WRAPPER
@@ -1096,10 +1033,10 @@ const i18n = {
     link_readme: "View Readme", link_report: "Read Report", link_pdf: "Full Report (PDF)", link_challenge: "Challenge Page", link_eval: "Evaluation Report",
     p1_desc: "Forecast weekly parcel volumes across 37 customer-product lines. Benchmarked 14 models per line — 518 runs total — under rolling cross-validation. Per-line selection cut average forecast error by ~14%.",
     p2_desc: "K-Means clustering on a 5,722 × 23 weekly-trajectory matrix. Found an 11% \"peak-and-fade\" cohort worth 6.5× more per customer than the segment absorbing most of the retention budget.",
-    p3_desc: "End-to-end pipeline cleaning 15 years of Destatis enterprise records. Established a 28.69% profitability benchmark and isolated productivity gaps — large firms achieving 2× the output of micro-operations.",
+    p3_desc: "Multi-dimensional analysis of 8,064 Destatis records (2005–2020, WZ2008) across industry, firm size and time. Found a stable 28.69% mean gross yield and clear economies of scale — firms with 20+ staff reach ~2.3× the labour productivity of micro-operations.",
     p4_desc: "Open-source Omdena challenge with a distributed international team. Built an ML pipeline for disease-outbreak forecasting and healthcare-facility accessibility mapping using historical and geospatial data.",
-    p5_desc: "Retrieval-augmented assistant over eight years' worth of SAP IS-U / FI-CA documentation and resolved tickets. Documents are chunked and embedded into pgvector; a query retrieves the top-k passages and the LLM answers <em>only</em> from them, returning inline citations so every response can be traced back to source.",
-    m1: "question eval set", m2: "answer accuracy", m3: "citation precision",
+    p6_desc: "Fine-tuned Microsoft's Phi-3 Mini (3.8B) on a purpose-built 400-pair personal-finance Q&A set using QLoRA (4-bit, LoRA rank-16). Merged the adapter into a standalone 7.6 GB model, containerised it with Docker + FastAPI, and deployed it on GCP Vertex AI behind a multi-turn Gradio chat UI — taken end-to-end from dataset to a live cloud endpoint over 11 deployment iterations.",
+    m4: "Q&A training set", m5: "params · Phi-3 Mini", m6: "merged model",
     stack_eyebrow: "02 — Stack", stack_title: "The tools I <span class='accent'>actually reach for.</span>",
     stack_desc: "A modern data-science toolkit, backed by a deep understanding of enterprise data systems.",
     stack_fluency: "Core fluency", stack_note: "Grouped by capability.",
@@ -1134,10 +1071,10 @@ const i18n = {
     link_readme: "Readme ansehen", link_report: "Bericht lesen", link_pdf: "Vollständiger Bericht (PDF)", link_challenge: "Challenge-Seite", link_eval: "Evaluierungsbericht",
     p1_desc: "Prognose wöchentlicher Paketvolumina über 37 Kunden-Produkt-Linien. 14 Modelle pro Linie gebenchmarkt — insgesamt 518 Läufe — unter rollierender Kreuzvalidierung. Die Auswahl pro Linie senkte den durchschnittlichen Prognosefehler um ~14%.",
     p2_desc: "K-Means-Clustering auf einer 5.722 × 23 Wochen-Trajektorien-Matrix. Eine 11% \"Peak-and-Fade\"-Kohorte identifiziert, die 6,5× mehr pro Kunde wert ist als das Segment, das den Großteil des Retention-Budgets absorbiert.",
-    p3_desc: "End-to-End-Pipeline zur Bereinigung von 15 Jahren Destatis-Unternehmensdaten. Etablierte einen Rentabilitäts-Benchmark von 28,69% und isolierte Produktivitätslücken — große Unternehmen erreichen die 2-fache Leistung von Mikrobetrieben.",
+    p3_desc: "Mehrdimensionale Analyse von 8.064 Destatis-Datensätzen (2005–2020, WZ2008) über Branche, Unternehmensgröße und Zeit. Stabile durchschnittliche Bruttorendite von 28,69% und klare Skaleneffekte — Betriebe mit 20+ Beschäftigten erreichen ~2,3× die Arbeitsproduktivität von Kleinstbetrieben.",
     p4_desc: "Open-Source-Omdena-Challenge mit einem verteilten internationalen Team. Erstellung einer ML-Pipeline zur Krankheitsausbruchsprognose und Kartierung der Zugänglichkeit von Gesundheitseinrichtungen unter Verwendung historischer und geospatialer Daten.",
-    p5_desc: "Retrieval-augmentierter Assistent über acht Jahre SAP IS-U / FI-CA-Dokumentation und gelöste Tickets. Dokumente werden gechunkt und in pgvector eingebettet; eine Abfrage ruft die Top-k-Passagen ab und das LLM antwortet <em>nur</em> aus diesen, mit Inline-Zitaten, damit jede Antwort auf die Quelle zurückgeführt werden kann.",
-    m1: "Fragen-Eval-Set", m2: "Antwortgenauigkeit", m3: "Zitierpräzision",
+    p6_desc: "Microsofts Phi-3 Mini (3,8B) auf einem eigens erstellten 400-Paar Personal-Finance Q&A-Set mit QLoRA (4-bit, LoRA-Rang 16) feinabgestimmt. Den Adapter zu einem eigenständigen 7,6-GB-Modell zusammengeführt, mit Docker + FastAPI containerisiert und auf GCP Vertex AI hinter einer mehrstufigen Gradio-Chat-Oberfläche deployed — Ende-zu-Ende vom Datensatz zum Live-Cloud-Endpunkt in 11 Deployment-Iterationen.",
+    m4: "Q&A-Trainingsset", m5: "Parameter · Phi-3 Mini", m6: "zusammengeführtes Modell",
     stack_eyebrow: "02 — Stack", stack_title: "Die Tools, zu denen ich <span class='accent'>wirklich greife.</span>",
     stack_desc: "Ein modernes Data-Science-Toolkit, gestützt auf ein tiefes Verständnis für Enterprise-Datensysteme.",
     stack_fluency: "Kernkompetenz", stack_note: "Nach Fähigkeit gruppiert.",
@@ -1165,7 +1102,7 @@ function setLanguage(lang) {
   currentLang = lang;
   safeStorage.set('lang', lang);
   document.documentElement.lang = lang;
-  
+
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (i18n[lang] && i18n[lang][key]) {
@@ -1269,7 +1206,7 @@ document.getElementById('copyEmailContact').addEventListener('click', copyEmail)
 })();
 
 /* ==========================================
-   5. UI INTERACTIONS (Nav, Reveal, Year)
+   5. UI INTERACTIONS
    ========================================== */
 (function(){
   const y = document.getElementById('yr'); if(y) y.textContent = new Date().getFullYear();
@@ -1324,7 +1261,6 @@ document.getElementById('copyEmailContact').addEventListener('click', copyEmail)
   sections.forEach(s => io.observe(s));
 })();
 
-/* Stat counters */
 (function(){
   const els = document.querySelectorAll('[data-count]'); if(!els.length) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
