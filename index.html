@@ -506,10 +506,6 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
             <span data-i18n="btn_work">Selected work</span>
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
-          <button class="btn btn-ghost" id="copyEmailHero">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            <span data-i18n="btn_copy">Copy Email</span>
-          </button>
         </div>
       </div>
 
@@ -885,9 +881,12 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
       <h2 data-i18n="contact_title">Your data has answers.<br><span class="accent">Let's find them.</span></h2>
       <p data-i18n="contact_desc">Open to Werkstudent, internship and full-time data science roles.</p>
       <div class="contact-actions">
-        <button class="btn btn-primary" id="copyEmailContact">
+        <a href="mailto:satadals121@gmail.com" class="btn btn-primary">
           satadals121@gmail.com
+        </a>
+        <button class="btn btn-ghost" id="copyEmailContact">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span data-i18n="btn_copy">Copy Email</span>
         </button>
         <a href="cv.pdf" class="btn btn-ghost" download>
           <span data-i18n="btn_cv">Download CV</span>
@@ -915,15 +914,17 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 <div class="pm-overlay" id="pm-overlay" role="dialog" aria-modal="true" aria-label="Project case study">
   <div class="pm-dialog">
     <div class="pm-head">
-      <span class="lbl2">Project case study</span>
-      <button class="pm-close" id="pm-close" aria-label="Close">✕</button>
+      <span class="lbl2" data-i18n="pm_label">Project case study</span>
+      <button class="pm-close" id="pm-close" aria-label="Close" data-i18n="pm_close">✕</button>
     </div>
     <div class="pm-content" id="pm-body"></div>
   </div>
 </div>
 
-<!-- ===== Phi-3 case-study template ===== -->
-<template id="detail-phi3">
+<!-- =========================================
+     EN CASE STUDY TEMPLATES
+     ========================================= -->
+<template id="detail-phi3-en">
   <div class="pm-eyebrow">Machine Learning · MLOps</div>
   <h1 class="pm-title">Fine-Tuning &amp; Deploying a Domain-Specialist LLM</h1>
   <p class="pm-lede">Teaching a small 3.8-billion-parameter open model to answer personal-finance questions reliably — then shipping it as a live, containerised cloud service rather than leaving it in a notebook.</p>
@@ -986,8 +987,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>Hugging Face Transformers</span><span>PEFT / LoRA</span><span>TRL</span><span>BitsAndBytes</span><span>Unsloth</span><span>QLoRA (4-bit)</span><span>Gradio</span><span>Docker</span><span>FastAPI</span><span>GCP Vertex AI</span><span>Colab Pro</span></div>
 </template>
 
-<!-- ===== Destatis case-study template ===== -->
-<template id="detail-destatis">
+<template id="detail-destatis-en">
   <div class="pm-eyebrow">Data Analysis · Economics</div>
   <h1 class="pm-title">German Wholesale &amp; Retail Trade — Economic Activity Analysis</h1>
   <p class="pm-lede">A multi-dimensional study of 16 years of official German trade statistics (Destatis, WZ2008) — profiling profitability, capital investment, labour productivity, firm-size economies and growth across industries, firm sizes and time.</p>
@@ -1037,8 +1037,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>matplotlib</span><span>seaborn</span><span>openpyxl</span><span>Jupyter</span><span>Destatis (WZ2008)</span></div>
 </template>
 
-<!-- ===== Manaslu case-study template ===== -->
-<template id="detail-manaslu">
+<template id="detail-manaslu-en">
   <div class="pm-eyebrow">Data Engineering · Automation</div>
   <h1 class="pm-title">Manaslu High-Altitude Forecast Alerter</h1>
   <p class="pm-lede">An end-to-end, self-running data pipeline that turns a free public weather API into actionable high-altitude safety alerts for Mt Manaslu (8,163 m) — extract, transform, store, decide and deliver, fully automated and fully tested.</p>
@@ -1106,8 +1105,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>httpx</span><span>pandas</span><span>PyYAML</span><span>Jinja2</span><span>SQLite</span><span>Twilio</span><span>pytest</span><span>GitHub Actions</span><span>systemd</span></div>
 </template>
 
-<!-- ===== Parcel Demand Forecasting case-study template (confidential) ===== -->
-<template id="detail-dhl">
+<template id="detail-dhl-en">
   <div class="pm-eyebrow">Time Series · Forecasting</div>
   <h1 class="pm-title">Parcel Demand Forecasting</h1>
   <p class="pm-lede">Benchmarking 14 forecasting models to predict weekly parcel volumes for a major logistics operator — and showing that matching a model to each customer-product line beats forcing one global rule on all of them.</p>
@@ -1150,8 +1148,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>statsmodels</span><span>scikit-learn</span><span>matplotlib</span><span>Jupyter</span></div>
 </template>
 
-<!-- ===== Customer Onboarding Segmentation case-study template (confidential) ===== -->
-<template id="detail-picnic">
+<template id="detail-picnic-en">
   <div class="pm-eyebrow">Unsupervised ML · Segmentation</div>
   <h1 class="pm-title">Customer Onboarding Segmentation</h1>
   <p class="pm-lede">Unsupervised segmentation of new grocery-delivery customers by the <em>shape</em> of their first 23 weeks of ordering — turning a vague "customers are churning" into three precise archetypes, each with its own action and its own moment to act.</p>
@@ -1199,6 +1196,285 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
     <p>Strong start, peak at <strong>Week 9</strong>, then a steady 14-week decline — and <strong>6.5× more valuable per head</strong> than the never-activated group. <strong>Action:</strong> urgent personalised retention triggered at Week 9 — the highest-ROI intervention in the whole analysis.</p></div>
   <h2 class="pm-h2">The payoff</h2>
   <p>Instead of one blanket re-engagement email, the business gets three targeted plays — and, critically, a <strong>timing signal</strong>: the most valuable segment is quietly fading from Week 9, so that is exactly when to spend retention budget. Shape-based segmentation converted a misleading aggregate trend into an operational calendar.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>scikit-learn</span><span>SciPy</span><span>matplotlib</span><span>seaborn</span><span>Jupyter</span></div>
+</template>
+
+<!-- =========================================
+     DE CASE STUDY TEMPLATES
+     ========================================= -->
+<template id="detail-phi3-de">
+  <div class="pm-eyebrow">Maschinelles Lernen · MLOps</div>
+  <h1 class="pm-title">Feinabstimmung &amp; Deployment eines Domain-Specialist LLM</h1>
+  <p class="pm-lede">Einem kleinen Open-Source-Modell mit 3,8 Milliarden Parametern beibringen, Finanzfragen zuverlässig zu beantworten – und es dann als Live-Cloud-Dienst bereitzustellen, anstatt es in einem Notebook zu belassen.</p>
+  <p class="pm-meta">Juli – Aug. 2026 · Einzelprojekt · Code: <a href="https://github.com/SatadalS99/Fine_tune_llm" target="_blank" rel="noopener noreferrer">github.com/SatadalS99/Fine_tune_llm</a></p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>3.8B</b><span>Parameter</span></div>
+    <div class="pm-stat"><b>400</b><span>Q&amp;A-Paare</span></div>
+    <div class="pm-stat"><b>4-bit</b><span>QLoRA r16</span></div>
+    <div class="pm-stat"><b>7.6 GB</b><span>zusammengeführt</span></div>
+    <div class="pm-stat"><b>v11</b><span>Deploy-Iterationen</span></div>
+  </div>
+  <h2 class="pm-h2">Das Problem</h2>
+  <p>Allgemeine Sprachmodelle sind groß, teuer im Betrieb und geben breite, vorsichtige Antworten auf enge Fragen. Für einen fokussierten Anwendungsfall – alltägliche Finanzfragen wie Budgetierung, Zinseszins, Kreditwürdigkeit und Indexfonds – ist ein Modell der 70B-Klasse überdimensioniert, und die Nutzung einer gehosteten API kostet Kontrolle, Privatsphäre und Kostenplanbarkeit.</p>
+  <p>Die eigentliche Herausforderung ist nicht der Trainingsschritt, bei dem die meisten Tutorials aufhören. Es ist alles danach: zu bewerten, ob das abgestimmte Modell tatsächlich besser ist, es so zu verpacken, dass es außerhalb des Notebooks korrekt lädt, und es dazu zu bringen, die Gesundheitsprüfungen und Gewichtungslade-Eigenheiten einer verwalteten Cloud-Plattform zu überstehen. Ein Modell, das in Colab funktioniert, aber in einem Container stirbt, ist kein Deliverable.</p>
+  <h2 class="pm-h2">Der Ansatz</h2>
+  <p>Nehmen Sie ein kleines, leistungsfähiges Open-Source-Modell – Microsofts Phi-3 Mini (3,8B) – und spezialisieren Sie es mit parameter-effizientem Fine-Tuning auf eine einzige Domäne, damit das Ergebnis kostengünstig zu trainieren und klein genug für das Self-Hosting bleibt. Dann Ende-zu-Ende durchziehen: Datensatz erstellen, mit QLoRA feinabstimmen, manuell evaluieren, den Adapter wieder in die Basisgewichte zusammenführen, in einen Docker + FastAPI Inferenzdienst einpacken und auf GCP Vertex AI mit einem Gradio-Chat-Frontend deployen.</p>
+  <figure class="pm-fig">
+    <svg class="arch" viewBox="0 0 720 210" preserveAspectRatio="xMidYMid meet" role="img" aria-label="End-to-End-Pipeline vom Datensatz bis zum bereitgestellten Chat-Endpunkt.">
+      <defs><marker id="arwM-de" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker></defs>
+      <text class="arch-lbl" x="8" y="14">① TRAINIEREN · offline</text>
+      <text class="arch-lbl" x="8" y="140">② BEREITSTELLEN · online</text>
+      <rect x="8" y="24" width="158" height="38" rx="8"/><text x="87" y="48">400 Q&amp;A-Paare</text>
+      <rect x="190" y="24" width="170" height="38" rx="8"/><text x="275" y="48">Phi-3 · QLoRA 4-bit</text>
+      <rect x="384" y="24" width="158" height="38" rx="8"/><text x="463" y="48">30-Prompt Eval</text>
+      <rect x="566" y="24" width="146" height="38" rx="8"/><text x="639" y="48">Merge → 7.6 GB</text>
+      <rect x="40" y="150" width="180" height="38" rx="8"/><text x="130" y="174">Docker · FastAPI</text>
+      <rect x="270" y="150" width="180" height="38" rx="8"/><text x="360" y="174">GCP Vertex AI</text>
+      <rect x="500" y="150" width="180" height="38" rx="8"/><text x="590" y="174">Gradio Chat UI</text>
+      <g>
+        <line class="conn" x1="166" y1="43" x2="188" y2="43" marker-end="url(#arwM-de)"/>
+        <line class="conn" x1="360" y1="43" x2="382" y2="43" marker-end="url(#arwM-de)"/>
+        <line class="conn" x1="542" y1="43" x2="564" y2="43" marker-end="url(#arwM-de)"/>
+      </g>
+      <g>
+        <line class="conn" x1="220" y1="169" x2="268" y2="169" marker-end="url(#arwM-de)"/>
+        <line class="conn" x1="450" y1="169" x2="498" y2="169" marker-end="url(#arwM-de)"/>
+        <path class="conn" d="M639,62 V116 H130 V146" marker-end="url(#arwM-de)"/>
+      </g>
+    </svg>
+    <figcaption>Vom 400-Paar-Datensatz zu einem Live-, selbst gehosteten Chat-Endpunkt.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Was ich gebaut habe</h2>
+  <div class="pm-phase"><h3><em>1 · Datensatz.</em> Ein zweckgebundener Trainingsdatensatz</h3>
+    <p>Generierte 400 saubere Frage-Antwort-Paare aus sieben Finanz-Subthemen – Budgetierung (70), Indexfonds &amp; Investieren (80), Kreditwürdigkeit &amp; Karten (70), Zinseszins (60), Schuldenmanagement (50), Notfallfonds (40), Steuern &amp; Ruhestand (30) – gespeichert als zweispaltige CSV, bereit für das Training.</p></div>
+  <div class="pm-phase"><h3><em>2 · Feinabstimmung.</em> QLoRA auf Phi-3 Mini</h3>
+    <p>Lud Phi-3 Mini in 4-Bit-Quantisierung und befestigte einen Rank-16 LoRA-Adapter (Unsloth, PEFT, TRL, BitsAndBytes). Die Daten wurden in Phi-3s Chat-Template formatiert und für 3 Epochen mit einer Lernrate von <code>2e-4</code>, Batch-Größe 2 mit Gradient Accumulation 4, auf einer Colab Pro GPU trainiert.</p></div>
+  <div class="pm-phase"><h3><em>3 · Evaluierung &amp; Zusammenführung.</em> Prüfen, ob es besser wurde</h3>
+    <p>Baute eine manuelle 30-Prompt-Evaluierung mit einer 0–2 Bewertungsskala, nutzte die schwachen Antworten zur Korrektur des Datensatzes und trainierte erneut, dann führte ich den LoRA-Adapter mit den Basisgewichten zusammen, um ein einziges eigenständiges 7,6-GB-Modell zu erstellen. Behob einen Inferenz-Bug, bei dem <code>skip_special_tokens=True</code> das <code>&lt;|assistant|&gt;</code> Trennzeichen entfernte – dekodierte nur neu generierte Tokens über <code>outputs[0][input_length:]</code>.</p></div>
+  <div class="pm-phase"><h3><em>4 · Deployment.</em> Notebook → Live-Endpunkt</h3>
+    <p>Verpackte das Modell in einen Docker + FastAPI-Server und deployte es auf GCP Vertex AI, fronted durch eine mehrstufige Gradio-Chat-UI. Ein 7,6-GB-Modell sauber auf einer verwalteten Plattform zu laden, dauerte 11 Container-Iterationen (v1 → v11).</p></div>
+  <h2 class="pm-h2">Wichtige gelöste Engineering-Probleme</h2>
+  <table class="pm-table">
+    <tr><th>Symptom</th><th>Grundursache</th><th>Lösung</th></tr>
+    <tr><td>Container in einer unsichtbaren Neustartschleife getötet</td><td>Synchrones Laden des Modells blockierte Uvicorn, sodass der Gesundheitscheck von Vertex AI fehlschlug</td><td>Asynchroner Start mit <code>run_in_executor</code> – Gesundheitschecks bestehen sofort, während Gewichte im Hintergrund laden</td></tr>
+    <tr><td>Modell weigerte sich zu initialisieren</td><td>Gespeicherte <code>tokenizer_config.json</code> enthielt einen ungültigen <code>tokenizer_class</code> Schlüssel</td><td>Entfernen des fehlerhaften Schlüssels zur Laufzeit, mit einem <code>LlamaTokenizer</code> Fallback</td></tr>
+    <tr><td>Generischer 500 / Gewichtungsform-Kollision</td><td>Eine doppelte <code>model.safetensors</code> im Storage-Bucket hinterlassen</td><td>Löschen des Duplikats vor dem Deploy – die beiden Startkorrekturen funktionierten nur, wenn sie zusammen angewendet wurden</td></tr>
+  </table>
+  <p>Die funktionierende v11-Konfiguration pinnte <code>torch==2.4.1</code> und <code>transformers==4.46.3</code> auf einem <code>python:3.11-slim</code> Image und einer <code>n1-highmem-8</code> (52 GB) Maschine mit <code>low_cpu_mem_usage=True</code>. Endzustand: Modell live, beantwortet Finanzfragen korrekt.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>Hugging Face Transformers</span><span>PEFT / LoRA</span><span>TRL</span><span>BitsAndBytes</span><span>Unsloth</span><span>QLoRA (4-bit)</span><span>Gradio</span><span>Docker</span><span>FastAPI</span><span>GCP Vertex AI</span><span>Colab Pro</span></div>
+</template>
+
+<template id="detail-destatis-de">
+  <div class="pm-eyebrow">Datenanalyse · Wirtschaft</div>
+  <h1 class="pm-title">Deutscher Groß- und Einzelhandel — Analyse der Wirtschaftstätigkeit</h1>
+  <p class="pm-lede">Eine mehrdimensionale Studie über 16 Jahre offizieller deutscher Handelsstatistiken (Destatis, WZ2008) – Profilierung von Rentabilität, Investitionen, Arbeitsproduktivität, Größenvorteilen und Wachstum über Branchen, Unternehmensgrößen und Zeit hinweg.</p>
+  <p class="pm-meta">2025 · Einzelprojekt · Daten: Destatis (WZ2008 / NACE Rev. 2) · Code: <a href="https://github.com/SatadalS99/Annual_statistics_of_wholesale_and_retail_trade_de" target="_blank" rel="noopener noreferrer">github.com/SatadalS99/Annual_statistics…trade_de</a></p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>8,064</b><span>Datensätze</span></div>
+    <div class="pm-stat"><b>2005–20</b><span>16 Jahre</span></div>
+    <div class="pm-stat"><b>15</b><span>Metriken / Zeile</span></div>
+    <div class="pm-stat"><b>5</b><span>Forschungsfragen</span></div>
+    <div class="pm-stat"><b>28.69%</b><span>durchschn. Bruttorendite</span></div>
+  </div>
+  <h2 class="pm-h2">Die Fragestellung</h2>
+  <p>Deutschlands Wirtschaft ruht auf seinem Mittelstand und seiner Industriebasis. Unter Verwendung der offiziellen Destatis-Jahresstatistik des Groß- und Einzelhandels (WZ2008-Klassifikation, abgestimmt auf die europäische NACE Rev. 2) fragt dieses Projekt, wie sich Rentabilität, Kapitalinvestitionen, Arbeitsproduktivität, Unternehmensgröße und Unternehmensanzahl zwischen 2005 und 2020 über Branchen und Größenklassen hinweg verändert haben – ein Zeitfenster, das die Finanzkrise 2008, die Euro-Schuldenkrise und die Zeit vor COVID-19 umfasst.</p>
+  <h2 class="pm-h2">Daten &amp; Methode</h2>
+  <p>Der verarbeitete Datensatz enthält 8.064 Beobachtungen, jeweils eine eindeutige Kombination aus Jahr × Wirtschaftstätigkeit × Mitarbeitergrößenklasse, beschrieben durch 15 Spalten – Unternehmensanzahl, lokale Einheiten, Beschäftigte, Umsatz, Umsatz pro Unternehmen und pro Person, Wareneinsatz, Bruttoanlageinvestitionen, Bruttorendite und Ausgaben. Aus dem rohen Destatis-Excel-Export standardisiert die Pipeline Zahlenformate, behandelt geheim gehaltene Zellen, harmonisiert WZ2008-Codes und Größenklassen über die Jahre und berechnet die abgeleiteten Kennzahlen neu. Analyse und Visualisierung erfolgen in Python – <code>pandas</code>, <code>NumPy</code>, <code>matplotlib</code>, <code>seaborn</code> – mit wiederverwendbaren Funktionen in einem Utilities-Modul und dem vollständigen Workflow in einem Jupyter Notebook.</p>
+  <figure class="pm-fig">
+    <svg viewBox="0 0 460 220" role="img" aria-label="Median-Umsatz pro Beschäftigtem nach Größenklasse: 116, 134, 176, 268 — steigend mit der Größe.">
+      <line x1="40" y1="170" x2="440" y2="170" stroke="var(--line)" stroke-width="1"/>
+      <rect x="55"  y="109" width="70" height="61"  rx="4" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <rect x="160" y="100" width="70" height="70"  rx="4" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <rect x="265" y="78"  width="70" height="92"  rx="4" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <rect x="370" y="30"  width="70" height="140" rx="4" fill="var(--accent)" stroke="var(--accent)"/>
+      <text x="90"  y="101" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle">116</text>
+      <text x="195" y="92"  fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle">134</text>
+      <text x="300" y="70"  fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle">176</text>
+      <text x="405" y="22"  fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="700" text-anchor="middle">268</text>
+      <text x="90"  y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">1–2</text>
+      <text x="195" y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">3–5</text>
+      <text x="300" y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">6–19</text>
+      <text x="405" y="188" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle">20+</text>
+      <text x="240" y="208" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9" text-anchor="middle">Beschäftigte pro Firma →</text>
+    </svg>
+    <figcaption>Der Median-Umsatz pro Beschäftigtem steigt monoton mit der Unternehmensgröße – ~2,3× von Kleinstbetrieben (1–2) zu Großbetrieben (20+). Quelle: eigene Analyse der Destatis WZ2008-Daten.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Was die Daten zeigen</h2>
+  <div class="pm-phase"><h3><em>F1 · Rentabilität ist stabil.</em></h3>
+    <p>Über 7.857 gültige Beobachtungen liegt die Bruttorendite im Durchschnitt bei 28,69% (Median 29,30%, SD 11,42%) und hält sich 16 Jahre lang in einem engen Band von 27–31%. Der einzige echte Einbruch ist 2011–2012 (~27%), ein verzögertes Echo der Finanzkrise, danach pendelt es sich wieder auf 28–29% ein – widerstandsfähig in der Aggregation, aber von Firma zu Firma sehr variabel.</p></div>
+  <div class="pm-phase"><h3><em>F2 · Investitionsintensität steigt.</em></h3>
+    <p>Die Bruttoanlageinvestitionen machen durchschnittlich 1,22% des Umsatzes aus und steigen von ~0,95% Mitte der 2000er auf ~1,30% bis 2020 – ein relativer Anstieg von ~27%, wobei ein Zeittrend ~64% der Variation erklärt (R²=0.637). Sie erreichen ihren Höhepunkt um 2011–2012 und stagnieren nach 2016 auf erhöhtem Niveau.</p></div>
+  <div class="pm-phase"><h3><em>F3 · Skaleneffekte treiben die Produktivität.</em></h3>
+    <p>Der Median-Umsatz pro Beschäftigtem steigt monoton mit der Unternehmensgröße – 1–2, 3–5, 6–19, 20+ – wobei die größten Firmen die kleinsten mehr als verdoppeln (~2,3×, +131%). Ein hoher Mittelwert, aber ein niedriger Median in der kleinsten Klasse zeigt, dass einige außergewöhnliche Mikrobetriebe den Durchschnitt nach oben ziehen, während die meisten bescheiden bleiben.</p></div>
+  <div class="pm-phase"><h3><em>F4 · Größere Firmen, mehr Umsatz.</em></h3>
+    <p>Unternehmensgrößenklasse und Umsatz pro Unternehmen korrelieren mit r=0.542 – allein die Größe erklärt ~29% der Varianz (R²≈0.29). Jede Stufe in der Größenklasse fügt grob 8.900 € Unternehmensumsatz hinzu; die 20+-Klasse streut am weitesten, viele Firmen über 1 Mio. €. Größe ist ein struktureller Vorteil, keine Garantie – die Variation innerhalb der Klasse bleibt groß.</p></div>
+  <div class="pm-phase"><h3><em>F5 · Wachstum, dann Schrumpfung.</em></h3>
+    <p>Unternehmen und lokale Einheiten wachsen von 2005 bis 2020 beide um ~27% und erreichen etwa 5,2 Mio. Unternehmen und 7,3 Mio. lokale Einheiten, aber der Weg ist Boom-and-Bust: Expansion zu einem Höhepunkt um 2015 (~5,8 Mio. / ~8,0 Mio.), dann anhaltender Rückgang durch 2016–2020. Lokale Einheiten liegen durchweg ~38% über den Unternehmenszahlen, was auf viele Mehrstandortbetreiber hindeutet.</p></div>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>matplotlib</span><span>seaborn</span><span>openpyxl</span><span>Jupyter</span><span>Destatis (WZ2008)</span></div>
+</template>
+
+<template id="detail-manaslu-de">
+  <div class="pm-eyebrow">Data Engineering · Automatisierung</div>
+  <h1 class="pm-title">Manaslu Höhenprognose-Warnsystem</h1>
+  <p class="pm-lede">Eine vollautomatische Datenpipeline, die eine kostenlose öffentliche Wetter-API in umsetzbare Höhenwarnungen für den Mt. Manaslu (8.163 m) verwandelt – extrahieren, transformieren, speichern, entscheiden und liefern, voll automatisiert und getestet.</p>
+  <p class="pm-meta">2026 · Einzelprojekt · Daten: Open-Meteo (ECMWF IFS + GFS, kein API-Key) · Code: <a href="https://github.com/SatadalS99/weather-anomaly-tracker" target="_blank" rel="noopener noreferrer">github.com/SatadalS99/weather-anomaly-tracker</a></p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>8,163 m</b><span>Gipfel</span></div>
+    <div class="pm-stat"><b>6</b><span>Höhenbänder</span></div>
+    <div class="pm-stat"><b>99</b><span>Offline-Tests</span></div>
+    <div class="pm-stat"><b>4</b><span>CI-Workflows</span></div>
+    <div class="pm-stat"><b>7-Tage</b><span>Stundenhorizont</span></div>
+  </div>
+  <h2 class="pm-h2">Das Problem</h2>
+  <p>Auf einem 8.000 m hohen Gipfel ist das Wetter der Unterschied zwischen einem Gipfelsieg und einer Rettung – aber die vertikalen Prognosen, auf die sich Kletterer verlassen, sind teuer und werden manuell interpretiert. Die technische Frage war infrastruktureller Natur: Kann eine <em>kostenlose</em> öffentliche API in einen zuverlässigen, korrekt interpolierten, selbst planenden Alarmierungsdienst verwandelt werden, der eine ganze Saison ohne Serverbetreuung und ohne stille Fehler läuft? Dies ist ein Überwachungstool, kein Go/No-Go-Entscheidungstool – ein entsprechender Haftungsausschluss wird in jeder Nachricht mitgeliefert.</p>
+  <h2 class="pm-h2">Die Pipeline</h2>
+  <p>Sechs unabhängige, einzeln getestete Stufen, verdrahtet in einen Orchestrator (<code>main.py --mode digest|danger|test|status</code>). Alles, was sich ändern kann – Höhenbänder, Schwellenwerte, Zeitplan, Kanäle – lebt in <code>config.yaml</code>, niemals im Code.</p>
+  <figure class="pm-fig">
+    <svg class="arch" viewBox="0 0 720 215" preserveAspectRatio="xMidYMid meet" role="img" aria-label="ETL-Pipeline: Extrahieren von Open-Meteo, Interpolieren auf Höhenbänder, Auswerten von Schwellenwerten, Speichern und Deduplizieren in SQLite, Formatieren, Liefern über Kanäle; geplant von GitHub Actions.">
+      <defs><marker id="arwE-de" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker></defs>
+      <text class="arch-lbl" x="8" y="12">① EXTRAHIEREN · TRANSFORMIEREN</text>
+      <text class="arch-lbl" x="8" y="140">② LADEN · LIEFERN</text>
+      <rect x="8"   y="22" width="150" height="38" rx="8"/><text x="83"  y="46">Open-Meteo API</text>
+      <rect x="182" y="22" width="96"  height="38" rx="8"/><text x="230" y="46">Fetch</text>
+      <rect x="302" y="22" width="170" height="38" rx="8"/><text x="387" y="46">Interpolieren → Bänder</text>
+      <rect x="496" y="22" width="216" height="38" rx="8"/><text x="604" y="46">Schwellen + Fenster</text>
+      <rect x="8"   y="150" width="210" height="38" rx="8"/><text x="113" y="174">SQLite · De-dup</text>
+      <rect x="242" y="150" width="110" height="38" rx="8"/><text x="297" y="174">Formatieren</text>
+      <rect x="376" y="150" width="250" height="38" rx="8"/><text x="501" y="174">E-Mail · Telegram · SMS</text>
+      <g>
+        <line class="conn" x1="158" y1="41" x2="180" y2="41" marker-end="url(#arwE-de)"/>
+        <line class="conn" x1="278" y1="41" x2="300" y2="41" marker-end="url(#arwE-de)"/>
+        <line class="conn" x1="472" y1="41" x2="494" y2="41" marker-end="url(#arwE-de)"/>
+      </g>
+      <g>
+        <line class="conn" x1="218" y1="169" x2="240" y2="169" marker-end="url(#arwE-de)"/>
+        <line class="conn" x1="352" y1="169" x2="374" y2="169" marker-end="url(#arwE-de)"/>
+        <path class="conn" d="M604,60 V116 H113 V146" marker-end="url(#arwE-de)"/>
+      </g>
+      <text class="arch-lbl" x="360" y="208" style="text-anchor:middle">geplant von GitHub Actions · cron — Digest 2×/Tag, Gefahrencheck stündlich</text>
+    </svg>
+    <figcaption>End-to-End ETL-Flow – API rein, deduplizierte Multi-Channel-Alarme raus, orchestriert nach Zeitplan.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Entscheidende Engineering-Entscheidungen</h2>
+  <div class="pm-phase"><h3><em>1 · Korrekte vertikale Interpolation.</em></h3>
+    <p>Das ~25 km Grid von GFS legt Base Camp und Gipfel in <em>dieselbe</em> Zelle, sodass eine Änderung des Längengrads nichts bewirkt – das Höhensignal kommt von Druckniveaus (600–300 hPa), die auf jedes Band unter Verwendung <em>der für diese Prognosestunde zurückgegebenen geopotentiellen Höhe</em> interpoliert werden, nicht aus einer statischen Tabelle. Am Tag des Builds lag 350 hPa bei 8.635 m, nicht bei den Lehrbuch-~8.100 m; eine Lookup-Tabelle hätte das Wetter des Gipfels 500 m zu hoch abgelesen.</p></div>
+  <div class="pm-phase"><h3><em>2 · Wind als Vektoren interpoliert.</em></h3>
+    <p>Windrichtungen werden vor der Interpolation in u/v-Komponenten umgewandelt und danach wieder kombiniert. Das direkte Mitteln von Graden würde einen stetigen Nordwind (359° und 1°) in einen Südwind verwandeln – ein stiller 180°-Fehler.</p></div>
+  <div class="pm-phase"><h3><em>3 · Idempotente, deduplizierte Warnungen.</em></h3>
+    <p>Der stündliche Gefahrencheck fingerprinted die aktive Gefahrenmenge in SQLite: Eine neue oder sich verschlimmernde Gefahr bricht sofort durch, eine unveränderte wiederholt sich nur alle 12 Stunden, und ein einziges "Alles klar" wird gesendet, wenn Rot aufgehoben wird. Der Fingerprint ignoriert Modellschwankungen im Sub-km/h-Bereich, sodass stündliche Wiederholungsläufe niemals als frische Gefahren erscheinen.</p></div>
+  <div class="pm-phase"><h3><em>4 · Gipfelfenster-Erkennung.</em></h3>
+    <p>Anstatt Bedingungen auszuspucken, scannt der Dienst die 7-Tage-Prognose nach Läufen von 6+ aufeinanderfolgenden Stunden, in denen <em>jedes</em> Kletterband gleichzeitig grün ist und kein Niederschlag fällt, und meldet jedes Fenster mit seinem schlechtesten Wind und der kältesten Windchill.</p></div>
+  <h2 class="pm-h2">Entscheidungsschwellen</h2>
+  <p>Jedes Band wird als Grün / Gelb / Rot gegen konfigurierbare Grenzwerte eingestuft (Windchill verwendet die NWS-Formel, die nur in ihrem gültigen Bereich angewendet wird – T ≤ 10 °C, V ≥ 4,8 km/h – anstatt außerhalb davon fabriziert zu werden):</p>
+  <table class="pm-table">
+    <tr><th>Parameter</th><th>Grün</th><th>Gelb</th><th>Rot</th></tr>
+    <tr><td>Windgeschwindigkeit (Kletterband)</td><td>&lt; 30</td><td>30–50</td><td>&gt; 50 km/h</td></tr>
+    <tr><td>Windböen (Oberfläche)</td><td>&lt; 40</td><td>40–60</td><td>&gt; 60 km/h</td></tr>
+    <tr><td>Windchill</td><td>&gt; −40</td><td>−40 bis −50</td><td>&lt; −50 °C</td></tr>
+    <tr><td>Schneefall (24 h)</td><td>&lt; 20</td><td>20–50</td><td>&gt; 50 mm</td></tr>
+    <tr><td>Druckabfall (6 h)</td><td>&lt; 3</td><td>3–6</td><td>&gt; 6 hPa</td></tr>
+    <tr><td>CAPE</td><td>&lt; 100</td><td>100–500</td><td>&gt; 500 J/kg</td></tr>
+  </table>
+  <h2 class="pm-h2">Automatisierung &amp; Zuverlässigkeit</h2>
+  <p>Der Dienst läuft vollständig auf <strong>GitHub Actions</strong> – vier geplante Workflows (zweimal täglich Digest um 01:00 / 13:00 UTC, stündlicher Gefahrencheck, ein Keepalive und die Test-Suite), mit systemd-Units als selbst gehostete Alternative. <strong>99 vollständig offline Tests</strong> laufen in CI gegen eine aufgezeichnete Open-Meteo-Antwort und decken Wind-Vektor-Roundtrips und den 359°/1°-Wrap, Geopotential-Bracketing, Windchill gegen NWS-Referenzwerte, Schwellengrenzen, Summit-Window-Splitting, Alarm-De-Duplizierung und das SMS-Segmentbudget ab. Ein Preflight-Skript scannt den Tree und die Git-History nach geleakten Secrets, bevor das Repo öffentlich geht; Empfänger werden aus Umgebungsvariablen aufgelöst und in allen Logs maskiert. Kanäle werden mit <code>console</code> als Standard deaktiviert ausgeliefert, sodass es Ende-zu-Ende ohne Anmeldeinformationen läuft.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>httpx</span><span>pandas</span><span>PyYAML</span><span>Jinja2</span><span>SQLite</span><span>Twilio</span><span>pytest</span><span>GitHub Actions</span><span>systemd</span></div>
+</template>
+
+<template id="detail-dhl-de">
+  <div class="pm-eyebrow">Zeitreihen · Prognose</div>
+  <h1 class="pm-title">Paketbedarfsprognose</h1>
+  <p class="pm-lede">Benchmarking von 14 Prognosemodellen zur Vorhersage wöchentlicher Paketvolumina für einen großen Logistikdienstleister – und der Nachweis, dass die Anpassung eines Modells an jede Kunden-Produkt-Linie die erzwungene Verwendung einer globalen Regel schlägt.</p>
+  <p class="pm-meta">2026 · TU Dortmund Real World Solution Summit · Team von 4 · Code privat</p>
+  <p style="background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:10px;padding:10px 14px;font-family:var(--mono);font-size:.7rem;color:var(--text-2);line-height:1.6;margin:0 0 18px;">Vertrauliches Projekt – eine TU Dortmund Real World Solution Summit Challenge zu den proprietären Wochenvolumina eines großen Paketlogistikers im Rahmen einer Datenvereinbarung. Absolute Volumina werden zurückgehalten; Prozentsätze, Verhältnisse und Modellergebnisse sind exakt. Der Code ist privat.</p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>37</b><span>Kunden-Produkt-Linien</span></div>
+    <div class="pm-stat"><b>14</b><span>Modelle gebenchmarkt</span></div>
+    <div class="pm-stat"><b>7-fach</b><span>rollierende CV</span></div>
+    <div class="pm-stat"><b>16-Wo</b><span>Prognose (KW 1–16)</span></div>
+    <div class="pm-stat"><b>~14%</b><span>geringerer Fehler pro Linie</span></div>
+  </div>
+  <h2 class="pm-h2">Das Problem</h2>
+  <p>Kunden melden ihre erwarteten Volumina oft zu spät, aber der Betreiber muss Personal, LKWs, Sortiermaschinen und Netzkapazitäten <em>im Voraus</em> planen. Überkapazität kostet Geld; Unterkapazität führt zu Verzögerungen und Paketstaus – ein direkter Kosten-/Zeit-/Qualitätskompromiss. Das Ziel: eine zuverlässige frühe Prognose der wöchentlichen Paketvolumina, die die operative Planung unterstützt, bevor Kunden ihre Volumina ankündigen.</p>
+  <h2 class="pm-h2">Die Daten &amp; was sie erforderten</h2>
+  <p>37 aktive Kunden-Produkt-Linien (20 Kunden × 2 Produkte), wöchentlich von 2023–2025, ohne fehlende Werte. Zwei EDA-Erkenntnisse prägten den gesamten Ansatz. Erstens ist die Nachfrage <strong>heavy-tailed und konzentriert</strong>: Eine Handvoll riesiger Bestellungen dominiert (Mittelwert weit über dem Median), Produkt A macht 63% des Volumens aus vs. B's 37%, und die Top 10 Linien tragen ~62% des Gesamtvolumens – daher ist Robustheit gegenüber Spitzen wichtiger als Modellkomplexität, und ein milder Abwärtstrend von ~3%/Jahr läuft darunter. Zweitens sind innerhalb eines Kunden <strong>die Produkte A und B statistisch unabhängig</strong> (p &gt; 0.05, robust über Zeitskalen und unter Multi-Testing-Korrektur) – die meisten Kunden sind Spezialisten – was die Modellierung jeder Linie rechtfertigt.</p>
+  <h2 class="pm-h2">Validierung</h2>
+  <p>Streng zeitbasiert, ohne Look-Ahead: Modelle trainieren nur mit Daten, die zum Prognosezeitpunkt verfügbar sind. Der Haupt-Split trainiert auf zwei Jahren (~87%) und testet die nächsten 16 Wochen (~13%), wiederholt über <strong>7 rollierende Startwochen</strong>, sodass die Punktzahl nicht von einem Split abhängt. Alles wird anhand des mittleren absoluten Fehlers bewertet – niedriger ist besser – wobei 14 Kandidatenmodelle verglichen werden.</p>
+  <h2 class="pm-h2">Zwei Ansätze</h2>
+  <div class="pm-phase"><h3><em>Ansatz 1 · eine globale Regel.</em></h3>
+    <p>Testen Sie alle 14 Modelle auf den gepoolten Daten und behalten Sie die einzige beste Regel für jede Linie. Der Gewinner war eine spitzennrobuste Shrinkage-Regel – <code>Prognose = [0.5 × Vorjahreswoche + 0.5 × getrimmtes Mittel] × 0.97</code> – die das Jahresmuster mit einem spitzenignorierenden Durchschnitt vermischt und den Rückgang von ~3%/Jahr einbackt. Sie schlug Copy-Last-Year, ARIMA, Holt-Winters und ML im Durchschnitt, aber eine Regel kann nicht alle 37 Linien gleich gut abdecken.</p></div>
+  <div class="pm-phase"><h3><em>Ansatz 2 · ein Modell pro Linie.</em></h3>
+    <p>Wählen Sie für jede Linie das Modell mit dem niedrigsten Validierungsfehler aus demselben 14-Modell-Pool. Es gab <strong>keinen einzigen Gewinner</strong> – das beste Modell variierte je nach Linie und verteilte sich auf Flat-Level, Croston (intermittierende Nachfrage), Shrink-to-Trimmed, Easter-Aligned, ARIMA, Two-Year-Average, Holt-Winters und ML. Volatile und intermittierende Linien bevorzugten robuste / intermittierende Nachfragemodelle; stabile Linien bevorzugten glatte.</p></div>
+  <figure class="pm-fig">
+    <svg viewBox="0 0 600 175" role="img" aria-label="Mittlerer absoluter Fehler, indexiert zur besten globalen Regel bei 100; Per-Line-Modellauswahl erzielt 86, etwa 14% niedriger.">
+      <text x="300" y="24" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="10">Mittlerer absoluter Fehler · indexiert (globale Regel = 100) · niedriger ist besser</text>
+      <text x="168" y="74" text-anchor="end" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12">Globale Regel</text>
+      <rect x="180" y="54" width="320" height="30" rx="5" fill="var(--accent-dim)" stroke="var(--accent-line)"/>
+      <text x="508" y="74" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="12">100</text>
+      <text x="168" y="124" text-anchor="end" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="12">Auswahl pro Linie</text>
+      <rect x="180" y="104" width="275" height="30" rx="5" fill="var(--accent)" stroke="var(--accent)"/>
+      <text x="463" y="124" fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="700">86</text>
+      <text x="512" y="124" fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="700">−14%</text>
+    </svg>
+    <figcaption>Die Modellauswahl pro Linie senkte den mittleren absoluten Fehler um ~14% im Vergleich zur besten einzelnen globalen Regel. Absolute Fehlerwerte werden zurückgehalten.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Ergebnis</h2>
+  <p>Die Anpassung eines Modells an jede Kunden-Produkt-Linie senkte den mittleren absoluten Fehler um <strong>~14%</strong> gegenüber der besten einzelnen globalen Regel – die Kernempfehlung: Zwingen Sie nicht allen 37 Linien ein Modell auf, sondern passen Sie es an. Die gelieferte 16-Wochen-Prognose lag etwa <strong>3% unter dem Vorjahr</strong> (0,97×), im Einklang mit dem zugrunde liegenden Trend, als ein 37 × 16 = 592-Zeilen-Deliverable.</p>
+  <h2 class="pm-h2">Stack</h2>
+  <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>statsmodels</span><span>scikit-learn</span><span>matplotlib</span><span>Jupyter</span></div>
+</template>
+
+<template id="detail-picnic-de">
+  <div class="pm-eyebrow">Unüberwachtes ML · Segmentierung</div>
+  <h1 class="pm-title">Kunden-Onboarding-Segmentierung</h1>
+  <p class="pm-lede">Unüberwachte Segmentierung neuer Lebensmittel-Lieferkunden anhand der <em>Form</em> ihrer ersten 23 Bestellwochen – verwandelt ein vages "Kunden wandern ab" in drei präzise Archetypen, jeder mit seiner eigenen Aktion und seinem eigenen Moment zum Handeln.</p>
+  <p class="pm-meta">2026 · Seminarprojekt mit Industriepartner · Code privat</p>
+  <p style="background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:10px;padding:10px 14px;font-family:var(--mono);font-size:.7rem;color:var(--text-2);line-height:1.6;margin:0 0 18px;">Vertrauliches Projekt – basierend auf dem proprietären Kundenpanel eines Online-Lebensmittelhändlers im Rahmen einer Datenvereinbarung. Kundenanzahlen und Bestellvolumina werden zurückgehalten; Cluster-Proportionen, Qualitätsmetriken und das 6,5× Wertverhältnis sind exakt, und Trajektorienwerte sind normalisiert (0–1). Das Repository ist privat.</p>
+  <div class="pm-stats">
+    <div class="pm-stat"><b>3</b><span>Verhaltensarchetypen</span></div>
+    <div class="pm-stat"><b>23</b><span>Wochen-Trajektorien</span></div>
+    <div class="pm-stat"><b>K=3</b><span>gewinnt 4/5 Metriken</span></div>
+    <div class="pm-stat"><b>11%</b><span>hochwertige Abwanderung</span></div>
+    <div class="pm-stat"><b>6.5×</b><span>Wert pro Kopf</span></div>
+  </div>
+  <h2 class="pm-h2">Das Problem</h2>
+  <p>Der Händler gab viel Geld aus, um Kunden zu gewinnen, die ein oder zwei Bestellungen aufgaben und dann leise verschwanden. Es gab keine Sichtbarkeit auf Abwanderung, bis ein Kunde bereits weg war, jeder abgewanderte Kunde erhielt die gleiche generische Re-Engagement-E-Mail, und es gab keine Antwort auf die eine operative Frage, die zählte: <em>In welcher Woche sollten wir eingreifen?</em> Schlimmer noch, der insgesamt rückläufige Bestelltrend sah wie ein Problem aus, war aber eigentlich mehrere verschiedene Verhaltensweisen, die zu einer einzigen irreführenden Zahl gemittelt wurden.</p>
+  <h2 class="pm-h2">Die Idee</h2>
+  <p>Die Standard-Churn-Analyse gibt ein binäres Label aus, das <em>nach</em> dem Verlassen des Kunden ausgelöst wird und nichts darüber aussagt, wie oder wann er sich abgemeldet hat. Das Reframing: Kunden hören nicht alle auf die gleiche Weise auf, also gruppieren Sie sie nach der <strong>Form ihrer Bestellkurve über die Zeit</strong>, nicht nach einer einzelnen Point-in-Time-Metrik. Die wöchentliche Lieferhistorie jedes Kunden wird zu einer Trajektorie, und Kunden werden nach Trajektorienform geclustert.</p>
+  <h2 class="pm-h2">Methode</h2>
+  <p>Ein Vier-Check-EDA-Audit (Null-Wochen, negative Zeilen vor der Akquisition, Null-Lieferkonten, Neu-vs-Bestandskunden) trimmte das rohe wöchentliche Panel auf eine saubere Kohorte von wirklich neuen Kunden. Ihre Historien wurden in eine 23-Wochen-Trajektorienmatrix pivotiert und <strong>zeilenweise min-max normalisiert</strong> – geteilt durch den eigenen Höhepunkt jedes Kunden – sodass das Clustering auf <em>wann</em> sie aktiv waren (Form) abzielte, nicht auf <em>wie viel</em> sie bestellten (Volumen). Mit festlängigen, ~85%-Null-, nahezu binären Sequenzen schlug einfaches <strong>K-Means</strong> DTW, k-Shape, DBSCAN und GMM (feste Länge entfernt DTWs Vorteil; Sparsity bricht die glatten Verteilungsmethoden; Zentroide bleiben geschäftlich lesbar). Bei der Auswahl von <code>k</code> über fünf Metriken <strong>gewann K=3 vier von fünf</strong> (Silhouette 0.153, Ellbogen, Calinski-Harabasz und Min-Cluster-Größe; K=4 nahm nur Davies-Bouldin). Endlauf: Euklidisches K-Means, 15 Neustarts, 500 Max-Iterationen, fixer Seed.</p>
+  <figure class="pm-fig">
+    <svg viewBox="0 0 560 300" role="img" aria-label="Drei normalisierte Kunden-Trajektorien über 23 Wochen: eine flache nie-aktivierte Gruppe, eine steigende Spätadopter-Gruppe mit Höhepunkt um Woche 21 und eine früh-aktive Gruppe mit Höhepunkt in Woche 9, die dann abfällt.">
+      <line x1="50" y1="40" x2="50" y2="250" stroke="var(--line)" stroke-width="1"/>
+      <line x1="50" y1="250" x2="530" y2="250" stroke="var(--line)" stroke-width="1"/>
+      <text x="44" y="46" text-anchor="end" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">Höhepunkt</text>
+      <text x="44" y="253" text-anchor="end" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">0</text>
+      <line x1="221" y1="40" x2="221" y2="250" stroke="var(--accent-line)" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="225" y="52" fill="var(--accent)" font-family="'IBM Plex Mono',monospace" font-size="10" font-weight="600">Woche 9 — eingreifen</text>
+      <path d="M50,240 L285,242 L520,239" fill="none" stroke="var(--muted)" stroke-width="1.6"/>
+      <path d="M50,240 L199,208 L349,166 L477,128 L520,135" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-dasharray="6 4"/>
+      <path d="M50,198 L135,145 L221,93 L328,145 L456,198 L520,219" fill="none" stroke="var(--accent)" stroke-width="2.6"/>
+      <circle cx="221" cy="93" r="4" fill="var(--accent)"/>
+      <text x="50" y="266" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">W1</text>
+      <text x="520" y="266" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">W23</text>
+      <text x="290" y="288" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',monospace" font-size="9">Wochen seit erster Lieferung →</text>
+      <line x1="330" y1="283" x2="352" y2="283" stroke="var(--accent)" stroke-width="2.6"/><text x="356" y="286" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="9">Abwandernd 11%</text>
+      <line x1="432" y1="283" x2="454" y2="283" stroke="var(--text-2)" stroke-width="2" stroke-dasharray="6 4"/><text x="458" y="286" fill="var(--text-2)" font-family="'IBM Plex Mono',monospace" font-size="9">Adopter 19%</text>
+    </svg>
+    <figcaption>Normalisierte Trajektorienformen (0–1) für die drei Cluster. Absolute Volumina zurückgehalten; Proportionen exakt.</figcaption>
+  </figure>
+  <h2 class="pm-h2">Die drei Archetypen</h2>
+  <div class="pm-phase"><h3><em>Nie aktiviert — ~70%.</em></h3>
+    <p>Flach nahe Null für alle 23 Wochen: Diese Kunden gaben eine Eröffnungsbestellung auf, um beizutreten, bauten aber nie eine Gewohnheit auf – sie gingen nicht zurück, sie waren nie aktiv. <strong>Aktion:</strong> kostengünstige automatisierte Reaktivierung mit einer strikten 2-Wochen-Frist; kein Premium-Budget.</p></div>
+  <div class="pm-phase"><h3><em>Späte Beitretende &amp; Adopter — ~19%.</em></h3>
+    <p>Steigende Trajektorie mit Höhepunkt um Woche 21 – kürzlich beigetreten oder langsam aufbauend und in die richtige Richtung gehend. <strong>Aktion:</strong> leichte Ermutigung und ein kleiner Loyalitätsanstoß um die Wochen 8–10; nicht überintervenieren.</p></div>
+  <div class="pm-phase"><h3><em>Früh aktiv, abwandernd — ~11%.</em></h3>
+    <p>Starker Start, Höhepunkt in <strong>Woche 9</strong>, dann ein stetiger 14-Wochen-Abfall – und <strong>6,5× wertvoller pro Kopf</strong> als die nie-aktivierte Gruppe. <strong>Aktion:</strong> dringende personalisierte Kundenbindung, ausgelöst in Woche 9 – die Intervention mit dem höchsten ROI in der gesamten Analyse.</p></div>
+  <h2 class="pm-h2">Der Nutzen</h2>
+  <p>Anstatt einer pauschalen Re-Engagement-E-Mail erhält das Unternehmen drei gezielte Maßnahmen – und, was entscheidend ist, ein <strong>Timing-Signal</strong>: Das wertvollste Segment wandert ab Woche 9 leise ab, also ist das genau der Zeitpunkt, um Retention-Budget auszugeben. Die formbasierte Segmentierung verwandelte einen irreführenden aggregierten Trend in einen operativen Kalender.</p>
   <h2 class="pm-h2">Stack</h2>
   <div class="pm-stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>scikit-learn</span><span>SciPy</span><span>matplotlib</span><span>seaborn</span><span>Jupyter</span></div>
 </template>
@@ -1259,7 +1535,9 @@ const i18n = {
     rec_more: "Full pre-2013 history available on request",
     contact_eyebrow: "04 — Contact", contact_title: "Your data has answers.<br><span class='accent'>Let's find them.</span>",
     contact_desc: "Open to Werkstudent, internship and full-time data science roles.",
-    footer_status: "connecting dots"
+    footer_status: "connecting dots",
+    pm_label: "Project case study",
+    pm_close: "Close"
   },
   de: {
     skip: "Zum ausgewählten Bereich springen",
@@ -1302,7 +1580,9 @@ const i18n = {
     rec_more: "Vollständige Historie vor 2013 auf Anfrage erhältlich",
     contact_eyebrow: "04 — Kontakt", contact_title: "Ihre Daten haben Antworten.<br><span class='accent'>Lassen Sie sie uns finden.</span>",
     contact_desc: "Offen für Werkstudenten-, Praktikums- und Vollzeitstellen im Bereich Data Science.",
-    footer_status: "verbinde Punkte"
+    footer_status: "verbinde Punkte",
+    pm_label: "Projekt-Fallstudie",
+    pm_close: "Schließen"
   }
 };
 
@@ -1394,7 +1674,6 @@ function copyEmail() {
   }
 }
 
-document.getElementById('copyEmailHero').addEventListener('click', copyEmail);
 document.getElementById('copyEmailContact').addEventListener('click', copyEmail);
 
 /* ==========================================
@@ -1507,16 +1786,24 @@ document.getElementById('copyEmailContact').addEventListener('click', copyEmail)
   const closeBtn=document.getElementById('pm-close');
   if(!overlay||!bodyEl||!closeBtn) return;
   let lastFocus=null;
+  
   function open(key){
-    const tpl=document.getElementById('detail-'+key);
+    const langSuffix = currentLang === 'de' ? '-de' : '-en';
+    // Try to find language specific template, fallback to English if missing
+    let tpl = document.getElementById('detail-' + key + langSuffix);
+    if(!tpl) tpl = document.getElementById('detail-' + key + '-en');
+    if(!tpl) tpl = document.getElementById('detail-' + key); 
+    
     if(!tpl) return;
-    bodyEl.innerHTML=tpl.innerHTML;
+    
+    bodyEl.innerHTML = tpl.innerHTML;
     overlay.classList.add('open');
     document.body.style.overflow='hidden';
     overlay.querySelector('.pm-dialog').scrollTop=0;
     lastFocus=document.activeElement;
     closeBtn.focus();
   }
+  
   function close(){
     overlay.classList.remove('open');
     document.body.style.overflow='';
