@@ -1765,6 +1765,19 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* Form Submission (Web3Forms Fetch API) */
+// --- hCaptcha Validation ---
+(function() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    const hCaptcha = form.querySelector('textarea[name=h-captcha-response]');
+    if (!hCaptcha || !hCaptcha.value) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      alert(currentLang === 'de' ? 'Bitte Captcha ausfüllen.' : 'Please complete the captcha.');
+    }
+  });
+})();
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
