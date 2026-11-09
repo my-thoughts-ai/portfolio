@@ -976,6 +976,16 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 <!-- =========================================
      EN CASE STUDY TEMPLATES
      ========================================= -->
+   <!-- ===== Project case-study modal ===== -->
+<div class="pm-overlay" id="pm-overlay" role="dialog" aria-modal="true" aria-label="Project case study">
+  <div class="pm-dialog">
+    <div class="pm-head">
+      <span class="lbl2" data-i18n="pm_label">Project case study</span>
+      <button class="pm-close" id="pm-close" aria-label="Close" data-i18n="pm_close">✕</button>
+    </div>
+    <div class="pm-content" id="pm-body"></div>
+  </div>
+</div>
 <template id="detail-phi3-en">
   <div class="pm-eyebrow">Machine Learning · MLOps</div>
   <h1 class="pm-title">Fine-Tuning &amp; Deploying a Domain-Specialist LLM</h1>
