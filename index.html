@@ -1,3 +1,22 @@
+This is a fantastic update. Using **Web3Forms** completely solves the `mailto:` redirect issue. It allows the form to submit silently in the background and actually delivers the email straight to your inbox.
+
+I have updated your code to include:
+1. **Direct Background Submission:** The form uses your Web3Forms Access Key (`f590d332-617f-4649-966a-9a4f7e56ea2b`) and submits via `fetch()` without reloading or redirecting.
+2. **File Attachment:** Added a clean file upload input allowing recruiters to attach a PDF or image.
+3. **Live Status Updates:** Added a status text under the button that shows "Sending...", "Success!", or "Error", fully translated into English and German.
+4. **Form Reset & Modal Close:** Upon success, the form resets and the modal automatically closes after 3 seconds.
+
+### The Setup (Crucial Steps for You)
+
+To get the **Automated Replies** and **Integrations (Slack/Discord/Google Sheets)** working, you don't need to change any code. You configure these directly in your Web3Forms dashboard:
+1. **Auto-Reply:** Log in to Web3Forms, go to your form settings, and enable the "Autoresponse" feature. Type in the "Thank you for reaching out!" message, and Web3Forms will automatically email the person who filled out your form.
+2. **Integrations:** In the Web3Forms dashboard, go to the "Integrations" tab. You can connect your form to Google Sheets, Slack, or Discord with a few clicks.
+
+### The Updated Code
+
+Save this as `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -34,6 +53,7 @@
   --sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --req: #ef4444;
+  --success: #10b981;
 }
 [data-theme="dark"] {
   --bg: #0B0B0D;
@@ -52,6 +72,7 @@
   --lime: #38bdf8;
   --lime-dim: rgba(56, 189, 248, 0.10);
   --req: #f87171;
+  --success: #34d399;
 }
 
 /* ==========================================
@@ -460,15 +481,28 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 .contact-form-modal .form-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px; }
 .contact-form-modal label { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-2); font-weight: 500; }
 .contact-form-modal .req { color: var(--req); font-weight: 700; }
-.contact-form-modal input, .contact-form-modal textarea {
+.contact-form-modal input[type="text"], .contact-form-modal input[type="email"], .contact-form-modal textarea, .contact-form-modal input[type="file"] {
   width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line);
   background: var(--bg-alt); color: var(--text); font-family: var(--sans); font-size: 0.9rem;
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form-modal input[type="file"] { padding: 9px 14px; cursor: pointer; }
+.contact-form-modal input[type="file"]::file-selector-button {
+  background: var(--surface); border: 1px solid var(--line); color: var(--text);
+  padding: 4px 10px; border-radius: 6px; margin-right: 12px; cursor: pointer; font-family: var(--sans); font-size: 0.8rem;
 }
 .contact-form-modal input:focus, .contact-form-modal textarea:focus {
   outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim);
 }
 .contact-form-modal textarea { resize: vertical; min-height: 120px; }
+
+/* Form Status Messages */
+.form-status {
+  padding: 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 500; text-align: center; margin-bottom: 15px; display: none;
+}
+.form-status.info { background: var(--accent-dim); color: var(--accent); }
+.form-status.success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+.form-status.error { background: rgba(239, 68, 68, 0.1); color: var(--req); }
 </style>
 </head>
 <body>
@@ -948,23 +982,31 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
       <button class="pm-close" id="closeContactModal" aria-label="Close">✕</button>
     </div>
     <div class="pm-content">
-      <form id="contactForm">
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="f590d332-617f-4649-966a-9a4f7e56ea2b">
         <div class="form-group">
           <label for="name" data-i18n="form_name">Name</label>
-          <input type="text" id="name" required placeholder="John Doe" data-i18n-ph="form_name_ph" />
+          <input type="text" id="name" name="name" required placeholder="John Doe" data-i18n-ph="form_name_ph" />
         </div>
         <div class="form-group">
           <label for="email" data-i18n="form_email">Email <span class="req">*</span></label>
-          <input type="email" id="email" required placeholder="john@example.com" data-i18n-ph="form_email_ph" />
+          <input type="email" id="email" name="email" required placeholder="john@example.com" data-i18n-ph="form_email_ph" />
         </div>
         <div class="form-group">
           <label for="subject" data-i18n="form_subject">Subject</label>
-          <input type="text" id="subject" required placeholder="Project Inquiry" data-i18n-ph="form_subject_ph" />
+          <input type="text" id="subject" name="subject" required placeholder="Project Inquiry" data-i18n-ph="form_subject_ph" />
+        </div>
+        <div class="form-group">
+          <label for="attachment" data-i18n="form_attachment">Attachment (PDF / Image)</label>
+          <input type="file" id="attachment" name="attachment" accept=".pdf, image/*">
         </div>
         <div class="form-group">
           <label for="message" data-i18n="form_message">Message</label>
-          <textarea id="message" rows="5" required placeholder="Hello Satadal..." data-i18n-ph="form_message_ph"></textarea>
+          <textarea id="message" name="message" rows="5" required placeholder="Hello Satadal..." data-i18n-ph="form_message_ph"></textarea>
         </div>
+        
+        <p id="form-status" class="form-status"></p>
+        
         <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top: 8px;" data-i18n="form_submit">Send Message</button>
       </form>
     </div>
@@ -1581,9 +1623,12 @@ const i18n = {
     form_name: "Name", form_name_ph: "John Doe",
     form_email: "Email", form_email_ph: "john@example.com",
     form_subject: "Subject", form_subject_ph: "Project Inquiry",
+    form_attachment: "Attachment (PDF / Image)", 
     form_message: "Message", form_message_ph: "Hello Satadal...",
     form_submit: "Send Message",
-    toast_opening: "Opening email client...",
+    form_status_sending: "Sending...",
+    form_status_success: "Message sent successfully!",
+    form_status_error: "Error sending message. Please email me directly.",
     toast_copied: "Email copied!"
   },
   de: {
@@ -1635,9 +1680,12 @@ const i18n = {
     form_name: "Name", form_name_ph: "Max Mustermann",
     form_email: "E-Mail <span class='req'>*</span>", form_email_ph: "max@beispiel.de",
     form_subject: "Betreff", form_subject_ph: "Projektanfrage",
+    form_attachment: "Anhang (PDF / Bild)",
     form_message: "Nachricht", form_message_ph: "Hallo Satadal...",
     form_submit: "Nachricht senden",
-    toast_opening: "E-Mail-Programm wird geöffnet...",
+    form_status_sending: "Wird gesendet...",
+    form_status_success: "Nachricht erfolgreich gesendet!",
+    form_status_error: "Fehler beim Senden. Bitte senden Sie mir eine direkte E-Mail.",
     toast_copied: "E-Mail kopiert!"
   }
 };
@@ -1769,20 +1817,49 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && contactModal.classList.contains('open')) closeContactModal();
 });
 
-/* Form Submission (Mailto fallback) */
+/* Form Submission (Web3Forms Fetch API) */
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
+  const form = e.target;
+  const formData = new FormData(form);
+  const statusText = document.getElementById('form-status');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  const mailtoLink = `mailto:satadals121@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-  
-  window.location.href = mailtoLink;
-  showToast(i18n[currentLang].toast_opening);
-  closeContactModal();
+  // Update UI to show sending state
+  submitBtn.disabled = true;
+  statusText.style.display = "block";
+  statusText.className = "form-status info";
+  statusText.innerText = i18n[currentLang].form_status_sending;
+
+  fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          statusText.className = "form-status success";
+          statusText.innerText = i18n[currentLang].form_status_success;
+          form.reset();
+          
+          // Close modal after 3 seconds and reset button
+          setTimeout(() => { 
+              closeContactModal(); 
+              statusText.style.display = "none"; 
+              submitBtn.disabled = false; 
+          }, 3000);
+      } else {
+          statusText.className = "form-status error";
+          statusText.innerText = i18n[currentLang].form_status_error;
+          submitBtn.disabled = false;
+      }
+  })
+  .catch(error => {
+      statusText.className = "form-status error";
+      statusText.innerText = i18n[currentLang].form_status_error;
+      submitBtn.disabled = false;
+  });
 });
 
 /* ==========================================
@@ -1936,3 +2013,4 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </script>
 </body>
 </html>
+```
