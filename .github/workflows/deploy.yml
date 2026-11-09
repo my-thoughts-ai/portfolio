@@ -9,12 +9,17 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Install Minifier
         run: npm install -g html-minifier-terser
 
       - name: Minify Code
         run: html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true index.html -o index.html
+
+      - name: Create .nojekyll
+        run: touch .nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
