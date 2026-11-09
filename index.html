@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Satadal Santra — Data Science · ML · LLM · AI</title>
@@ -943,6 +944,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
     </div>
     <div class="pm-content">
       <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
         <input type="hidden" name="access_key" value="f590d332-617f-4649-966a-9a4f7e56ea2b">
         <div class="form-group">
           <label for="name" data-i18n="form_name">Name</label>
@@ -968,6 +970,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
         <p id="form-status" class="form-status"></p>
         
         <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top: 8px;" data-i18n="form_submit">Send Message</button>
+        <div class="h-captcha" data-captcha="true"></div>
       </form>
     </div>
   </div>
