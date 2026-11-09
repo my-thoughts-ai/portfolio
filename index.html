@@ -1,22 +1,3 @@
-This is a fantastic update. Using **Web3Forms** completely solves the `mailto:` redirect issue. It allows the form to submit silently in the background and actually delivers the email straight to your inbox.
-
-I have updated your code to include:
-1. **Direct Background Submission:** The form uses your Web3Forms Access Key (`f590d332-617f-4649-966a-9a4f7e56ea2b`) and submits via `fetch()` without reloading or redirecting.
-2. **File Attachment:** Added a clean file upload input allowing recruiters to attach a PDF or image.
-3. **Live Status Updates:** Added a status text under the button that shows "Sending...", "Success!", or "Error", fully translated into English and German.
-4. **Form Reset & Modal Close:** Upon success, the form resets and the modal automatically closes after 3 seconds.
-
-### The Setup (Crucial Steps for You)
-
-To get the **Automated Replies** and **Integrations (Slack/Discord/Google Sheets)** working, you don't need to change any code. You configure these directly in your Web3Forms dashboard:
-1. **Auto-Reply:** Log in to Web3Forms, go to your form settings, and enable the "Autoresponse" feature. Type in the "Thank you for reaching out!" message, and Web3Forms will automatically email the person who filled out your form.
-2. **Integrations:** In the Web3Forms dashboard, go to the "Integrations" tab. You can connect your form to Google Sheets, Slack, or Discord with a few clicks.
-
-### The Updated Code
-
-Save this as `index.html`:
-
-```html
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -2013,4 +1994,3 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </script>
 </body>
 </html>
-```
