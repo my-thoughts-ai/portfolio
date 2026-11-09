@@ -359,6 +359,7 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 footer { border-top: 1px solid var(--line); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.66rem; color: var(--muted); }
 footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
+/* Toast Notification */
 .toast {
   position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
   background: var(--text); color: var(--bg); padding: 0.75rem 1.5rem;
@@ -899,7 +900,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
       </li>
     </ol>
 
-    <p class="rec-more reveal"><span data-i18n="rec_more">Full pre-2013 history available on request</span> → <a href="mailto:satadals121@gmail.com">satadals121@gmail.com</a></p>
+    <p class="rec-more reveal"><span data-i18n="rec_more">Full pre-2013 history available on request via the contact form.</span></p>
   </div>
 </section>
 
@@ -909,16 +910,9 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
     <div class="tile contact-tile reveal" data-idx="END">
       <span class="eyebrow" style="margin-bottom:0" data-i18n="contact_eyebrow">04 — Contact</span>
       <h2 data-i18n="contact_title">Pipelines, models, and AI.<br><span class="accent">Let's put your data to work.</span></h2>
-      <p data-i18n="contact_desc">Open to Werkstudent, internship and full-time data and AI roles.</p>
+      <p data-i18n="contact_desc">Open to Werkstudent, internship and full-time data and AI roles. Feel free to reach out using the form or connect with me on LinkedIn.</p>
       <div class="contact-actions">
-        <a href="mailto:satadals121@gmail.com" class="btn btn-primary">
-          satadals121@gmail.com
-        </a>
-        <button class="btn btn-ghost" id="copyEmailContact">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          <span data-i18n="btn_copy">Copy Email</span>
-        </button>
-        <button class="btn btn-ghost" id="openContactModal">
+        <button class="btn btn-primary" id="openContactModal">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12v12H4z"></path><path d="M8 10h4M8 6h4"></path></svg>
           <span data-i18n="btn_contact_form">Contact Form</span>
         </button>
@@ -940,20 +934,6 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
   <span>© <span id="yr">2026</span> Satadal Santra</span>
   <span class="fstat"><span class="pulse" aria-hidden="true"></span> <span data-i18n="footer_status">connecting dots</span></span>
 </footer>
-
-<!-- Toast -->
-<div id="toast" class="toast" role="alert" aria-live="polite">Email copied!</div>
-
-<!-- ===== Project case-study modal ===== -->
-<div class="pm-overlay" id="pm-overlay" role="dialog" aria-modal="true" aria-label="Project case study">
-  <div class="pm-dialog">
-    <div class="pm-head">
-      <span class="lbl2" data-i18n="pm_label">Project case study</span>
-      <button class="pm-close" id="pm-close" aria-label="Close" data-i18n="pm_close">✕</button>
-    </div>
-    <div class="pm-content" id="pm-body"></div>
-  </div>
-</div>
 
 <!-- ===== Contact Form Modal ===== -->
 <div class="pm-overlay contact-form-modal" id="contactModal" role="dialog" aria-modal="true" aria-label="Contact Form">
@@ -1561,7 +1541,7 @@ const i18n = {
     hero_eyebrow: "Data Science · ML Systems · LLM · AI · Analytics",
     hero_title: "Somewhere between a <span class='accent'>p-value</span><br><span class='thin'>and a production deploy.</span>",
     hero_lede: "Data Science student with a unique edge: <b>8 years</b> of enterprise data experience in SAP IS-U & FI-CA. I bridge the gap between deep operational <b>data model, modern AI-ML, RAG/LLM systems, and data engineering</b>.",
-    btn_work: "Selected work", btn_copy: "Copy Email", btn_cv: "Download CV", btn_contact_form: "Contact Form",
+    btn_work: "Selected work", btn_contact_form: "Contact Form", btn_cv: "Download CV",
     kv_focus: "focus", kv_focus_val: "Data Science & AI-ML",
     kv_loc: "location", kv_loc_val: "Bochum, GE", kv_prior: "ex-domain", kv_status: "status", kv_status_val: "Open to roles",
     stat_1: "Forecast error reduced", stat_2: "Value per head", stat_3: "Records analyzed", stat_4: "Offline tests",
@@ -1594,9 +1574,9 @@ const i18n = {
     rec_1_title: "M.Sc. Data Science", rec_1_desc: "Graduate studies in statistical modelling, machine learning, and data engineering. Seminar projects with industry partners on real operational datasets.", rec_1_badge: "CURRENT",
     rec_2_title: "Office Executive (Enterprise Data)", rec_2_desc: "Maintained large-scale enterprise master data in SAP IS-U and FI-CA systems for a state power utility. Ran billing & revenue analysis, compiled MIS reports for senior stakeholders, and supported corporate audits with structured, auditable records.", rec_2_badge: "8 YRS",
     rec_3_title: "Earlier — Computer Applications & Tutoring", rec_3_desc: "MCA & BCA in Computer Applications, plus three years tutoring mathematics online for U.S. students. Summarised here rather than listed in full — the focus is the current M.Sc. and the enterprise data work above.", rec_3_badge: "SUMMARY",
-    rec_more: "Full pre-2013 history available on request",
+    rec_more: "Full pre-2013 history available on request via the contact form.",
     contact_eyebrow: "04 — Contact", contact_title: "Pipelines, models, and AI.<br><span class='accent'>Let's put your data to work.</span>",
-    contact_desc: "Open to Werkstudent, internship and full-time data and AI roles.",
+    contact_desc: "Open to Werkstudent, internship and full-time data and AI roles. Feel free to reach out using the form or connect with me on LinkedIn.",
     footer_status: "connecting dots",
     pm_label: "Project case study",
     pm_close: "Close",
@@ -1609,8 +1589,7 @@ const i18n = {
     form_submit: "Send Message",
     form_status_sending: "Sending...",
     form_status_success: "Message sent successfully!",
-    form_status_error: "Error sending message. Please email me directly.",
-    toast_copied: "Email copied!"
+    form_status_error: "Error sending message. Please email me directly."
   },
   de: {
     skip: "Zum ausgewählten Bereich springen",
@@ -1618,7 +1597,7 @@ const i18n = {
     hero_eyebrow: "Data Science · ML Systeme · LLM · KI · Analytics",
     hero_title: "Irgendwo zwischen einem <span class='accent'>p-Wert</span><br><span class='thin'>und einem Production Deploy.</span>",
     hero_lede: "Data Science Student mit einem einzigartigen Vorteil: <b>8 Jahre</b> Erfahrung mit Enterprise-Daten in SAP IS-U & FI-CA. Ich schließe die Lücke zwischen tiefen operativen <b>Daten, modernem AI-ML, RAG/LLM-Systemen und Data Engineering</b>.",
-    btn_work: "Ausgewählte Arbeiten", btn_copy: "E-Mail kopieren", btn_cv: "Lebenslauf herunterladen", btn_contact_form: "Kontaktformular",
+    btn_work: "Ausgewählte Arbeiten", btn_contact_form: "Kontaktformular", btn_cv: "Lebenslauf herunterladen",
     kv_focus: "Fokus", kv_focus_val: "Data Science & AI-ML",
     kv_loc: "Standort", kv_loc_val: "Bochum, DE", kv_prior: "Ex-Domäne", kv_status: "Status", kv_status_val: "Offen für Stellen",
     stat_1: "Prognosefehler reduziert", stat_2: "Wert pro Kopf", stat_3: "Datensätze analysiert", stat_4: "Offline-Tests",
@@ -1651,9 +1630,9 @@ const i18n = {
     rec_1_title: "M.Sc. Data Science", rec_1_desc: "Studium der statistischen Modellierung, des maschinellen Lernens und des Data Engineering. Seminarprojekte mit Industriepartnern auf echten operativen Datensätzen.", rec_1_badge: "AKTUELL",
     rec_2_title: "Office Executive (Enterprise-Daten)", rec_2_desc: "Pflege großflächiger Enterprise-Stammdaten in SAP IS-U und FI-CA Systemen für einen staatlichen Energieversorger. Durchführung von Abrechnungs- und Umsatzanalysen, Erstellung von MIS-Berichten für Führungskräfte und Unterstützung von Unternehmensprüfungen mit strukturierten, prüfbaren Aufzeichnungen.", rec_2_badge: "8 JAHRE",
     rec_3_title: "Früher — Computeranwendungen & Nachhilfe", rec_3_desc: "MCA & BCA in Computeranwendungen, plus drei Jahre Online-Nachhilfe in Mathematik für US-Studenten. Hier zusammengefasst statt vollständig aufgelistet — der Fokus liegt auf dem aktuellen M.Sc. und der oben genannten Enterprise-Datenarbeit.", rec_3_badge: "ZUSAMMENFASSUNG",
-    rec_more: "Vollständige Historie vor 2013 auf Anfrage erhältlich",
+    rec_more: "Vollständige Historie vor 2013 auf Anfrage über das Kontaktformular erhältlich.",
     contact_eyebrow: "04 — Kontakt", contact_title: "Pipelines, Modelle und KI.<br><span class='accent'>Lassen Sie Ihre Daten für sich arbeiten.</span>",
-    contact_desc: "Offen für Werkstudenten-, Praktikums- und Vollzeitstellen im Bereich Data Science.",
+    contact_desc: "Offen für Werkstudenten-, Praktikums- und Vollzeitstellen im Bereich Data Science. Kontaktieren Sie mich gerne über das Formular oder vernetzen Sie sich auf LinkedIn.",
     footer_status: "verbinde Punkte",
     pm_label: "Projekt-Fallstudie",
     pm_close: "Schließen",
@@ -1666,8 +1645,7 @@ const i18n = {
     form_submit: "Nachricht senden",
     form_status_sending: "Wird gesendet...",
     form_status_success: "Nachricht erfolgreich gesendet!",
-    form_status_error: "Fehler beim Senden. Bitte senden Sie mir eine direkte E-Mail.",
-    toast_copied: "E-Mail kopiert!"
+    form_status_error: "Fehler beim Senden. Bitte senden Sie mir eine direkte E-Mail."
   }
 };
 
@@ -1736,43 +1714,7 @@ function updateThemeIcon(theme) {
 }
 
 /* ==========================================
-   3. COPY TO CLIPBOARD
-   ========================================== */
-const toast = document.getElementById('toast');
-const emailText = "satadals121@gmail.com";
-
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-function copyEmail() {
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(emailText).then(() => {
-      showToast(i18n[currentLang].toast_copied);
-    }).catch(() => {
-      console.warn('Clipboard blocked.');
-    });
-  } else {
-    const textArea = document.createElement("textarea");
-    textArea.value = emailText;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try {
-      document.execCommand('copy');
-      showToast(i18n[currentLang].toast_copied);
-    } catch (err) {
-      console.warn('Fallback copy failed.');
-    }
-    document.body.removeChild(textArea);
-  }
-}
-
-document.getElementById('copyEmailContact').addEventListener('click', copyEmail);
-
-/* ==========================================
-   4. CONTACT FORM MODAL LOGIC
+   3. CONTACT FORM MODAL LOGIC
    ========================================== */
 const contactModal = document.getElementById('contactModal');
 const openContactModalBtn = document.getElementById('openContactModal');
@@ -1844,7 +1786,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 });
 
 /* ==========================================
-   5. CLOCK (Europe/Berlin)
+   4. CLOCK (Europe/Berlin)
    ========================================== */
 (function(){
   const el = document.getElementById('clock'); if(!el) return;
@@ -1862,7 +1804,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 })();
 
 /* ==========================================
-   6. UI INTERACTIONS
+   5. UI INTERACTIONS
    ========================================== */
 (function(){
   const y = document.getElementById('yr'); if(y) y.textContent = new Date().getFullYear();
