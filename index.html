@@ -359,7 +359,6 @@ h1 .thin { font-weight: 400; color: var(--text-2); }
 footer { border-top: 1px solid var(--line); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.66rem; color: var(--muted); }
 footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 
-/* Toast Notification */
 .toast {
   position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
   background: var(--text); color: var(--bg); padding: 0.75rem 1.5rem;
@@ -916,7 +915,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12v12H4z"></path><path d="M8 10h4M8 6h4"></path></svg>
           <span data-i18n="btn_contact_form">Contact Form</span>
         </button>
-        <a href="CV_Satadal_Santra.pdf" class="btn btn-ghost" download>
+        <a href="cv.pdf" id="downloadCVBtn" class="btn btn-ghost" download="cv.pdf">
           <span data-i18n="btn_cv">Download CV</span>
         </a>
       </div>
@@ -1673,6 +1672,18 @@ function setLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+
+  // Dynamically update the CV download link based on the language
+  const cvBtn = document.getElementById('downloadCVBtn');
+  if (cvBtn) {
+    if (lang === 'de') {
+      cvBtn.href = 'Lebenslauf_Satadal_Santra.pdf';
+      cvBtn.setAttribute('download', 'Lebenslauf_Satadal_Santra.pdf');
+    } else {
+      cvBtn.href = 'cv.pdf';
+      cvBtn.setAttribute('download', 'cv.pdf');
+    }
+  }
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
