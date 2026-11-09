@@ -33,6 +33,7 @@
   --maxw: 1240px;
   --sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --req: #ef4444;
 }
 [data-theme="dark"] {
   --bg: #0B0B0D;
@@ -50,6 +51,7 @@
   --accent-line: rgba(56, 189, 248, 0.30);
   --lime: #38bdf8;
   --lime-dim: rgba(56, 189, 248, 0.10);
+  --req: #f87171;
 }
 
 /* ==========================================
@@ -449,6 +451,24 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
 .pm-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
 .pm-stack span{font-family:var(--mono);font-size:.68rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:7px;padding:4px 9px;color:var(--text-2);}
 .p-tile[data-detail]{cursor:pointer;}
+
+/* ==========================================
+   CONTACT FORM STYLES
+   ========================================== */
+.contact-form-modal .pm-dialog { max-width: 600px; }
+.contact-form-modal .pm-content { padding: 30px 40px 40px; }
+.contact-form-modal .form-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px; }
+.contact-form-modal label { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-2); font-weight: 500; }
+.contact-form-modal .req { color: var(--req); font-weight: 700; }
+.contact-form-modal input, .contact-form-modal textarea {
+  width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg-alt); color: var(--text); font-family: var(--sans); font-size: 0.9rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form-modal input:focus, .contact-form-modal textarea:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.contact-form-modal textarea { resize: vertical; min-height: 120px; }
 </style>
 </head>
 <body>
@@ -499,7 +519,7 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
           <span class="thin">and a production deploy.</span>
         </h1>
         <p class="hero-lede" data-i18n="hero_lede">
-          A career changer, Data Science student with a unique edge: <b>8 years</b> of enterprise data experience in SAP IS-U & FI-CA. I bridge the gap between deep operational data and <b>modern DS, DE, ML, RAG/LLM systems, and AI</b>.
+          Data Science student with a unique edge: <b>8 years</b> of enterprise data experience in SAP IS-U & FI-CA. I bridge the gap between deep operational <b>data model, modern AI-ML, RAG/LLM systems, and data engineering</b>.
         </p>
         <div class="hero-actions">
           <a href="#work" class="btn btn-primary">
@@ -883,6 +903,10 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           <span data-i18n="btn_copy">Copy Email</span>
         </button>
+        <button class="btn btn-ghost" id="openContactModal">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12v12H4z"></path><path d="M8 10h4M8 6h4"></path></svg>
+          <span data-i18n="btn_contact_form">Contact Form</span>
+        </button>
         <a href="cv.pdf" class="btn btn-ghost" download>
           <span data-i18n="btn_cv">Download CV</span>
         </a>
@@ -913,6 +937,37 @@ footer .fstat { display: inline-flex; align-items: center; gap: 8px; }
       <button class="pm-close" id="pm-close" aria-label="Close" data-i18n="pm_close">✕</button>
     </div>
     <div class="pm-content" id="pm-body"></div>
+  </div>
+</div>
+
+<!-- ===== Contact Form Modal ===== -->
+<div class="pm-overlay contact-form-modal" id="contactModal" role="dialog" aria-modal="true" aria-label="Contact Form">
+  <div class="pm-dialog">
+    <div class="pm-head">
+      <span class="lbl2" data-i18n="pm_contact_label">Contact Form</span>
+      <button class="pm-close" id="closeContactModal" aria-label="Close">✕</button>
+    </div>
+    <div class="pm-content">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name" data-i18n="form_name">Name</label>
+          <input type="text" id="name" required placeholder="John Doe" data-i18n-ph="form_name_ph" />
+        </div>
+        <div class="form-group">
+          <label for="email" data-i18n="form_email">Email <span class="req">*</span></label>
+          <input type="email" id="email" required placeholder="john@example.com" data-i18n-ph="form_email_ph" />
+        </div>
+        <div class="form-group">
+          <label for="subject" data-i18n="form_subject">Subject</label>
+          <input type="text" id="subject" required placeholder="Project Inquiry" data-i18n-ph="form_subject_ph" />
+        </div>
+        <div class="form-group">
+          <label for="message" data-i18n="form_message">Message</label>
+          <textarea id="message" rows="5" required placeholder="Hello Satadal..." data-i18n-ph="form_message_ph"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top: 8px;" data-i18n="form_submit">Send Message</button>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -1483,7 +1538,7 @@ const i18n = {
     hero_eyebrow: "Data Science · ML Systems · LLM · AI · Analytics",
     hero_title: "Somewhere between a <span class='accent'>p-value</span><br><span class='thin'>and a production deploy.</span>",
     hero_lede: "Data Science student with a unique edge: <b>8 years</b> of enterprise data experience in SAP IS-U & FI-CA. I bridge the gap between deep operational <b>data model, modern AI-ML, RAG/LLM systems, and data engineering</b>.",
-    btn_work: "Selected work", btn_copy: "Copy Email", btn_cv: "Download CV",
+    btn_work: "Selected work", btn_copy: "Copy Email", btn_cv: "Download CV", btn_contact_form: "Contact Form",
     kv_focus: "focus", kv_focus_val: "Data Science & AI-ML",
     kv_loc: "location", kv_loc_val: "Bochum, GE", kv_prior: "ex-domain", kv_status: "status", kv_status_val: "Open to roles",
     stat_1: "Forecast error reduced", stat_2: "Value per head", stat_3: "Records analyzed", stat_4: "Offline tests",
@@ -1521,7 +1576,15 @@ const i18n = {
     contact_desc: "Open to Werkstudent, internship and full-time data and AI roles.",
     footer_status: "connecting dots",
     pm_label: "Project case study",
-    pm_close: "Close"
+    pm_close: "Close",
+    pm_contact_label: "Contact Form",
+    form_name: "Name", form_name_ph: "John Doe",
+    form_email: "Email", form_email_ph: "john@example.com",
+    form_subject: "Subject", form_subject_ph: "Project Inquiry",
+    form_message: "Message", form_message_ph: "Hello Satadal...",
+    form_submit: "Send Message",
+    toast_opening: "Opening email client...",
+    toast_copied: "Email copied!"
   },
   de: {
     skip: "Zum ausgewählten Bereich springen",
@@ -1529,7 +1592,7 @@ const i18n = {
     hero_eyebrow: "Data Science · ML Systeme · LLM · KI · Analytics",
     hero_title: "Irgendwo zwischen einem <span class='accent'>p-Wert</span><br><span class='thin'>und einem Production Deploy.</span>",
     hero_lede: "Data Science Student mit einem einzigartigen Vorteil: <b>8 Jahre</b> Erfahrung mit Enterprise-Daten in SAP IS-U & FI-CA. Ich schließe die Lücke zwischen tiefen operativen <b>Daten, modernem AI-ML, RAG/LLM-Systemen und Data Engineering</b>.",
-    btn_work: "Ausgewählte Arbeiten", btn_copy: "E-Mail kopieren", btn_cv: "Lebenslauf herunterladen",
+    btn_work: "Ausgewählte Arbeiten", btn_copy: "E-Mail kopieren", btn_cv: "Lebenslauf herunterladen", btn_contact_form: "Kontaktformular",
     kv_focus: "Fokus", kv_focus_val: "Data Science & AI-ML",
     kv_loc: "Standort", kv_loc_val: "Bochum, DE", kv_prior: "Ex-Domäne", kv_status: "Status", kv_status_val: "Offen für Stellen",
     stat_1: "Prognosefehler reduziert", stat_2: "Wert pro Kopf", stat_3: "Datensätze analysiert", stat_4: "Offline-Tests",
@@ -1567,7 +1630,15 @@ const i18n = {
     contact_desc: "Offen für Werkstudenten-, Praktikums- und Vollzeitstellen im Bereich Data Science.",
     footer_status: "verbinde Punkte",
     pm_label: "Projekt-Fallstudie",
-    pm_close: "Schließen"
+    pm_close: "Schließen",
+    pm_contact_label: "Kontaktformular",
+    form_name: "Name", form_name_ph: "Max Mustermann",
+    form_email: "E-Mail <span class='req'>*</span>", form_email_ph: "max@beispiel.de",
+    form_subject: "Betreff", form_subject_ph: "Projektanfrage",
+    form_message: "Nachricht", form_message_ph: "Hallo Satadal...",
+    form_submit: "Nachricht senden",
+    toast_opening: "E-Mail-Programm wird geöffnet...",
+    toast_copied: "E-Mail kopiert!"
   }
 };
 
@@ -1582,6 +1653,13 @@ function setLanguage(lang) {
     const key = el.getAttribute('data-i18n');
     if (i18n[lang] && i18n[lang][key]) {
       el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (i18n[lang] && i18n[lang][key]) {
+      el.placeholder = i18n[lang][key];
     }
   });
 
@@ -1634,14 +1712,17 @@ function updateThemeIcon(theme) {
 const toast = document.getElementById('toast');
 const emailText = "satadals121@gmail.com";
 
-function showToast() {
+function showToast(msg) {
+  toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 function copyEmail() {
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(emailText).then(showToast).catch(() => {
+    navigator.clipboard.writeText(emailText).then(() => {
+      showToast(i18n[currentLang].toast_copied);
+    }).catch(() => {
       console.warn('Clipboard blocked.');
     });
   } else {
@@ -1651,7 +1732,7 @@ function copyEmail() {
     textArea.select();
     try {
       document.execCommand('copy');
-      showToast();
+      showToast(i18n[currentLang].toast_copied);
     } catch (err) {
       console.warn('Fallback copy failed.');
     }
@@ -1662,7 +1743,50 @@ function copyEmail() {
 document.getElementById('copyEmailContact').addEventListener('click', copyEmail);
 
 /* ==========================================
-   4. CLOCK (Europe/Berlin)
+   4. CONTACT FORM MODAL LOGIC
+   ========================================== */
+const contactModal = document.getElementById('contactModal');
+const openContactModalBtn = document.getElementById('openContactModal');
+const closeContactModalBtn = document.getElementById('closeContactModal');
+
+function openContactModal() {
+  contactModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  closeContactModalBtn.focus();
+}
+
+function closeContactModal() {
+  contactModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+openContactModalBtn.addEventListener('click', openContactModal);
+closeContactModalBtn.addEventListener('click', closeContactModal);
+contactModal.addEventListener('click', (e) => {
+  if (e.target === contactModal) closeContactModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && contactModal.classList.contains('open')) closeContactModal();
+});
+
+/* Form Submission (Mailto fallback) */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  const mailtoLink = `mailto:satadals121@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+  
+  window.location.href = mailtoLink;
+  showToast(i18n[currentLang].toast_opening);
+  closeContactModal();
+});
+
+/* ==========================================
+   5. CLOCK (Europe/Berlin)
    ========================================== */
 (function(){
   const el = document.getElementById('clock'); if(!el) return;
@@ -1680,7 +1804,7 @@ document.getElementById('copyEmailContact').addEventListener('click', copyEmail)
 })();
 
 /* ==========================================
-   5. UI INTERACTIONS
+   6. UI INTERACTIONS
    ========================================== */
 (function(){
   const y = document.getElementById('yr'); if(y) y.textContent = new Date().getFullYear();
@@ -1812,4 +1936,3 @@ document.getElementById('copyEmailContact').addEventListener('click', copyEmail)
 </script>
 </body>
 </html>
-
