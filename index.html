@@ -1766,18 +1766,13 @@ document.addEventListener('keydown', (e) => {
 
 /* Form Submission (Web3Forms Fetch API) */
 // --- hCaptcha Validation ---
-(function() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-  form.addEventListener('submit', function(e) {
-    const hCaptcha = form.querySelector('textarea[name=h-captcha-response]');
-    if (!hCaptcha || !hCaptcha.value) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      alert(currentLang === 'de' ? 'Bitte Captcha ausfüllen.' : 'Please complete the captcha.');
-    }
-  });
-})();
+// Safe hCaptcha check (doesn't break if adblocker is active)
+const hCaptchaField = document.getElementById('contactForm').querySelector('textarea[name=h-captcha-response]');
+if (hCaptchaField && !hCaptchaField.value) {
+    e.preventDefault();
+    alert(currentLang === 'de' ? 'Bitte Captcha ausfüllen.' : 'Please complete the captcha.');
+    return; // Stop execution
+}
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
